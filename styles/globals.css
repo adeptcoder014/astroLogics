@@ -24,3 +24,47 @@ a {
     background: black;
   }
 }
+
+.image {
+  animation: rotate 2s infinite linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.dropdownLocation {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background-color: #f1f3f5;
+  color: gray;
+  margin-bottom: 10px;
+}
+.dropdownLocationD {
+  padding: 100px;
+}
+select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Style the selected option */
+option:checked {
+  background-color: #eaf2f8;
+  color: red;
+  padding: 500px;
+}
+
+/* Style the other options */
+option {
+  background-color: #fff;
+  color: #333;
+  padding: 500px;
+}
