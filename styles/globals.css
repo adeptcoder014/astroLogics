@@ -44,10 +44,28 @@ a {
   background-color: #f1f3f5;
   color: gray;
   margin-bottom: 10px;
+  width: 86%;
 }
-.dropdownLocationD {
-  padding: 100px;
+.dropdownLocationBox {
+  background-color: #f1f3f5;
+  border-radius: 8px;
+  /* padding: 5px; */
+  text-align: left;
+  margin-top: -2.4%;
+  margin-inline-start: 0em;
 }
+.dropdownlocationboxhide {
+  /* display: none;  */
+  padding-inline-start: 0px;
+  /* padding:50px */
+}
+
+.dropdownLocationBox > li {
+  list-style: none;
+  color: gray;
+  padding: 10px;
+}
+
 select {
   padding: 10px;
   font-size: 16px;
