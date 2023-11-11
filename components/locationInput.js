@@ -1,9 +1,14 @@
+// ========= DEPENDENCIES ===========================================================
 import React, { useState } from "react";
+// ========= Component_Funtion ===========================================================
 
 const Autocomplete = ({ locations, setLocation }) => {
+  // ========= STATES/MODEL ===========================================================
+
   const [inputValue, setInputValue] = useState("");
   const [filteredOptions, setFilteredOptions] = useState([]);
   const [hideLocationDropdown, setHideLocationDropdown] = useState(true);
+// ========= EVENT_HANDLERS/CONTROLLERS ===========================================================
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -48,6 +53,7 @@ const Autocomplete = ({ locations, setLocation }) => {
     setFilteredOptions([]);
     // setInputValue("");
   };
+// ========= VIEW ===========================================================
 
   return (
     <div

@@ -163,11 +163,10 @@ export default function SignUp() {
             </Text>
             <Text
               aria-label="heading"
-              h7
+              h4
               color="#f1f3f5"
               css={{
                 textAlign: "center",
-                mt: "-4%",
                 fontWeight: 500,
                 // marginRight: "15%",
               }}

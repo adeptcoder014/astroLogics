@@ -86,3 +86,32 @@ option {
   color: #333;
   padding: 500px;
 }
+
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: #ccc;
+  /* padding: 2px; */
+}
+
+/* Two Column Layout */
+.column {
+  width: 50%;
+  /* float: left; */
+  box-sizing: border-box;
+  background-color: #c33737;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 767px) {
+  .column {
+    width: 100%;
+  }
+}
