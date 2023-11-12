@@ -31,6 +31,7 @@ const locations = [
 ];
 //==========================================================
 export default function SignUp() {
+  
   const router = useRouter();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
@@ -140,50 +141,51 @@ export default function SignUp() {
         css={{
           backgroundColor: "$primary",
           display: "flex",
-          flexDirection: "column",
+          // flexDirection: "ro",
           justifyContent: "center",
           alignItems: "center",
-          height: "98vh",
+          minWidth: "100vw", // Set the height to 100% of viewport height
+          minHeight: "100vh", // Set the height to 100% of viewport height
         }}
-      >
+        >
         <div
           style={{
             background: "linear-gradient(222deg, #0072f5, #3F51B5)",
-            padding: "10%",
+            border:"1px solid white",
+            padding: 50,
             borderRadius: "20px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignContent: "center",
+            maxHeight: "80vh",
           }}
         >
           <div>
-            <Text h2 color="#f1f3f5" css={{ textAlign: "center" }}>
-              Your Astrological Map Awaits
-            </Text>
-            <Text
-              aria-label="heading"
-              h4
-              color="#f1f3f5"
-              css={{
-                textAlign: "center",
-                fontWeight: 500,
-                // marginRight: "15%",
-              }}
-            >
-              Enter Your Birth Information
-            </Text>
+            <h1>Your Astrological Map Awaits</h1>
+            <h3 style={{textAlign:"center"}}>Enter Your Birth Information</h3>
           </div>
 
           {/* ============= NAME ===================== */}
-          <div>
+          <div style={{
+            // border:"1px solid white",
+            display:"flex",
+            justifyContent:"space-around",
+            alignContent:"center",
+            marginBottom:"5%"
+
+          }}>
+            <div >
+
+          <p >Enter you name</p>
+
             <Input
               contentLeft={
                 <Image
-                  alt="alt tag"
-                  src={require("../public/icons/person.png")}
-                  height={28}
-                  width={100}
+                alt="alt tag"
+                src={require("../public/icons/person.png")}
+                height={28}
+                width={100}
                 />
               }
               onChange={(e) => {
@@ -194,19 +196,32 @@ export default function SignUp() {
                 backgroundColor: "blue",
               }}
               placeholder="Enter name"
-            />
-          </div>
+              />
 
-          {/* ============= GENDER ===================== */}
+              </div>
+            {/* ============= GENDER ===================== */}
 
-          <div>
+          
             <div
               style={{
                 display: "flex",
+                flexDirection:"column",
+
                 justifyContent: "space-around",
-                marginTop: 10,
+             
+                width:150,
               }}
-            >
+              >
+                        <p >Pick your gender</p>
+<div style={{
+  display: "flex",
+  // border:"1px solid white",
+  display: "flex",
+
+                justifyContent: "space-around",
+  
+  
+              }}>
               <div
                 style={{
                   background: isMale
@@ -216,7 +231,9 @@ export default function SignUp() {
                   justifyContent: "center",
                   alignItems: "center",
                   border: isMale ? "1px solid white" : "none",
-                  borderRadius: "4px",
+                  width: '50px',
+                  height: '50px',
+                  borderRadius: '50%',      
                   cursor: "pointer",
                   padding: "0px 20px",
                 }}
@@ -232,9 +249,7 @@ export default function SignUp() {
                   height={30}
                   width={30}
                 />
-                <Text color="white" aria-label="male">
-                  Male
-                </Text>
+                {/* <p> Male</p> */}
               </div>
               <div
                 style={{
@@ -245,7 +260,9 @@ export default function SignUp() {
                   justifyContent: "center",
                   alignItems: "center",
                   border: isFemale ? "1px solid white" : "none",
-                  borderRadius: "4px",
+                  width: '50px',
+                  height: '50px',
+                  borderRadius: '50%',            
                   cursor: "pointer",
                   padding: "0px 20px",
                 }}
@@ -261,15 +278,20 @@ export default function SignUp() {
                   height={30}
                   width={30}
                 />
-                <Text color="white" aria-label="female">
-                  Female
-                </Text>
+              
               </div>
+            </div>
             </div>
           </div>
 
+       
+       
+
           {/* ============= LOCATION  ===================== */}
-          <div style={{ marginTop: "10px" }}>
+          <div style={{ marginTop: "10px",                
+          // :"1px solid white",
+ }}>
+  <p>Natal time   </p>
             <Autocomplete locations={locations} setLocation={setLocation} />
           </div>
 
@@ -280,7 +302,7 @@ export default function SignUp() {
               flexDirection: "rows",
 
               justifyContent: "space-between",
-              marginTop: -15,
+              // marginTop: -15,
             }}
           >
             <div>
@@ -297,7 +319,7 @@ export default function SignUp() {
                   });
                 }}
                 css={{
-                  width: "45vw",
+                  width: 250,
                 }}
                 color="black"
               />
@@ -314,6 +336,10 @@ export default function SignUp() {
                     time: e.target.value,
                   });
                 }}
+                css={{
+                  width: 150,
+                }}
+
                 color="default"
               />
             </div>
@@ -324,6 +350,7 @@ export default function SignUp() {
             style={{
               margin: "auto",
               width: "100%",
+              marginTop:15
             }}
           >
             <Button
@@ -331,6 +358,11 @@ export default function SignUp() {
                 backgroundColor: "#ff5722",
                 mt: 20,
                 width: "100%",
+                backgroundColor: "white",
+                border:"3px solid black",
+                mt: 20,
+                color:"black",
+                fontWeight:"bolder"
               }}
               onPress={handleSignUpSubmission}
             >
@@ -339,7 +371,7 @@ export default function SignUp() {
             </Button>
           </div>
         </div>
-
+       
         {/* ================================== */}
       </Container>
     </>

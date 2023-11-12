@@ -19,40 +19,29 @@ export default function HomeScreen() {
       css={{
         backgroundColor: "$primary",
         display: "flex",
-        flexDirection: "column",
-        justifyContent:"center",  
+        // flexDirection: "column",
+        justifyContent: "center",
+        alignContent: "center",
         padding: 20,
         minWidth: "100vw", // Set the height to 100% of viewport height
         minHeight: "100vh", // Set the height to 100% of viewport height
       }}
     >
-      <div
-        style={{
-          background: "linear-gradient(222deg, #0072f5, #3F51B5)",
-          padding: "10%",
-          borderRadius: "20px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignContent: "center",
-          // minHeight: "100%", // Make sure this container takes full height
-
-        }}
-      >
-        {/* <div style={}> */}
+        <div className="container-style">
+        < div className="center ">
           <Image
             src={"/welcomeImage.png"}
-            height={250}  
+            height={250}
             width={250}
             className="image"
             alt="Rotating moon cycle"
           />
-        {/* </div> */}
+        </div>
         <div>
-          <Text h2 color="white" css={{ textAlign: "center" }}>
+          <Text h1 color="white" css={{ textAlign: "center" ,fontSize:"2em"}}>
             Astrologics
           </Text>
-          <Text h6 css={{ textAlign: "center"}}>
+          <Text h3 css={{ textAlign: "center",fontSize:"1em" }}>
             Explore Your Cosmic Destiny with Astrologics
           </Text>
         </div>
@@ -63,8 +52,51 @@ export default function HomeScreen() {
         >
           <Button
             css={{
-              backgroundColor: "#ff5722",
+              backgroundColor: "white",
+              border:"3px solid black",
               mt: 20,
+              color:"black",
+              fontWeight:"bolder"
+            }}
+            onPress={() => {
+              router.push("/signUp");
+            }}
+          >
+            {" "}
+            Get you map
+          </Button>
+        </div>
+      </div>
+      <div className="container-style">
+        < div className="center ">
+          <Image
+            src={"/welcomeImage.png"}
+            height={250}
+            width={250}
+            className="image"
+            alt="Rotating moon cycle"
+          />
+        </div>
+        <div>
+          <Text h1 color="white" css={{ textAlign: "center" ,fontSize:"2em"}}>
+            Astrologics
+          </Text>
+          <Text h3 css={{ textAlign: "center",fontSize:"1em" }}>
+            Explore Your Cosmic Destiny with Astrologics
+          </Text>
+        </div>
+        <div
+          style={{
+            margin: "auto",
+          }}
+        >
+          <Button
+            css={{
+              backgroundColor: "white",
+              border:"3px solid black",
+              mt: 20,
+              color:"black",
+              fontWeight:"bolder"
             }}
             onPress={() => {
               router.push("/signUp");

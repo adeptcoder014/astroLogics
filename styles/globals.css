@@ -1,3 +1,27 @@
+:root {
+  --primary-color: #0072f5;
+  --secondary-color: #3F51B5;
+}
+
+
+:root {
+  --aries-gradient: linear-gradient(45deg, #FF0000, #FFD700); /* Red to Gold */
+  --taurus-gradient: linear-gradient(45deg, #008000, #FFC0CB); /* Green to Pink */
+  --gemini-gradient: linear-gradient(45deg, #FFFF00, #90EE90); /* Yellow to Light Green */
+  --cancer-gradient: linear-gradient(45deg, #C0C0C0, #FFFFFF); /* Silver to White */
+  --leo-gradient: linear-gradient(45deg, #FFD700, #FFA500); /* Gold to Orange */
+  --virgo-gradient: linear-gradient(45deg, #000080, #808080); /* Navy Blue to Gray */
+  --libra-gradient: linear-gradient(45deg, #87CEEB, #FFC0CB); /* Pastel Blue to Pink */
+  --scorpio-gradient: linear-gradient(45deg, #800000, #000000); /* Burgundy to Black */
+  --sagittarius-gradient: linear-gradient(45deg, #800080, #0000CD); /* Purple to Dark Blue */
+  --capricorn-gradient: linear-gradient(45deg, #8B4513, #000000); /* Brown to Black */
+  --aquarius-gradient: linear-gradient(45deg, #00CED1, #20B2AA); /* Turquoise to Aqua Blue */
+  --pisces-gradient: linear-gradient(45deg, #2E8B57, #9370DB); /* Sea Green to Lavender */
+}
+
+
+
+/* ===================================================== */
 html,
 body {
   padding: 0;
@@ -44,7 +68,7 @@ a {
   background-color: #f1f3f5;
   color: gray;
   margin-bottom: 10px;
-  width: 86%;
+  width: 100%;
 }
 .dropdownLocationBox {
   background-color: #f1f3f5;
@@ -110,6 +134,34 @@ body {
 }
 
 /* Responsive Styles */
+@media screen and (max-width: 767px) {
+  .column {
+    width: 100%;
+  }
+}
+
+
+.color1 {
+  background:var(--aries-gradient);
+}
+  .container-style {
+  background:var(--leo-gradient);
+  padding: 10%;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  max-width: 100%;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 @media screen and (max-width: 767px) {
   .column {
     width: 100%;
