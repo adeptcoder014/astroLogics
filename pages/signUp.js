@@ -31,7 +31,7 @@ const locations = [
 ];
 //==========================================================
 export default function SignUp() {
-  
+
   const router = useRouter();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
@@ -137,161 +137,144 @@ export default function SignUp() {
         </Text>
       </Modal>
 
-      <Container
-        css={{
-          backgroundColor: "$primary",
-          display: "flex",
-          // flexDirection: "ro",
-          justifyContent: "center",
-          alignItems: "center",
-          minWidth: "100vw", // Set the height to 100% of viewport height
-          minHeight: "100vh", // Set the height to 100% of viewport height
-        }}
-        >
-        <div
-          style={{
-            background: "linear-gradient(222deg, #0072f5, #3F51B5)",
-            border:"1px solid white",
-            padding: 50,
-            borderRadius: "20px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignContent: "center",
-            maxHeight: "80vh",
-          }}
-        >
-          <div>
-            <h1>Your Astrological Map Awaits</h1>
-            <h3 style={{textAlign:"center"}}>Enter Your Birth Information</h3>
+      <div className="container center">
+
+        <div className="container-style">
+          <div style={{
+            marginBottom:25
+          }}>
+            <h1 className="h1 centerText">Your Astrological Map Awaits</h1>
+            <h3 className="h3 centerText">Enter Your Birth Information</h3>
           </div>
 
           {/* ============= NAME ===================== */}
           <div style={{
             // border:"1px solid white",
-            display:"flex",
-            justifyContent:"space-around",
-            alignContent:"center",
-            marginBottom:"5%"
+            display: "flex",
+            justifyContent: "space-around",
+            alignContent: "center",
+            marginBottom: "5%"
 
           }}>
             <div >
 
-          <p >Enter you name</p>
+              <p className="p">Enter you name</p>
 
-            <Input
-              contentLeft={
-                <Image
-                alt="alt tag"
-                src={require("../public/icons/person.png")}
-                height={28}
-                width={100}
-                />
-              }
-              onChange={(e) => {
-                setSignUpPayload({ ...signUpPayload, name: e.target.value });
-              }}
-              color="red"
-              css={{
-                backgroundColor: "blue",
-              }}
-              placeholder="Enter name"
+              <Input
+                contentLeft={
+                  <Image
+                    alt="alt tag"
+                    src={require("../public/icons/person.png")}
+                    height={28}
+                    width={100}
+                  />
+                }
+                onChange={(e) => {
+                  setSignUpPayload({ ...signUpPayload, name: e.target.value });
+                }}
+                color="red"
+                css={{
+                  backgroundColor: "blue",
+                }}
+                placeholder="Enter name"
               />
 
-              </div>
+            </div>
             {/* ============= GENDER ===================== */}
 
-          
+
             <div
               style={{
                 display: "flex",
-                flexDirection:"column",
+                flexDirection: "column",
 
                 justifyContent: "space-around",
-             
-                width:150,
+
+                width: 200,
+                marginLeft:15
               }}
-              >
-                        <p >Pick your gender</p>
-<div style={{
-  display: "flex",
-  // border:"1px solid white",
-  display: "flex",
+            >
+              <p className="p centerText">Pick your gender</p>
+              <div style={{
+                display: "flex",
+                // border:"1px solid white",
+                display: "flex",
 
                 justifyContent: "space-around",
-  
-  
+
+
               }}>
-              <div
-                style={{
-                  background: isMale
-                    ? "linear-gradient(222deg, #2196F3, rgb(10 13 29))"
-                    : "linear-gradient(50deg, rgb(0, 114, 245), rgb(63, 81, 181))",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  border: isMale ? "1px solid white" : "none",
-                  width: '50px',
-                  height: '50px',
-                  borderRadius: '50%',      
-                  cursor: "pointer",
-                  padding: "0px 20px",
-                }}
-                onClick={() => {
-                  setIsMale(true);
+                <div
+                  style={{
+                    background: isMale
+                      ? "linear-gradient(222deg, #2196F3, rgb(10 13 29))"
+                      : "linear-gradient(50deg, rgb(0, 114, 245), rgb(63, 81, 181))",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    border: isMale ? "1px solid white" : "none",
+                    width: '50px',
+                    height: '50px',
+                    borderRadius: '50%',
+                    cursor: "pointer",
+                    padding: "0px 20px",
+                  }}
+                  onClick={() => {
+                    setIsMale(true);
 
-                  setIsFemale(false);
-                }}
-              >
-                <Image
-                  alt="alt tag"
-                  src={require("../public/icons/male.png")}
-                  height={30}
-                  width={30}
-                />
-                {/* <p> Male</p> */}
-              </div>
-              <div
-                style={{
-                  background: isFemale
-                    ? "linear-gradient(222deg, #2196F3, rgb(10 13 29))"
-                    : "linear-gradient(50deg, rgb(0, 114, 245), rgb(63, 81, 181))",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  border: isFemale ? "1px solid white" : "none",
-                  width: '50px',
-                  height: '50px',
-                  borderRadius: '50%',            
-                  cursor: "pointer",
-                  padding: "0px 20px",
-                }}
-                onClick={() => {
-                  setIsFemale(true);
+                    setIsFemale(false);
+                  }}
+                >
+                  <Image
+                    alt="alt tag"
+                    src={require("../public/icons/male.png")}
+                    height={30}
+                    width={30}
+                  />
+                  {/* <p> Male</p> */}
+                </div>
+                <div
+                  style={{
+                    background: isFemale
+                      ? "linear-gradient(222deg, #2196F3, rgb(10 13 29))"
+                      : "linear-gradient(50deg, rgb(0, 114, 245), rgb(63, 81, 181))",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    border: isFemale ? "1px solid white" : "none",
+                    width: '50px',
+                    height: '50px',
+                    borderRadius: '50%',
+                    cursor: "pointer",
+                    padding: "0px 20px",
+                  }}
+                  onClick={() => {
+                    setIsFemale(true);
 
-                  setIsMale(false);
-                }}
-              >
-                <Image
-                  alt="alt tag"
-                  src={require("../public/icons/female.png")}
-                  height={30}
-                  width={30}
-                />
-              
+                    setIsMale(false);
+                  }}
+                >
+                  <Image
+                    alt="alt tag"
+                    src={require("../public/icons/female.png")}
+                    height={30}
+                    width={30}
+                  />
+
+                </div>
               </div>
-            </div>
             </div>
           </div>
 
-       
-       
+
+
 
           {/* ============= LOCATION  ===================== */}
-          <div style={{ marginTop: "10px",                
-          // :"1px solid white",
- }}>
-  <p>Natal time   </p>
+          <div style={{
+            marginTop: "10px",
+            // :"1px solid white",
+          }}>
+            <p className="p">Natal place   </p>
             <Autocomplete locations={locations} setLocation={setLocation} />
           </div>
 
@@ -306,9 +289,7 @@ export default function SignUp() {
             }}
           >
             <div>
-              <Text color="white" aria-label="date">
-                Date
-              </Text>
+              <p className="p">Date</p>
 
               <Input
                 type="date"
@@ -319,15 +300,14 @@ export default function SignUp() {
                   });
                 }}
                 css={{
-                  width: 250,
+                  width: "100%",
                 }}
                 color="black"
               />
             </div>
             <div>
-              <Text color="white" aria-label="Time">
-                Time
-              </Text>
+            <p className="p">Time</p>
+
               <Input
                 type="time"
                 onChange={(e) => {
@@ -350,7 +330,7 @@ export default function SignUp() {
             style={{
               margin: "auto",
               width: "100%",
-              marginTop:15
+              marginTop: 15
             }}
           >
             <Button
@@ -359,10 +339,10 @@ export default function SignUp() {
                 mt: 20,
                 width: "100%",
                 backgroundColor: "white",
-                border:"3px solid black",
+                border: "3px solid black",
                 mt: 20,
-                color:"black",
-                fontWeight:"bolder"
+                color: "black",
+                fontWeight: "bolder"
               }}
               onPress={handleSignUpSubmission}
             >
@@ -371,9 +351,9 @@ export default function SignUp() {
             </Button>
           </div>
         </div>
-       
+
         {/* ================================== */}
-      </Container>
+      </div>
     </>
   );
 }

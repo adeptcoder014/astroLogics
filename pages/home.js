@@ -6,14 +6,14 @@ import { useAuth } from "../context/token";
 export default function Home() {
     const context = useAuth();
 
-
-    useEffect(() => {
-        console.log('-------------------->  ',context.userToken);
-        // axios.get("http://localhost:5000/user/get").then((res) => console.log(res?.data[0]))
-    }, [])
-
     return (
+        // =============== VIEW ===========================
 
-        <Text h1>Home Page</Text>
+        <div className="mainContainer">
+            <div className="container">
+                <h1 className="h1 centerText">Home</h1>
+
+            </div>
+        </div>
     )
 }

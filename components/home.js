@@ -27,46 +27,6 @@ export default function HomeScreen() {
         minHeight: "100vh", // Set the height to 100% of viewport height
       }}
     >
-        <div className="container-style">
-        < div className="center ">
-          <Image
-            src={"/welcomeImage.png"}
-            height={250}
-            width={250}
-            className="image"
-            alt="Rotating moon cycle"
-          />
-        </div>
-        <div>
-          <Text h1 color="white" css={{ textAlign: "center" ,fontSize:"2em"}}>
-            Astrologics
-          </Text>
-          <Text h3 css={{ textAlign: "center",fontSize:"1em" }}>
-            Explore Your Cosmic Destiny with Astrologics
-          </Text>
-        </div>
-        <div
-          style={{
-            margin: "auto",
-          }}
-        >
-          <Button
-            css={{
-              backgroundColor: "white",
-              border:"3px solid black",
-              mt: 20,
-              color:"black",
-              fontWeight:"bolder"
-            }}
-            onPress={() => {
-              router.push("/signUp");
-            }}
-          >
-            {" "}
-            Get you map
-          </Button>
-        </div>
-      </div>
       <div className="container-style">
         < div className="center ">
           <Image
@@ -78,10 +38,10 @@ export default function HomeScreen() {
           />
         </div>
         <div>
-          <Text h1 color="white" css={{ textAlign: "center" ,fontSize:"2em"}}>
+          <Text h1 color="white" css={{ textAlign: "center", fontSize: "2em" }}>
             Astrologics
           </Text>
-          <Text h3 css={{ textAlign: "center",fontSize:"1em" }}>
+          <Text h3 css={{ textAlign: "center", fontSize: "1em" }}>
             Explore Your Cosmic Destiny with Astrologics
           </Text>
         </div>
@@ -93,10 +53,10 @@ export default function HomeScreen() {
           <Button
             css={{
               backgroundColor: "white",
-              border:"3px solid black",
+              border: "3px solid black",
               mt: 20,
-              color:"black",
-              fontWeight:"bolder"
+              color: "black",
+              fontWeight: "bolder"
             }}
             onPress={() => {
               router.push("/signUp");
@@ -107,6 +67,7 @@ export default function HomeScreen() {
           </Button>
         </div>
       </div>
+
 
     </Container>
   );

@@ -5,18 +5,30 @@
 
 
 :root {
-  --aries-gradient: linear-gradient(45deg, #FF0000, #FFD700); /* Red to Gold */
-  --taurus-gradient: linear-gradient(45deg, #008000, #FFC0CB); /* Green to Pink */
-  --gemini-gradient: linear-gradient(45deg, #FFFF00, #90EE90); /* Yellow to Light Green */
-  --cancer-gradient: linear-gradient(45deg, #C0C0C0, #FFFFFF); /* Silver to White */
-  --leo-gradient: linear-gradient(45deg, #FFD700, #FFA500); /* Gold to Orange */
-  --virgo-gradient: linear-gradient(45deg, #000080, #808080); /* Navy Blue to Gray */
-  --libra-gradient: linear-gradient(45deg, #87CEEB, #FFC0CB); /* Pastel Blue to Pink */
-  --scorpio-gradient: linear-gradient(45deg, #800000, #000000); /* Burgundy to Black */
-  --sagittarius-gradient: linear-gradient(45deg, #800080, #0000CD); /* Purple to Dark Blue */
-  --capricorn-gradient: linear-gradient(45deg, #8B4513, #000000); /* Brown to Black */
-  --aquarius-gradient: linear-gradient(45deg, #00CED1, #20B2AA); /* Turquoise to Aqua Blue */
-  --pisces-gradient: linear-gradient(45deg, #2E8B57, #9370DB); /* Sea Green to Lavender */
+  --aries-gradient: linear-gradient(45deg, #FF0000, #FFD700);
+  /* Red to Gold */
+  --taurus-gradient: linear-gradient(45deg, #008000, #FFC0CB);
+  /* Green to Pink */
+  --gemini-gradient: linear-gradient(45deg, #FFFF00, #90EE90);
+  /* Yellow to Light Green */
+  --cancer-gradient: linear-gradient(45deg, #C0C0C0, #FFFFFF);
+  /* Silver to White */
+  --leo-gradient: linear-gradient(45deg, #FFD700, #FFA500);
+  /* Gold to Orange */
+  --virgo-gradient: linear-gradient(45deg, #000080, #808080);
+  /* Navy Blue to Gray */
+  --libra-gradient: linear-gradient(45deg, #87CEEB, #FFC0CB);
+  /* Pastel Blue to Pink */
+  --scorpio-gradient: linear-gradient(45deg, #800000, #000000);
+  /* Burgundy to Black */
+  --sagittarius-gradient: linear-gradient(45deg, #800080, #0000CD);
+  /* Purple to Dark Blue */
+  --capricorn-gradient: linear-gradient(45deg, #8B4513, #000000);
+  /* Brown to Black */
+  --aquarius-gradient: linear-gradient(45deg, #00CED1, #20B2AA);
+  /* Turquoise to Aqua Blue */
+  --pisces-gradient: linear-gradient(45deg, #2E8B57, #9370DB);
+  /* Sea Green to Lavender */
 }
 
 
@@ -43,6 +55,7 @@ a {
   html {
     color-scheme: dark;
   }
+
   body {
     color: white;
     background: black;
@@ -57,10 +70,12 @@ a {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
 .dropdownLocation {
   padding: 12px;
   border-radius: 10px;
@@ -70,6 +85,7 @@ a {
   margin-bottom: 10px;
   width: 100%;
 }
+
 .dropdownLocationBox {
   background-color: #f1f3f5;
   border-radius: 8px;
@@ -78,13 +94,14 @@ a {
   margin-top: -2.4%;
   margin-inline-start: 0em;
 }
+
 .dropdownlocationboxhide {
   /* display: none;  */
   padding-inline-start: 0px;
   /* padding:50px */
 }
 
-.dropdownLocationBox > li {
+.dropdownLocationBox>li {
   list-style: none;
   color: gray;
   padding: 10px;
@@ -118,42 +135,17 @@ body {
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  overflow: hidden;
-  background-color: #ccc;
-  /* padding: 2px; */
-}
+  /* background-color: greenyellow; */
+  background: var(--leo-gradient);
+  height: 100vh;
 
-/* Two Column Layout */
-.column {
-  width: 50%;
-  /* float: left; */
-  box-sizing: border-box;
-  background-color: #c33737;
-}
-
-/* Responsive Styles */
-@media screen and (max-width: 767px) {
-  .column {
-    width: 100%;
-  }
+  padding: 20px;
 }
 
 
-.color1 {
-  background:var(--aries-gradient);
-}
-  .container-style {
-  background:var(--leo-gradient);
-  padding: 10%;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  max-width: 100%;
-}
+
+
+
 
 .center {
   display: flex;
@@ -162,8 +154,71 @@ body {
 }
 
 
-@media screen and (max-width: 767px) {
-  .column {
-    width: 100%;
+.container-style {
+  background: var(--sagittarius-gradient);
+  padding: 23% 5%;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  /* max-width: 80vw; */
+  max-height: 80vh;
+}
+
+
+
+
+/* == @media_Queries =================================== */
+@media only screen and (max-width: 600px) {
+  .h1 {
+    font-size: 16px; /* Adjust as needed */
+    color: red;
   }
+
+  .container-style {
+    max-width: 100%; /* Adjust as needed */
+    background-color: red;
+  }
+
+  .container {
+    /* max-width: 100%; */
+    background-color: red;
+  }
+
+  .mainContainer {
+    /* background: var(--aries-gradient); Make sure --capricorn-gradient is defined */
+    padding: 20px;
+  }
+}
+
+.mainContainer {
+  /* background: var(--capricorn-gradient);  */
+  padding: 1.618%;
+}
+
+/* == Utilities =================================== */
+.centerText {
+  text-align: center;
+}
+
+.mt {}
+
+/* == Typography =================================== */
+
+.h1 {
+  color: whitesmoke;
+  font-size: 1.8rem;
+}
+
+.p {
+
+  color: whitesmoke;
+  font-size: .8rem;
+  font-weight: bold;
+}
+
+.h3 {
+  color: whitesmoke;
+  font-size: 1rem;
 }
