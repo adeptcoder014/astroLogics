@@ -1,19 +1,28 @@
-import { Text } from "@nextui-org/react";
-import axios from "axios";
-import { useEffect } from "react";
-import { useAuth } from "../context/token";
+import Image from "next/image";
+import { Header } from "../components/header";
+import { SearchBar } from "../components/home/searchBar";
+import { MainCategories } from "../components/home/mainCategories";
 
+//============================================================
 export default function Home() {
-    const context = useAuth();
+
 
     return (
         // =============== VIEW ===========================
 
         <div className="mainContainer">
             <div className="container">
-                <h1 className="h1 centerText">Home</h1>
+                {/* ------------------- SECTIONS__userInfo ------------------------ */}
+                <Header />
+
+                {/* ------------------- SECTIONS__searchBar ------------------------ */}
+                <SearchBar />
+                {/* ------------------- SECTIONS__mainCatgories ------------------------ */}
+                < MainCategories />
+
+                {/* ------------------- SECTIONS__Events ------------------------ */}
 
             </div>
-        </div>
+        </div >
     )
 }

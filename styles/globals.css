@@ -1,6 +1,7 @@
 :root {
   --primary-color: #0072f5;
   --secondary-color: #3F51B5;
+  --heading: #BBBCCD;
 }
 
 
@@ -32,14 +33,16 @@
 }
 
 
+/* @import url('https://fonts.googleapis.com/css2?family=Romanesco&display=swap'); */
+
 
 /* ===================================================== */
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+
 }
 
 a {
@@ -136,10 +139,11 @@ body {
 
 .container {
   /* background-color: greenyellow; */
-  background: var(--leo-gradient);
+  background: linear-gradient(63deg, #152248 24.63%, #251B58 52.61%, #331947 65.32%, #361A3D 77.5%);
+
   height: 100vh;
 
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 
@@ -167,49 +171,44 @@ body {
 }
 
 
+/* -- TYPOGRAPGIES --------------------  */
+body h1,
+h2,
+h3,
+p {
+  color: var(--heading);
+  font-family: 'Poppins';
 
-
-/* == @media_Queries =================================== */
-@media only screen and (max-width: 600px) {
-  .h1 {
-    font-size: 16px; /* Adjust as needed */
-    color: red;
-  }
-
-  .container-style {
-    max-width: 100%; /* Adjust as needed */
-    background-color: red;
-  }
-
-  .container {
-    /* max-width: 100%; */
-    background-color: red;
-  }
-
-  .mainContainer {
-    /* background: var(--aries-gradient); Make sure --capricorn-gradient is defined */
-    padding: 20px;
-  }
 }
 
-.mainContainer {
-  /* background: var(--capricorn-gradient);  */
-  padding: 1.618%;
+/* -- LAYOUTs --------------------  */
+
+.userInfoSection {
+  padding: 5% 4%;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
 }
+
+
+
 
 /* == Utilities =================================== */
 .centerText {
   text-align: center;
 }
 
-.mt {}
+.mt {
+  margin-top: 5px;
+}
+
+.mb-2 {
+  /* margin-bottom: 4%; */
+}
 
 /* == Typography =================================== */
 
-.h1 {
-  color: whitesmoke;
-  font-size: 1.8rem;
-}
+
 
 .p {
 
@@ -221,4 +220,199 @@ body {
 .h3 {
   color: whitesmoke;
   font-size: 1rem;
+}
+
+
+
+
+
+
+
+
+.categoryCard {
+  background-color: #242538;
+  box-shadow: 0px 4px 4px 0px black;
+  /* padding: 4.0% 3.0% 0% 4.0%; */
+  border-radius: 10%;
+  width: 22.5%;
+
+  /* height: 15vh; */
+
+
+}
+
+.categoryCard p {
+  color: white;
+  font-size: 12px;
+  /* font-weight: bolder; */
+
+}
+
+
+
+
+
+
+
+
+.search-container {
+  position: relative;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  /* border-bottom: 2px solid #3498db; */
+  border-radius: 15px;
+  outline: none;
+  width: 100%;
+  transition: all 0.3s ease;
+  background: rgba(217, 217, 217, 0.11)
+}
+
+input[type="text"]::placeholder {
+  color: white;
+}
+
+input[type="text"]:focus {
+  border-bottom: 5px solid #2ecc71;
+}
+
+button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background-color: #3498db;
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+button i {
+  margin-right: 4px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.modal {
+  /* display: none; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.1);
+  margin: 15% auto;
+  border-radius: 5%;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: red;
+}
+
+button {
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* == @media_Queries =================================== */
+
+/* -- MOBILE -------------  */
+@media only screen and (max-width: 420px) {
+  .h1Responsive {
+    /* font-size: 1.5rem; */
+    font-size: 1.4rem;
+    /* color: red; */
+
+  }
+
+  .h2Responsive {
+    font-size: 1.125rem;
+
+  }
+
+  .h3Responsive {
+    font-size: 1rem;
+
+  }
+
+  .pResponsive {
+    font-size: 0.8rem;
+
+  }
+}
+
+
+/* -- DESKTOP -------------  */
+
+@media only screen and (min-width: 420px) {
+  .categoryCard {
+    width: 10%;
+  }
+
+
+  .mainContainer {
+    width: 720px;
+
+  }
+}
+
+
+.mainContainer {
+  background: var(--capricorn-gradient);
+  /* padding: 0.618%; */
 }
