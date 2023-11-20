@@ -260,19 +260,21 @@ p {
 }
 
 input[type="text"] {
-  padding: 10px;
+  padding: 15px;
   font-size: 16px;
   border: none;
   /* border-bottom: 2px solid #3498db; */
-  border-radius: 15px;
+  border-radius: 100px;
   outline: none;
   width: 100%;
   transition: all 0.3s ease;
-  background: rgba(217, 217, 217, 0.11)
-}
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(100px);
+  box-shadow: 0px 2px 2.5px 0px rgba(255, 255, 255, 0.306)
+  ;}
 
 input[type="text"]::placeholder {
-  color: white;
+  color: whitesmoke;
 }
 
 input[type="text"]:focus {
