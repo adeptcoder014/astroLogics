@@ -140,6 +140,7 @@ body {
 .container {
   /* background-color: greenyellow; */
   background: linear-gradient(63deg, #152248 24.63%, #251B58 52.61%, #331947 65.32%, #361A3D 77.5%);
+  background: linear-gradient(63deg, #c33764  24.63%, #1d2671 52.61%);
 
   height: 100vh;
 
