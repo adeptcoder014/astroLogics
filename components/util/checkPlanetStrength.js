@@ -79,10 +79,16 @@ const details = [{
                     houseRelation: 'own',
                     signRelation: 'own',
                     planetStrength: 'strong',
-                    aspect: [{
-                        fromTaurus: '2nd',
-                        fromLibra: '9th',
-                    }],
+                    taurus: {
+                        placesAway: '2nd',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    libra: {
+                        placesAway: '9th',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
                 },
                 {
                     house: 11,
