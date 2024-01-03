@@ -2,15 +2,24 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import astroServer from "../constants/url"
 import { checkPlanetStrength } from "../components/util/checkPlanetStrength"
+import { useRouter } from "next/router";
 
 //============================================================
 const ge = {
     capricorn: 'male'
 }
+const me = {
+    capricorn: 'male'
+}
 export default function Test() {
+    const router = useRouter();
+    const data = router.query
+    console.log('data ---------------',data);
+
     //============================================================
     const [planet, setPlanet] = useState({})
     const [house, setHouse] = useState({})
+    const [currentTransit, setCurrentTransit] = useState({})
     //============================================================
 
     useEffect(() => {
@@ -18,10 +27,16 @@ export default function Test() {
             // console.log(res.data[0].planets[0]);
             setPlanet(res?.data[0]?.planets[0]);
             setHouse(res?.data[0]?.houses[0]);
-        })
+        }),
+            astroServer.post('/almanac/get', {
+                "date": "2024-1-3",
+                "time": "11:43"
+            }).then(res => {
+                setCurrentTransit(res?.data?.data)
+            })
     }, [])
-    // console.log(planet.name);
-    // console.log('hosue ----',house);
+    // console.log(currentTransit[4].position.name);
+   
     //============================================================
 
     const planet_any = 'mars'
@@ -42,21 +57,19 @@ export default function Test() {
         planetaryIntent: `the house rashi is in : ${house.rashi}`,
         planetaryIntention: `planeatary-house rulership is : ${planet.rulerOf}`,
     }
-    console.log('obj  ----', obj);
+    // console.log('obj  ----', obj);
 
     let color = 'red'
 
     return (
         // =============== VIEW ===========================
-        <div>
-            <svg width="278" height="274" viewBox="0 0 278 274" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="139" cy="137" rx="139" ry="137" fill="#D9D9D9" />
-                <rect x="21" width="66" height="69" fill="#CE9393" />
-                <rect x="21" y='50' width="66" height="69" fill={color} rx='5'/>
-            </svg>
-
-
-        </div>
+       <>
+       <div>
+        <button onClick={()=>router.push(`/detail/?planet=${currentTransit[4].position.name}`)}>
+            page
+        </button>
+       </div>
+       </>
 
     )
 }

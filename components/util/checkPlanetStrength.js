@@ -20,8 +20,8 @@ const details = [{
                 signRelation: 'own',
                 planetStrength: 'powerful',
                 aspect: [{
-                    fromAries: '1st only',
-                    fromScorpio: '6th from',
+                    aries: '1st only',
+                    scorpio: '6th from',
                 }],
             },
             {
@@ -31,8 +31,8 @@ const details = [{
                 houseRelation: 'neutral',
                 signRelation: 'neutral',
                 aspect: [{
-                    fromAries: '2nd from',
-                    fromScorpio: '7th from',
+                    aries: '2nd from',
+                    scorpio: '7th from',
                 }],
             },
             {
@@ -46,6 +46,18 @@ const details = [{
                     scorpio: '8th from',
                 },
             },
+            {
+                house: 9,
+                sign: 'sagittarius',
+                description: 'mars in the ninth house in sagittarius sign',
+                houseRelation: 'enemy',
+                signRelation: 'enemy',
+                aspect: {
+                    aries: '9th from',
+                    scorpio: '2nd from',
+                },
+            },
+
 
         ]
     }],
@@ -53,64 +65,125 @@ const details = [{
 {
 
     lagna: "capricorn",
-    planets: [{
-        name: "venus",
+    planets: [
+        {
+            name: "venus",
 
-        rulingHouses: [5, 10],
-        planetInDifferentHouses: [
-            {
-                house: 6,
-                description: 'venus in the sixth house in gemini sign',
-                houseRelation: 'own',
-                signRelation: 'own',
-                planetStrength: 'strong',
-                aspect: [{
-                    fromTaurus: '2nd',
-                    fromLibra: '9th',
-                }],
-            },
-            {
-                house: 2,
-                description: 'mars in the second house in taurus sign',
-                houseRelation: 'neutral',
-                signRelation: 'neutral',
-                aspect: [{
-                    fromAries: '2nd from',
-                    fromScorpio: '7th from',
-                }],
-            },
+            rulingHouses: [5, 10],
+            planetInDifferentHouses: [
+                {
+                    house: 6,
+                    sign: 'aries',
 
-        ]
-    }],
+                    description: 'venus in the sixth house in gemini sign',
+                    houseRelation: 'own',
+                    signRelation: 'own',
+                    planetStrength: 'strong',
+                    aspect: [{
+                        fromTaurus: '2nd',
+                        fromLibra: '9th',
+                    }],
+                },
+                {
+                    house: 2,
+                    sign: 'aries',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    aspect: [{
+                        fromAries: '2nd from',
+                        fromScorpio: '7th from',
+                    }],
+                },
+
+            ]
+        },
+        {
+            name: "saturn",
+
+            rulingHouses: [1, 2],
+            planetInDifferentHouses: [
+                {
+                    house: 1,
+                    sign: 'capricorn',
+
+                    description: 'venus in the sixth house in gemini sign',
+                    houseRelation: 'own',
+                    signRelation: 'own',
+                    planetStrength: 'strong',
+                    aspect: [{
+                        capricorn: '2nd',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    {
+                        aquarius: '9th',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    }],
+                },
+                {
+                    house: 2,
+                    sign: 'aquarius',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    capricorn: {
+                        placesAway: '12th',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    aquarius: {
+                        placesAway: '1st',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+
+            ]
+        },
+
+
+
+    ],
 }
 ]
 
 
+
+//==========================================================================
+export const getHouseTranistFromCurrentTransitSign = (lagna,planet, ) => {
+
+}
+//==========================================================================
 export const checkPlanetStrength = (planet, lagna, planetSign) => {
+    // console.log('checkPlanetStrength ---------------', planet, lagna, planetSign);
 
-    const found = details.find((element) => {
+    const found = details?.find((element) => {
         if (element.lagna == lagna) {
-            // console.log('hua --------');
             return element
 
         }
     });
-    const found1 = found.planets.find((element) => {
+    const found1 = found?.planets?.find((element) => {
         // console.log('hua --------',element);
-        if (element.name == planet) {
+        if (element?.name == planet) {
             return element
 
         }
     });
-    const found2 = found1.planetInDifferentHouses.find((element) => {
+    const found2 = found1?.planetInDifferentHouses?.find((element) => {
         // console.log('hua --------',element);
-        if (element.sign == planetSign) {
+        if (element?.sign == planetSign) {
             return element
 
         }
     });
+    // console.log('found --------',found1);
     return found2
-    console.log('--------', found2.planetStrength);
+    // console.log('--------', found2.planetStrength);
 
     // const a = details
 
