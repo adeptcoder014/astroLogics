@@ -28,7 +28,7 @@ const ArthKona = () => {
             <p>5th house : {house[4]?.owner}</p>
             <p>9th house : {house[8]?.owner}</p>
             <button onClick={() => {
-                router.push(`/detail/?house-owner=${house[0]?.owner}&rashi=${house[0]?.rashi}`)
+                router.push(`/detail/?house-owner=${house[4]?.owner}&rashi=${house[4]?.rashi}`)
             }}>Konas</button>
         </>
     )

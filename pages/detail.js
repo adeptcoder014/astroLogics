@@ -23,7 +23,7 @@ export default function Detail() {
     useEffect(() => {
         astroServer.get('/user/get').then(res => {
             // console.log(res.data[0].planets[0]);
-            setPlanet(res?.data[0]?.planets[0]);
+            setPlanet(res?.data[0]?.planets);
             setHouse(res?.data[0]?.houses[0]);
         }),
             astroServer.post('/almanac/get', {
@@ -33,11 +33,9 @@ export default function Detail() {
                 setCurrentTransit(res?.data?.data)
             })
     }, [])
-    // console.log(currentTransit[4]);
-
-
-    let natalPlanetPosition = planet.isIn
-    console.log('natalPlanetPosition ---------------',natalPlanetPosition);
+    
+  
+    // console.log('natalPlanetPosition ---------------', natalPlanetPosition);
 
     //============================================================
     const data = router.query
@@ -45,27 +43,30 @@ export default function Detail() {
     const rashi = data['rashi']
     const lagna = house.rashi
 
+    let currentPlanet = planet.find(x=> x.name === houseOwner)
+    
+    
+    let natalPlanetPosition = currentPlanet?.isIn
+    
     //------------------------------------
     let currentTransitForPlanet = {}
     if (currentTransit) {
         currentTransitForPlanet = currentTransit?.find((x) => {
             if (x.name === houseOwner) {
-                //    console.log('here --------',x);
                 return x
             }
         })
     }
     let currentTransitSign = currentTransitForPlanet?.position?.name
-    // console.log('currentTransitSign ---------------',currentTransitSign);
     let currentPlacesAway = checkPlanetStrength(houseOwner, lagna, currentTransitSign)
     let currentPlanetPosition = currentPlacesAway?.house
-    console.log('currentPlanetPosition ---------------',currentPlanetPosition);
-
-    let currentPlanetPositionPlacesAwayFromTheNatalPosition = (currentPlanetPosition-natalPlanetPosition)
-    let obj ={
-        awayFrom1st:currentPlacesAway?.capricorn?.placesAway,
-        awayFrom2st:currentPlacesAway?.aquarius?.placesAway,
-        currentPlanetPositionPlacesAwayFromTheNatalPosition:currentPlanetPositionPlacesAwayFromTheNatalPosition,
+    
+    let currentPlanetPositionPlacesAwayFromTheNatalPosition = (currentPlanetPosition - natalPlanetPosition)+1
+    
+    let obj = {
+        awayFrom1st: currentPlacesAway?.taurus?.placesAway,
+        awayFrom2nd: currentPlacesAway?.libra?.placesAway,
+        current: currentPlanetPositionPlacesAwayFromTheNatalPosition,
     }
 
     console.log('obj ---------------', obj);

@@ -73,7 +73,7 @@ const details = [{
             planetInDifferentHouses: [
                 {
                     house: 6,
-                    sign: 'aries',
+                    sign: 'gemini',
 
                     description: 'venus in the sixth house in gemini sign',
                     houseRelation: 'own',
@@ -85,16 +85,23 @@ const details = [{
                     }],
                 },
                 {
-                    house: 2,
-                    sign: 'aries',
+                    house: 11,
+                    sign: 'scorpio',
 
                     description: 'mars in the second house in taurus sign',
                     houseRelation: 'neutral',
                     signRelation: 'neutral',
-                    aspect: [{
-                        fromAries: '2nd from',
-                        fromScorpio: '7th from',
-                    }],
+                    
+                    taurus: {
+                        placesAway: '7th',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    libra: {
+                        placesAway: '2nd',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
                 },
 
             ]
@@ -112,16 +119,16 @@ const details = [{
                     houseRelation: 'own',
                     signRelation: 'own',
                     planetStrength: 'strong',
-                    aspect: [{
-                        capricorn: '2nd',
+                    capricorn: {
+                        placesAway: '1st',
                         description: 'some story related of some kind',
                         reason: 'reason'
                     },
-                    {
-                        aquarius: '9th',
+                    aquarius: {
+                        placesAway: '12th',
                         description: 'some story related of some kind',
                         reason: 'reason'
-                    }],
+                    },
                 },
                 {
                     house: 2,
@@ -130,6 +137,8 @@ const details = [{
                     description: 'mars in the second house in taurus sign',
                     houseRelation: 'neutral',
                     signRelation: 'neutral',
+                    planetStrength: 'strong',
+
                     capricorn: {
                         placesAway: '12th',
                         description: 'some story related of some kind',
