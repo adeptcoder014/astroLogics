@@ -1,9 +1,9 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import astroServer from "../constants/url"
-import { checkPlanetStrength } from "../components/util/checkPlanetStrength"
+import { checkPlanetStrength } from "../util/checkPlanetStrength"
 import { useRouter } from "next/router";
-
+import {EventCard} from '../components/eventCard'
 //============================================================
 const ge = {
     capricorn: 'male'
@@ -57,12 +57,12 @@ export default function Detail() {
             }
         })
     }
-    let planetRashi = house[natalPlanetPosition-1].rashi
+    let planetRashi = house[natalPlanetPosition-1]?.rashi
     let currentTransitSign = currentTransitForPlanet?.position?.name
     
     let currentPlacesAway = checkPlanetStrength(houseOwner, lagna, currentTransitSign)
     let natalPlacesAway = checkPlanetStrength(houseOwner, lagna, planetRashi)
-    console.log('planetRashi ==========', planetRashi);
+    console.log('currentPlacesAway ==========', currentTransitForPlanet);
 
     let currentPlanetPosition = currentPlacesAway?.house
 
@@ -93,7 +93,8 @@ export default function Detail() {
         // =============== VIEW ===========================
         <>
             <div>
-                <h1>he</h1>
+                <EventCard/>
+
             </div>
         </>
 

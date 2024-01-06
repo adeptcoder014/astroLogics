@@ -1,8 +1,4 @@
 
-
-// import { details } from "./data"
-// const details = require('./data');
-
 //-----------------------------------------------------------
 const details = [{
 
