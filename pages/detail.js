@@ -3,19 +3,29 @@ import { useEffect, useState } from "react"
 import astroServer from "../constants/url"
 import { checkPlanetStrength } from "../util/checkPlanetStrength"
 import { useRouter } from "next/router";
-import {EventCard} from '../components/eventCard'
+import { EventCard } from '../components/eventCard'
+import Image from "next/image";
 //============================================================
-const ge = {
-    capricorn: 'male'
+const rashiGender = {
+    aries: 'male',
+    taurus: 'female',
+    gemini: 'male',
+    cancer: 'female',
+    leo: 'male',
+    virgo: 'female',
+    libra: 'male',
+    scorpio: 'female',
+    sagittarius: 'male',
+    capricorn: 'female',
+    aquarius: 'male',
+    pisces: 'female',
 }
-const me = {
-    capricorn: 'male'
-}
+
 export default function Detail() {
     const router = useRouter();
     //============================================================
     const [planet, setPlanet] = useState([])
-    const [house, setHouse] = useState({})
+    const [house, setHouse] = useState([])
     const [currentTransit, setCurrentTransit] = useState([])
     //============================================================
     // console.log('currentTransit ---------------', currentTransit);
@@ -35,10 +45,10 @@ export default function Detail() {
     }, [])
 
 
-    // console.log('natalPlanetPosition ---------------', natalPlanetPosition);
 
     //============================================================
     const data = router.query
+    console.log('router.query.data =', data);
     const houseOwner = data["house-owner"]
     const rashi = data['rashi']
     const lagna = house[0]?.rashi
@@ -57,12 +67,12 @@ export default function Detail() {
             }
         })
     }
-    let planetRashi = house[natalPlanetPosition-1]?.rashi
+    let planetRashi = house[natalPlanetPosition - 1]?.rashi
     let currentTransitSign = currentTransitForPlanet?.position?.name
-    
+
     let currentPlacesAway = checkPlanetStrength(houseOwner, lagna, currentTransitSign)
     let natalPlacesAway = checkPlanetStrength(houseOwner, lagna, planetRashi)
-    console.log('currentPlacesAway ==========', currentTransitForPlanet);
+    // console.log('currentPlacesAway ==========', currentTransitForPlanet);
 
     let currentPlanetPosition = currentPlacesAway?.house
 
@@ -93,8 +103,30 @@ export default function Detail() {
         // =============== VIEW ===========================
         <>
             <div>
-                <EventCard/>
+                {/* =============== Basic_info =========================== */}
+                <div>
+                    <Image src={require("../public/planets/venus.png")}
+                        width={50} height={50} />
 
+                    <h2>Planet : {houseOwner}</h2>
+                    <div>
+                        <p>Story of {houseOwner}'s {rashiGender[rashi]} side   <Image src={require(`../public/zodiac/${rashi}.png`)} width={45} height={45} />  </p>
+                    </div>
+                    <p>Current transit : {obj.current}</p>
+                </div>
+                {/* =============== Transit_info =========================== */}
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-around'
+                }}>
+                    <h2>{obj.awayFrom1st}</h2> <p>awayFrom1st</p>
+                </div>
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-around'
+                }}>
+                    <h2>{obj.awayFrom1stFromNatal}</h2> <p>awayFrom1stFromNatal</p>
+                </div>
             </div>
         </>
 

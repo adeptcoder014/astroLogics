@@ -7,7 +7,7 @@ export const KonaCard = (x) => {
         <>
 
             <div className="kona-card center">
-                <div onClick={()=>router.push('/artha-kona')}>
+                <div onClick={()=>router.push(`/kona-lords/?kona=${x?.data?.kona}`)}>
 
                 <h2>{x.data.kona}</h2>
                 </div>
