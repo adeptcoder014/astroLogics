@@ -8,16 +8,18 @@ import React from 'react';
 
 const CommanLayout = ({ children }) => {
   return (
+    <div className="center">
 
-    <div className="mainContainer">
-      <div className="container">
-        {/* ------------------- SECTIONS__userInfo ------------------------ */}
-        <Header />
+      <div className="mainContainer">
+        <div className="container">
+          {/* ------------------- SECTIONS__userInfo ------------------------ */}
+          <Header />
 
-        {children}
+          {children}
 
-      </div>
-    </div >
+        </div>
+      </div >
+    </div>
   );
 };
 

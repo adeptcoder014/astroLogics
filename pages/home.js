@@ -15,7 +15,7 @@ export default function Home() {
         <CommanLayout>
             <SearchBar />
             < MainCategories />
-            <EventCard />
+            {/* <EventCard /> */}
         </CommanLayout>
     )
 }

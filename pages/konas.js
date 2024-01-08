@@ -1,9 +1,28 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react"
 import astroServer from "../constants/url"
+import { KonaCard } from "../components/konaCard";
+import CommanLayout from "../layouts/comman";
 
 
 const LifeArenaScreen = () => {
+    const konaInfo = [{
+        kona: 'dharma',
+        color: 'red'
+    },
+    {
+        kona: 'artha',
+        color: 'brown'
+    },
+    {
+        kona: 'kama',
+        color: 'aqua'
+    },
+    {
+        kona: 'mokasha',
+        color: 'blue'
+    }
+    ]
 
     const router = useRouter()
 
@@ -24,9 +43,17 @@ const LifeArenaScreen = () => {
 
     return (
         <>
-            <button onClick={() => {
-                router.push(`/arth-kona`)
-            }}>Konas</button>
+            <CommanLayout>
+
+
+                <div className="kona-card-container">
+                   
+                    
+                    {konaInfo.map(item => (
+                        <KonaCard key={item.id} data={item} />
+                    ))}
+                </div>
+            </CommanLayout>
         </>
     )
 }

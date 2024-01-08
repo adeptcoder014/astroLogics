@@ -140,7 +140,7 @@ body {
 .container {
   /* background-color: greenyellow; */
   /* background: linear-gradient(63deg, #152248 24.63%, #251B58 52.61%, #331947 65.32%, #361A3D 77.5%); */
-  background: linear-gradient(63deg, #c33764  24.63%, #1d2671 52.61%);
+  background: linear-gradient(63deg, #c33764 24.63%, #1d2671 52.61%);
 
   height: 100vh;
 
@@ -396,7 +396,7 @@ button {
 
 
 .planetLabel {
-  font-weight: bolder ;
+  font-weight: bolder;
   font-size: 14px;
 }
 
@@ -442,11 +442,39 @@ button {
   .mainContainer {
     width: 720px;
 
+
   }
 }
 
 
 .mainContainer {
   background: var(--capricorn-gradient);
+
   /* padding: 0.618%; */
+}
+
+.kona-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  /* background: rgba(255, 0, 0, 0.1); */
+
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.kona-card {
+  /* background-color: greenyellow; */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+  width:40%;
+  /* Adjust as needed */
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  border:1px solid rgba(255, 255, 255, 0.43);
+  border-radius: 8px;
+  height: 250px;
+  /* Set the width of each column */
+  /* You can adjust the width as needed, and consider adding some margin or padding */
 }
