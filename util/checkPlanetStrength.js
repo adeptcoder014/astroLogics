@@ -63,6 +63,242 @@ const details = [{
     lagna: "capricorn",
     planets: [
         {
+            name: "moon",
+
+            rulingHouses: [1, 2],
+            planetInDifferentHouses: [
+                {
+                    house: 1,
+                    sign: 'capricorn',
+
+                    description: 'venus in the sixth house in gemini sign',
+                    houseRelation: 'own',
+                    signRelation: 'own',
+                    planetStrength: 'strong',
+                    capricorn: {
+                        placesAway: '1st',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    aquarius: {
+                        placesAway: '12th',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+                {
+                    house: 2,
+                    sign: 'aquarius',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    planetStrength: 'strong',
+
+                    capricorn: {
+                        placesAway: '12th',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    aquarius: {
+                        placesAway: '1st',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+
+            ]
+        },
+        {
+            name: "sun",
+
+            rulingHouses: [1, 2],
+            planetInDifferentHouses: [
+                {
+                    house: 1,
+                    sign: 'capricorn',
+
+                    description: 'venus in the sixth house in gemini sign',
+                    houseRelation: 'own',
+                    signRelation: 'own',
+                    planetStrength: 'strong',
+                    capricorn: {
+                        placesAway: '1st',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    aquarius: {
+                        placesAway: '12th',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+                {
+                    house: 2,
+                    sign: 'aquarius',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    planetStrength: 'strong',
+
+                    capricorn: {
+                        placesAway: '12th',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    aquarius: {
+                        placesAway: '1st',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+
+            ]
+        },
+        {
+            name: "mercury",
+
+            rulingHouses: [1, 2],
+            planetInDifferentHouses: [
+                {
+                    house: 1,
+                    sign: 'capricorn',
+
+                    description: 'venus in the sixth house in gemini sign',
+                    houseRelation: 'own',
+                    signRelation: 'own',
+                    planetStrength: 'strong',
+                    capricorn: {
+                        placesAway: '1st',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    aquarius: {
+                        placesAway: '12th',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+                {
+                    house: 2,
+                    sign: 'aquarius',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    planetStrength: 'strong',
+
+                    capricorn: {
+                        placesAway: '12th',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    aquarius: {
+                        placesAway: '1st',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+
+            ]
+        },
+        {
+            name: "jupiter",
+
+            rulingHouses: [1, 2],
+            planetInDifferentHouses: [
+                {
+                    house: 1,
+                    sign: 'capricorn',
+
+                    description: 'venus in the sixth house in gemini sign',
+                    houseRelation: 'own',
+                    signRelation: 'own',
+                    planetStrength: 'strong',
+                    capricorn: {
+                        placesAway: '1st',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    aquarius: {
+                        placesAway: '12th',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+                {
+                    house: 2,
+                    sign: 'aquarius',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    planetStrength: 'strong',
+
+                    capricorn: {
+                        placesAway: '12th',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    aquarius: {
+                        placesAway: '1st',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+
+            ]
+        },
+        {
+            name: "mars",
+
+            rulingHouses: [1, 2],
+            planetInDifferentHouses: [
+                {
+                    house: 1,
+                    sign: 'capricorn',
+
+                    description: 'venus in the sixth house in gemini sign',
+                    houseRelation: 'own',
+                    signRelation: 'own',
+                    planetStrength: 'strong',
+                    capricorn: {
+                        placesAway: '1st',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    aquarius: {
+                        placesAway: '12th',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+                {
+                    house: 2,
+                    sign: 'aquarius',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    planetStrength: 'strong',
+
+                    capricorn: {
+                        placesAway: '12th',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    aquarius: {
+                        placesAway: '1st',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+
+            ]
+        },
+
+        {
             name: "venus",
 
             rulingHouses: [5, 10],
@@ -152,6 +388,26 @@ const details = [{
                         reason: 'reason'
                     },
                 },
+                {
+                    house: 3,
+                    sign: 'pisces',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    planetStrength: 'strong',
+
+                    capricorn: {
+                        placesAway: '11 th',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    aquarius: {
+                        placesAway: '12 th',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
 
             ]
         },
@@ -176,7 +432,7 @@ export const checkPlanetStrength = (planet, lagna, planetSign) => {
         if (element.lagna == lagna) {
             return element
 
-        }
+        }   
     });
     const found1 = found?.planets?.find((element) => {
         // console.log('hua --------',element);

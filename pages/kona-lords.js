@@ -71,8 +71,8 @@ const KonaLord = () => {
                 <div className="kona-card-container">
 
 
-                    <KonaLordCard konaLordData={konaLordData} />
-                </div>
+                <KonaLordCard konaLordData={konaLordData} />
+            </div>
             </CommanLayout>
         </>
     )

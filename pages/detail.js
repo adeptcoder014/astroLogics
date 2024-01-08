@@ -49,7 +49,7 @@ export default function Detail() {
 
     //============================================================
     const data = router.query
-    console.log('router.query.data =', data);
+    // console.log('router.query.data =', data);
     const houseOwner = data["house-owner"]
     const rashi = data['rashi']
     const lagna = house[0]?.rashi
@@ -79,15 +79,33 @@ export default function Detail() {
 
     let currentPlanetPositionPlacesAwayFromTheNatalPosition = (currentPlanetPosition - natalPlanetPosition) + 1
 
+    // let obj = {
+    //     awayFrom1stFromNatal: natalPlacesAway?.taurus?.placesAway,
+    //     awayFrom2ndFromNatal: natalPlacesAway?.libra?.placesAway,
+    //     awayFrom1st: currentPlacesAway?.taurus?.placesAway,
+    //     awayFrom2nd: currentPlacesAway?.libra?.placesAway,
+    //     current: currentPlanetPositionPlacesAwayFromTheNatalPosition,
+    // }
+
+    // let obj = {
+    //     awayFrom1stFromNatal: natalPlacesAway?.taurus?.placesAway,
+    //     awayFrom2ndFromNatal: natalPlacesAway?.libra?.placesAway,
+    //     awayFrom1st: currentPlacesAway?.taurus?.placesAway,
+    //     awayFrom2nd: currentPlacesAway?.libra?.placesAway,
+    //     current: currentPlanetPositionPlacesAwayFromTheNatalPosition,
+    // }
+
     let obj = {
-        awayFrom1stFromNatal: natalPlacesAway?.taurus?.placesAway,
-        awayFrom2ndFromNatal: natalPlacesAway?.libra?.placesAway,
-        awayFrom1st: currentPlacesAway?.taurus?.placesAway,
-        awayFrom2nd: currentPlacesAway?.libra?.placesAway,
+        awayFrom1stFromNatal: natalPlacesAway?.[rashi]?.placesAway,
+        // awayFrom2ndFromNatal: natalPlacesAway?.libra?.placesAway,
+        awayFrom1st: currentPlacesAway?.[rashi]?.placesAway,
+        // awayFrom2nd: currentPlacesAway?.libra?.placesAway,
         current: currentPlanetPositionPlacesAwayFromTheNatalPosition,
     }
 
+
     console.log('obj ---------------', obj);
+    // console.log('rashi ---------------', rashi);
 
     //============================================================
 
@@ -106,11 +124,11 @@ export default function Detail() {
 
             <CommanLayout>
                 <div style={{
-                    width: '95vw'
+                    width: '95vw',
+                    height: '95vh',
                 }}>
-                    {/* =============== Basic_info =========================== */}
                     <div className="planet-detail-card">
-                        <div  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
                             <Image src={require("../public/planets/venus.png")}
                                 width={50} height={50} />
@@ -126,10 +144,9 @@ export default function Detail() {
                             <h3> {obj.current}</h3>
                         </div>
                     </div>
-                    <p>Story of {houseOwner}'s {rashiGender[rashi]} side   <Image src={require(`../public/zodiac/${rashi}.png`)} width={45} height={45} />  </p>
-                    {/* =============== Transit_info =========================== */}
+                    <p>Story of {houseOwner}'s {rashiGender[rashi]} side   <Image src={require(`../public/zodiac/taurus.png`)} width={45} height={45} />  </p>
                     < div className="planet-detail-card" style={{ flexDirection: "column" }} >
-                        <div>
+                        <div style={{ marginTop: 20 }}>
 
 
                             <div style={{
@@ -141,17 +158,14 @@ export default function Detail() {
                                     background: '#3D3E4F',
                                     borderRadius: 8,
                                     padding: '0px 15px'
-
-
-
                                 }}>
 
-                                    <h2 style={{ color: 'white' }}>{obj.awayFrom1st}</h2>
+                                    <h2 style={{ color: 'white' }}>{obj.awayFrom1stFromNatal}</h2>
                                 </div>
-                                <p>awayFrom1st</p>
+                                <p>Female Deviation</p>
                             </div>
                         </div>
-                        <div>
+                        <div style={{ marginTop: 20, marginBottom: 20 }}>
 
 
                             <div style={{
@@ -163,17 +177,24 @@ export default function Detail() {
                                     background: '#3D3E4F',
                                     borderRadius: 8,
                                     padding: '0px 15px'
-
-
-
                                 }}>
 
                                     <h2 style={{ color: 'white' }}>{obj.awayFrom1st}</h2>
                                 </div>
-                                <p>awayFrom1st</p>
+                                <p>Tranist Deviation</p>
                             </div>
+                        </div>
+
+                    </div>
+                    <div>
+
+                        <p>Current transit for {houseOwner}</p>
+
+                        <div style={{ backgroundColor: "#D9D9D9", padding:10,borderRadius:16}}>
+                            <Image src={require("../public/sineWave.svg")} />
                         </div>
                     </div>
+
                 </div >
             </CommanLayout>
         </>

@@ -8,7 +8,9 @@ import React from 'react';
 
 const CommanLayout = ({ children }) => {
   return (
-    <div className="center">
+    <div className="center" style={{
+      // height: '110vh'
+    }}>
 
       <div className="mainContainer">
         <div className="container">
