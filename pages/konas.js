@@ -42,17 +42,17 @@ const LifeArenaScreen = () => {
 
     return (
         <>
-            {/* <CommanLayout> */}
+            <CommanLayout>
 
 
-            <div className="kona-card-container">
+                <div className="kona-card-container">
 
 
-                {konaInfo.map(item => (
-                    <KonaCard key={item.kona} data={item} />
-                ))}
-            </div>
-            {/* </CommanLayout> */}
+                    {konaInfo.map(item => (
+                        <KonaCard key={item.kona} data={item} />
+                    ))}
+                </div>
+            </CommanLayout>
         </>
     )
 }

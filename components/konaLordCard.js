@@ -7,7 +7,7 @@ export const KonaLordCard = ({ konaLordData }) => {
         <>
             {konaLordData.map(x => (
 
-                <div className="kona-card center" onClick={() => router.push(`/detail/?house-owner=${x.KonaHouseDetails.owner}&rashi=${x.KonaHouseDetails.rashi}`)}>
+                <div className="kona-lord-card center" onClick={() => router.push(`/detail/?house-owner=${x.KonaHouseDetails.owner}&rashi=${x.KonaHouseDetails.rashi}`)}>
                     <div >
                         <h2>{x?.KonaHouseDetails?.rashi}</h2>
                         <p>Lord : {x?.KonaHouseDetails?.owner}</p>

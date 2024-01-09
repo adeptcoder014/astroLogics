@@ -65,15 +65,15 @@ const KonaLord = () => {
 
     return (
         <>
-            {/* <CommanLayout> */}
+            <CommanLayout>
 
 
-            <div className="kona-card-container">
+                <div className="kona-card-container">
 
 
-                <KonaLordCard konaLordData={konaLordData} />
-            </div>
-            {/* </CommanLayout> */}
+                    <KonaLordCard konaLordData={konaLordData} />
+                </div>
+            </CommanLayout>
         </>
     )
 }

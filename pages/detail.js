@@ -5,6 +5,7 @@ import { checkPlanetStrength } from "../util/checkPlanetStrength"
 import { useRouter } from "next/router";
 import { EventCard } from '../components/eventCard'
 import Image from "next/image";
+import CommanLayout from "../layouts/comman";
 //============================================================
 const rashiGender = {
     aries: 'male',
@@ -102,32 +103,79 @@ export default function Detail() {
     return (
         // =============== VIEW ===========================
         <>
-            <div>
-                {/* =============== Basic_info =========================== */}
-                <div>
-                    <Image src={require("../public/planets/venus.png")}
-                        width={50} height={50} />
 
-                    <h2>Planet : {houseOwner}</h2>
-                    <div>
-                        <p>Story of {houseOwner}'s {rashiGender[rashi]} side   <Image src={require(`../public/zodiac/${rashi}.png`)} width={45} height={45} />  </p>
+            <CommanLayout>
+                <div style={{
+                    width: '95vw'
+                }}>
+                    {/* =============== Basic_info =========================== */}
+                    <div className="planet-detail-card">
+                        <div  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+                            <Image src={require("../public/planets/venus.png")}
+                                width={50} height={50} />
+                        </div>
+                        <div>
+
+
+                            <h3>The Liberator</h3>
+                            <p style={{ color: "#8B8B8B", fontSize: 13 }}>The Dushtana ruler</p>
+                        </div>
+                        <div>
+                            <h6>Current transit </h6>
+                            <h3> {obj.current}</h3>
+                        </div>
                     </div>
-                    <p>Current transit : {obj.current}</p>
-                </div>
-                {/* =============== Transit_info =========================== */}
-                <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-around'
-                }}>
-                    <h2>{obj.awayFrom1st}</h2> <p>awayFrom1st</p>
-                </div>
-                <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-around'
-                }}>
-                    <h2>{obj.awayFrom1stFromNatal}</h2> <p>awayFrom1stFromNatal</p>
-                </div>
-            </div>
+                    <p>Story of {houseOwner}'s {rashiGender[rashi]} side   <Image src={require(`../public/zodiac/${rashi}.png`)} width={45} height={45} />  </p>
+                    {/* =============== Transit_info =========================== */}
+                    < div className="planet-detail-card" style={{ flexDirection: "column" }} >
+                        <div>
+
+
+                            <div style={{
+                                display: 'flex',
+                                justifyContent: 'space-around'
+                            }}>
+
+                                <div style={{
+                                    background: '#3D3E4F',
+                                    borderRadius: 8,
+                                    padding: '0px 15px'
+
+
+
+                                }}>
+
+                                    <h2 style={{ color: 'white' }}>{obj.awayFrom1st}</h2>
+                                </div>
+                                <p>awayFrom1st</p>
+                            </div>
+                        </div>
+                        <div>
+
+
+                            <div style={{
+                                display: 'flex',
+                                justifyContent: 'space-around'
+                            }}>
+
+                                <div style={{
+                                    background: '#3D3E4F',
+                                    borderRadius: 8,
+                                    padding: '0px 15px'
+
+
+
+                                }}>
+
+                                    <h2 style={{ color: 'white' }}>{obj.awayFrom1st}</h2>
+                                </div>
+                                <p>awayFrom1st</p>
+                            </div>
+                        </div>
+                    </div>
+                </div >
+            </CommanLayout>
         </>
 
     )
