@@ -37,7 +37,7 @@ const KonaLord = () => {
     // console.log('konaObj ---',konaObj[kona]);
 
     //============================================================
-    const [planet, setPlanet] = useState({})
+    const [planet, setPlanet] = useState([])
     const [house, setHouse] = useState([])
     const [currentTransit, setCurrentTransit] = useState({})
     //============================================================
@@ -49,19 +49,20 @@ const KonaLord = () => {
         })
     }, [])
 
-    let konaLordData = [
-        {
-            KonaHouseDetails: house[konaObj[kona][0]],
-        },
-        { KonaHouseDetails: house[konaObj[kona][1]] },
-        { KonaHouseDetails: house[konaObj[kona][2]] },
+    let konaLordData = []
+    if (house) {
+        konaLordData = [
+            { KonaHouseDetails: house[konaObj[kona][0]], },
+            { KonaHouseDetails: house[konaObj[kona][1]] },
+            { KonaHouseDetails: house[konaObj[kona][2]] },
 
-    ]
+        ]
+    }
 
     // console.log('----- house xxx-----', konaLordData);
     // console.log('----- house 1-----', house[konaObj[kona][0]]);
     // console.log('----- house 2-----', house[konaObj[kona][1]]);
-    // console.log('----- house 3-----', house[konaObj[kona][2]]);
+    console.log('----- konaLordData-----', konaLordData);
 
     return (
         <>
@@ -71,8 +72,8 @@ const KonaLord = () => {
                 <div className="kona-card-container">
 
 
-                <KonaLordCard konaLordData={konaLordData} />
-            </div>
+                    <KonaLordCard konaLordData={konaLordData} />
+                </div>
             </CommanLayout>
         </>
     )
