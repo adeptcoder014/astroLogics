@@ -58,6 +58,9 @@ const KonaLord = () => {
 
         ]
     }
+    else {
+        konaLordData=[]
+    }
 
     // console.log('----- house xxx-----', konaLordData);
     // console.log('----- house 1-----', house[konaObj[kona][0]]);
