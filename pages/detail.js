@@ -144,7 +144,7 @@ export default function Detail() {
                             <h3> {obj.current}</h3>
                         </div>
                     </div>
-                    <p>Story of {houseOwner}'s {rashiGender[rashi]} side   <Image src={require(`../public/zodiac/taurus.png`)} width={45} height={45} />  </p>
+                    <p>Story of {houseOwner}`&apos;` {rashiGender[rashi]} side   <Image src={require(`../public/zodiac/taurus.png`)} width={45} height={45} />  </p>
                     < div className="planet-detail-card" style={{ flexDirection: "column" }} >
                         <div style={{ marginTop: 20 }}>
 
