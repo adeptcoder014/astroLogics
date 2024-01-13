@@ -4,6 +4,10 @@ import astroServer from "../constants/url"
 import { KonaCard } from "../components/konaCard";
 import CommanLayout from "../layouts/comman";
 import { KonaLordCard } from "../components/konaLordCard";
+import { useQuery, useQueryClient, QueryClient, QueryClientProvider } from "react-query";
+import axios from "axios";
+
+
 
 
 const KonaLord = () => {
@@ -41,20 +45,33 @@ const KonaLord = () => {
     const [house, setHouse] = useState([])
     const [currentTransit, setCurrentTransit] = useState({})
     //============================================================
+    const fetchData = async () => {
+        // const response = await astroServer.get('/user/get');
+        const response = await axios.get("https://astroserver.onrender.com/user/get");
 
-    useEffect(() => {
-        astroServer.get('/user/get').then(res => {
-            setPlanet(res?.data[0]?.planets[0]);
-            setHouse(res?.data[0]?.houses);
-        })
-    }, [])
+        if (!response) {
+            throw new Error('Network response was not ok');
+        }
+        return response;
+    };
+
+    const { status, data, error, isFetching } = useQuery('postData', fetchData);
+
+    console.log('react query data ----', data?.data[0]);
+    // console.log(' data ----', response);
+    // useEffect(() => {
+    //     astroServer.get('/user/get').then(res => {
+    //         setPlanet(res?.data[0]?.planets[0]);
+    //         setHouse(res?.data[0]?.houses);
+    //     })
+    // }, [])
 
     let konaLordData = []
     if (house) {
         konaLordData = [
-            { KonaHouseDetails: house[konaObj[kona][0]], },
-            { KonaHouseDetails: house[konaObj[kona][1]] },
-            { KonaHouseDetails: house[konaObj[kona][2]] },
+            { KonaHouseDetails: data?.data[0]?.houses[konaObj[kona][0]], },
+            { KonaHouseDetails: data?.data[0]?.houses[konaObj[kona][1]] },
+            { KonaHouseDetails: data?.data[0]?.houses[konaObj[kona][2]] },
 
         ]
     }
@@ -65,10 +82,12 @@ const KonaLord = () => {
     // console.log('----- house xxx-----', konaLordData);
     // console.log('----- house 1-----', house[konaObj[kona][0]]);
     // console.log('----- house 2-----', house[konaObj[kona][1]]);
-    console.log('----- konaLordData-----', konaLordData);
+    // console.log('----- konaLordData-----', konaLordData);
 
     return (
         <>
+
+
             <CommanLayout>
 
 
@@ -76,7 +95,7 @@ const KonaLord = () => {
                     {konaLordData.map(x => {
                         console.log(x?.KonaHouseDetails?._id);
                         return (<KonaLordCard
-                            method={() => {router.push(`/detail/?house-owner=${x.KonaHouseDetails.owner}&rashi=${x.KonaHouseDetails.rashi}`)}}
+                            method={() => { router.push(`/detail/?house-owner=${x.KonaHouseDetails.owner}&rashi=${x.KonaHouseDetails.rashi}`) }}
                             rashi={x?.KonaHouseDetails?.rashi}
                             owner={x?.KonaHouseDetails?.owner}
                             key={x?.KonaHouseDetails?._id}
