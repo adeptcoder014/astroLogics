@@ -59,7 +59,7 @@ const KonaLord = () => {
         ]
     }
     else {
-        konaLordData=[]
+        konaLordData = []
     }
 
     // console.log('----- house xxx-----', konaLordData);
@@ -73,9 +73,18 @@ const KonaLord = () => {
 
 
                 <div className="kona-card-container">
+                    {konaLordData.map(x => {
+                        console.log(x?.KonaHouseDetails?._id);
+                        return (<KonaLordCard
+                            method={() => {router.push(`/detail/?house-owner=${x.KonaHouseDetails.owner}&rashi=${x.KonaHouseDetails.rashi}`)}}
+                            rashi={x?.KonaHouseDetails?.rashi}
+                            owner={x?.KonaHouseDetails?.owner}
+                            key={x?.KonaHouseDetails?._id}
+                        />)
+                    }
+                    )}
 
 
-                    <KonaLordCard konaLordData={konaLordData} />
                 </div>
             </CommanLayout>
         </>

@@ -1,20 +1,17 @@
 import { useRouter } from "next/router";
 
-export const KonaLordCard = ({ konaLordData }) => {
+export const KonaLordCard = ({ rashi,owner,method }) => {
     const router = useRouter()
-    console.log('konaLordData ----', konaLordData[0].KonaHouseDetails);
     return (
         <>
-            {konaLordData.map(x => (
-
-                <div key={x?.KonaHouseDetails?.owner} className="kona-lord-card center" onClick={() => router.push(`/detail/?house-owner=${x.KonaHouseDetails.owner}&rashi=${x.KonaHouseDetails.rashi}`)}>
-                    <div >
-                        <h2>{x?.KonaHouseDetails?.rashi}</h2>
-                        <p>Lord : {x?.KonaHouseDetails?.owner}</p>
+            
+                    <div  className="kona-lord-card center" onClick={method}>
+                        <div >
+                            <h2>{rashi}</h2>
+                            <p>Lord : {owner}</p>
+                        </div>
                     </div>
-                </div>
-            ))}
-
+              
         </>
     )
 }

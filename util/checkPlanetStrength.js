@@ -65,16 +65,16 @@ const details = [{
         {
             name: "moon",
 
-            rulingHouses: [1, 2],
+            rulingHouses: [7],
             planetInDifferentHouses: [
                 {
                     house: 1,
                     sign: 'capricorn',
-
                     description: 'venus in the sixth house in gemini sign',
                     houseRelation: 'own',
                     signRelation: 'own',
                     planetStrength: 'strong',
+
                     capricorn: {
                         placesAway: '1st',
                         description: 'some story related of some kind',
@@ -85,6 +85,7 @@ const details = [{
                         description: 'some story related of some kind',
                         reason: 'reason'
                     },
+                    
                 },
                 {
                     house: 2,
@@ -112,7 +113,7 @@ const details = [{
         {
             name: "sun",
 
-            rulingHouses: [1, 2],
+            rulingHouses: [8],
             planetInDifferentHouses: [
                 {
                     house: 1,
