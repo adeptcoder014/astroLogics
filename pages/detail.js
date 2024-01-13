@@ -4,6 +4,7 @@ import astroServer from "../constants/url"
 import { checkPlanetStrength } from "../util/checkPlanetStrength"
 import { useRouter } from "next/router";
 import { EventCard } from '../components/eventCard'
+import { SineWave } from '../components/sineWave.js'
 import Image from "next/image";
 import CommanLayout from "../layouts/comman";
 //============================================================
@@ -190,8 +191,10 @@ export default function Detail() {
 
                         <p>Current transit for {houseOwner}</p>
 
-                        <div style={{ backgroundColor: "#D9D9D9", padding:10,borderRadius:16}}>
-                            <Image src={require("../public/sineWave.svg")} />
+                        <div style={{ backgroundColor: "#D9D9D9", padding: 10, borderRadius: 16 }}>
+                            <Image src={require("../components/sineWave.js")} />
+                            <SineWave inFirst={String(obj.current - 1)} />
+
                         </div>
                     </div>
 
