@@ -57,7 +57,7 @@ const KonaLord = () => {
 
     const { status, data, error, isFetching } = useQuery('postData', fetchData);
 
-    console.log('react query data ----', data?.data[0]);
+    // console.log('react query data ----', data?.data[0]);
     // console.log(' data ----', response);
     // useEffect(() => {
     //     astroServer.get('/user/get').then(res => {
@@ -93,7 +93,7 @@ const KonaLord = () => {
 
                 <div className="kona-card-container">
                     {konaLordData.map(x => {
-                        console.log(x?.KonaHouseDetails?._id);
+                        // console.log(x?.KonaHouseDetails?._id);
                         return (<KonaLordCard
                             method={() => { router.push(`/detail/?house-owner=${x.KonaHouseDetails.owner}&rashi=${x.KonaHouseDetails.rashi}`) }}
                             rashi={x?.KonaHouseDetails?.rashi}

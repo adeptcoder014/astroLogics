@@ -160,7 +160,7 @@ const details = [{
         {
             name: "mercury",
 
-            rulingHouses: [1, 2],
+            rulingHouses: [6, 9],
             planetInDifferentHouses: [
                 {
                     house: 1,
@@ -170,12 +170,12 @@ const details = [{
                     houseRelation: 'own',
                     signRelation: 'own',
                     planetStrength: 'strong',
-                    capricorn: {
+                    gemini: {
                         placesAway: '1st',
                         description: 'some story related of some kind',
                         reason: 'reason'
                     },
-                    aquarius: {
+                    virgo: {
                         placesAway: '12th',
                         description: 'some story related of some kind',
                         reason: 'reason'
@@ -190,13 +190,54 @@ const details = [{
                     signRelation: 'neutral',
                     planetStrength: 'strong',
 
-                    capricorn: {
+                    gemini: {
+                        placesAway: '1st',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    virgo: {
                         placesAway: '12th',
                         description: 'some story related of some kind',
                         reason: 'reason'
                     },
-                    aquarius: {
+                },
+                {
+                    house: 6,
+                    sign: 'gemini',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    planetStrength: 'strong',
+
+                    gemini: {
                         placesAway: '1st',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    virgo: {
+                        placesAway: '10th',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+                
+                {
+                    house: 12,
+                    sign: "sagittarius",
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    planetStrength: 'strong',
+
+                    gemini: {
+                        placesAway: '7th',
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    virgo: {
+                        placesAway: '4th',
                         description: 'some story related of some kind',
                         reason: 'reason'
                     },
@@ -426,23 +467,23 @@ export const getHouseTranistFromCurrentTransitSign = (lagna,planet, ) => {
 
 }
 //==========================================================================
-export const checkPlanetStrength = (planet, lagna, planetSign) => {
+export const getTransitForPlanet_lagnaSpecific = (lagna, planet, planetSign) => {
     // console.log('checkPlanetStrength ---------------', planet, lagna, planetSign);
 
-    const found = details?.find((element) => {
+    const foundLagna = details?.find((element) => {
         if (element.lagna == lagna) {
             return element
 
         }   
     });
-    const found1 = found?.planets?.find((element) => {
+    const foundPlanet = foundLagna?.planets?.find((element) => {
         // console.log('hua --------',element);
         if (element?.name == planet) {
             return element
 
         }
     });
-    const found2 = found1?.planetInDifferentHouses?.find((element) => {
+    const foundPlanetSign = foundPlanet?.planetInDifferentHouses?.find((element) => {
         // console.log('hua --------',element);
         if (element?.sign == planetSign) {
             return element
@@ -450,11 +491,11 @@ export const checkPlanetStrength = (planet, lagna, planetSign) => {
         }
     });
     // console.log('found --------',found1);
-    return found2
+    return foundPlanetSign
     // console.log('--------', found2.planetStrength);
 
     // const a = details
 
 
 }
-// checkPlanetStrength(planet, lagna, planetSign)
+// checkPlanetStrength("venus", "capricorn", "libra")

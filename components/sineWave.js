@@ -246,7 +246,7 @@ export const SineWave = (inFirst) => {
 
         }
         {
-            inFirst.inFirst === '12' ?
+            inFirst.inFirst === '2' ?
 
                 (<>
                     <g filter="url(#filter20_d_441_212)">

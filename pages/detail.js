@@ -1,10 +1,10 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import astroServer from "../constants/url"
-import { checkPlanetStrength } from "../util/checkPlanetStrength"
+import { getTransitForPlanet_lagnaSpecific } from "../util/checkPlanetStrength"
 import { useRouter } from "next/router";
 import { EventCard } from '../components/eventCard'
-import { SineWave } from '../components/sineWave.js'
+import { SineWave } from '../components/sineWave_1.js'
 import Image from "next/image";
 import CommanLayout from "../layouts/comman";
 //============================================================
@@ -22,7 +22,29 @@ const rashiGender = {
     aquarius: 'male',
     pisces: 'female',
 }
+//============================================================
 
+
+function getCurrentDateTime() {
+    const currentDate = new Date();
+
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1;
+    const day = currentDate.getDate();
+    const formattedDate = `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
+
+    // Get the time in the format "HH:mm"
+    const hours = currentDate.getHours();
+    const minutes = currentDate.getMinutes();
+    const formattedTime = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+
+    return {
+        date: formattedDate,
+        time: formattedTime
+    };
+}
+
+//============================================================
 export default function Detail() {
     const router = useRouter();
     //============================================================
@@ -30,7 +52,11 @@ export default function Detail() {
     const [house, setHouse] = useState([])
     const [currentTransit, setCurrentTransit] = useState([])
     //============================================================
-    // console.log('currentTransit ---------------', currentTransit);
+
+    const currentDateTimeObject = getCurrentDateTime();
+
+
+
 
     useEffect(() => {
         astroServer.get('/user/get').then(res => {
@@ -38,10 +64,7 @@ export default function Detail() {
             setPlanet(res?.data[0]?.planets);
             setHouse(res?.data[0]?.houses);
         }),
-            astroServer.post('/almanac/get', {
-                "date": "2024-1-3",
-                "time": "11:43"
-            }).then(res => {
+            astroServer.post('/almanac/get', currentDateTimeObject).then(res => {
                 setCurrentTransit(res?.data?.data)
             })
     }, [])
@@ -72,9 +95,8 @@ export default function Detail() {
     let planetRashi = house[natalPlanetPosition - 1]?.rashi
     let currentTransitSign = currentTransitForPlanet?.position?.name
 
-    let currentPlacesAway = checkPlanetStrength(houseOwner, lagna, currentTransitSign)
-    let natalPlacesAway = checkPlanetStrength(houseOwner, lagna, planetRashi)
-    // console.log('currentPlacesAway ==========', currentTransitForPlanet);
+    let currentPlacesAway = getTransitForPlanet_lagnaSpecific(lagna, houseOwner, currentTransitSign)
+    let natalPlacesAway = getTransitForPlanet_lagnaSpecific(lagna, houseOwner, planetRashi)
 
     let currentPlanetPosition = currentPlacesAway?.house
 
@@ -105,8 +127,8 @@ export default function Detail() {
     }
 
 
-    console.log('obj ---------------', obj);
-    // console.log('rashi ---------------', rashi);
+    console.log('current ---------------', obj.current);
+    // console.log('natalPlacesAway ---------------', natalPlacesAway);
 
     //============================================================
 
@@ -190,12 +212,13 @@ export default function Detail() {
                     <div>
 
                         <p>Current transit for {houseOwner}</p>
-
                         <div style={{ backgroundColor: "#D9D9D9", padding: 10, borderRadius: 16 }}>
-                            <Image src={require("../components/sineWave.js")} />
-                            <SineWave inFirst={String(obj.current - 1)} />
 
+                            <Image src={require("../components/sineWave.js")} />
+
+                            <SineWave inFirst={String(obj.current - 1)} />
                         </div>
+
                     </div>
 
                 </div >
