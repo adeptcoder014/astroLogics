@@ -1,4 +1,4 @@
-export const SineWave = (inFirst) => {
+export const SineWave = (inFirst, planet) => {
     return (<svg width="289" height="181" viewBox="0 0 289 181" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
             d="M144 90.5C144 79.7973 142.138 69.1993 138.519 59.3113C134.901 49.4233 129.598 40.4388 122.912 32.8708C116.226 25.3028 108.289 19.2996 99.5532 15.2038C90.8178 11.1081 81.4552 9 72 9C62.5448 9 53.1822 11.1081 44.4468 15.2038C35.7113 19.2996 27.7741 25.3028 21.0883 32.8708C14.4025 40.4388 9.09901 49.4233 5.48067 59.3113C1.86233 69.1993 -8.26597e-07 79.7973 0 90.5L72 90.5H144Z"
@@ -79,7 +79,7 @@ export const SineWave = (inFirst) => {
             fill="#EC4BFB" />
         {/* -------- first-section ---------------- */}
         {
-            inFirst.inFirst === '1' ?
+            inFirst.inFirst === '1' && planet === 'mars' ?
 
                 (<>
                     <g filter="url(#filter9_d_441_212)">

@@ -4,6 +4,7 @@ import astroServer from "../constants/url"
 import { getTransitForPlanet_lagnaSpecific } from "../util/checkPlanetStrength"
 import { useRouter } from "next/router";
 import { EventCard } from '../components/eventCard'
+// import { SineWave } from '../components/sineWave_1.js'
 import { SineWave } from '../components/sineWave_1.js'
 import Image from "next/image";
 import CommanLayout from "../layouts/comman";
@@ -216,7 +217,10 @@ export default function Detail() {
 
                             <Image src={require("../components/sineWave.js")} />
 
-                            <SineWave inFirst={String(obj.current - 1)} />
+                            <SineWave
+                                whichHouse={String(obj.current - 1)}
+                                planet = {houseOwner}
+                            />
                         </div>
 
                     </div>
