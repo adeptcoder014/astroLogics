@@ -12,7 +12,7 @@ export const SineWave = ({
 }) => {
 
 
-    console.log('sineWave-data ----->', marsPosition.whichHouse);
+    // console.log('sineWave-data ----->', marsPosition.whichHouse);
 
     let sunTransitPosition = sunPosition
     let moonTransitPosition = moonPosition
