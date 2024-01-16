@@ -1,4 +1,7 @@
 export const SineWave = ({ whichHouse, planet }) => {
+
+
+    console.log('whichHouse ---', whichHouse);
     return (
         <svg width="301" height="176" viewBox="0 0 301 176" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M150 87.3971C150 77.1556 148.06 67.0143 144.291 57.5524C140.522 48.0904 134.997 39.4931 128.033 32.2512C121.069 25.0094 112.801 19.2648 103.701 15.3455C94.6018 11.4263 84.8491 9.40906 75 9.40906C65.1509 9.40906 55.3982 11.4263 46.2987 15.3455C37.1993 19.2648 28.9314 25.0094 21.967 32.2512C15.0026 39.4931 9.47814 48.0904 5.70903 57.5524C1.93993 67.0143 -8.61039e-07 77.1556 0 87.3971L75 87.3971H150Z" fill="#D9D9D9" />
@@ -250,12 +253,12 @@ export const SineWave = ({ whichHouse, planet }) => {
                 <g filter="url(#filter33_d_493_3266)">
                     <path d="M125.101 46C125.101 51.5228 134.623 54.5 129.101 54.5C123.578 54.5 118.1 53 117.101 47C116.193 41.5522 121.578 37 127.101 37C132.623 37 125.101 40.4772 125.101 46Z" fill="url(#paint49_linear_493_3266)" />
                 </g> : (null)}
-            {whichHouse === '1' & planet === 'sun' ?
+            {whichHouse === '5' & planet === 's' ?
 
                 <g filter="url(#filter34_d_493_3266)">
                     <circle cx="114.5" cy="46.5" r="7.5" fill="url(#paint50_linear_493_3266)" />
                 </g> : (null)}
-            {whichHouse === '1' & planet === 'sun' ?
+            {whichHouse === '5' & planet === 'venus' ?
 
                 <g filter="url(#filter35_d_493_3266)">
                     <path d="M126 48C126 52.9706 121.971 57 117 57C112.029 57 108 52.9706 108 48C108 43.0294 112.029 39 117 39C121.971 39 126 43.0294 126 48Z" fill="url(#paint51_radial_493_3266)" />

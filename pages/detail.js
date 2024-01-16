@@ -8,6 +8,7 @@ import { EventCard } from '../components/eventCard'
 import { SineWave } from '../components/sineWave_1.js'
 import Image from "next/image";
 import CommanLayout from "../layouts/comman";
+import { CurrentTransit } from "../components/currentTransit.js";
 //============================================================
 const rashiGender = {
     aries: 'male',
@@ -146,87 +147,89 @@ export default function Detail() {
         // =============== VIEW ===========================
         <>
 
-            <CommanLayout>
-                <div style={{
-                    width: '95vw',
-                    height: '95vh',
-                }}>
-                    <div className="planet-detail-card">
-                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            {/* <CommanLayout> */}
+            <div style={{
+                width: '95vw',
+                // height: '95vh',
+            }}>
+                <div className="planet-detail-card">
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
-                            <Image src={require("../public/planets/venus.png")}
-                                width={50} height={50} />
-                        </div>
-                        <div>
-
-
-                            <h3>The Liberator</h3>
-                            <p style={{ color: "#8B8B8B", fontSize: 13 }}>The Dushtana ruler</p>
-                        </div>
-                        <div>
-                            <h6>Current transit </h6>
-                            <h3> {obj.current}</h3>
-                        </div>
-                    </div>
-                    <p>Story of {houseOwner}`&apos;` {rashiGender[rashi]} side   <Image src={require(`../public/zodiac/taurus.png`)} width={45} height={45} />  </p>
-                    < div className="planet-detail-card" style={{ flexDirection: "column" }} >
-                        <div style={{ marginTop: 20 }}>
-
-
-                            <div style={{
-                                display: 'flex',
-                                justifyContent: 'space-around'
-                            }}>
-
-                                <div style={{
-                                    background: '#3D3E4F',
-                                    borderRadius: 8,
-                                    padding: '0px 15px'
-                                }}>
-
-                                    <h2 style={{ color: 'white' }}>{obj.awayFrom1stFromNatal}</h2>
-                                </div>
-                                <p>Female Deviation</p>
-                            </div>
-                        </div>
-                        <div style={{ marginTop: 20, marginBottom: 20 }}>
-
-
-                            <div style={{
-                                display: 'flex',
-                                justifyContent: 'space-around'
-                            }}>
-
-                                <div style={{
-                                    background: '#3D3E4F',
-                                    borderRadius: 8,
-                                    padding: '0px 15px'
-                                }}>
-
-                                    <h2 style={{ color: 'white' }}>{obj.awayFrom1st}</h2>
-                                </div>
-                                <p>Tranist Deviation</p>
-                            </div>
-                        </div>
-
+                        <Image src={require("../public/planets/venus.png")}
+                            width={50} height={50} />
                     </div>
                     <div>
 
-                        <p>Current transit for {houseOwner}</p>
-                        <div style={{ backgroundColor: "#D9D9D9", padding: 10, borderRadius: 16 }}>
 
-                            <Image src={require("../components/sineWave.js")} />
+                        <h3>The Liberator</h3>
+                        <p style={{ color: "#8B8B8B", fontSize: 13 }}>The Dushtana ruler</p>
+                    </div>
+                    <div>
+                        <h6>Current transit </h6>
+                        <h3> {obj.current}</h3>
+                    </div>
+                </div>
+                <p>Story of {houseOwner}`&apos;` {rashiGender[rashi]} side   <Image src={require(`../public/zodiac/taurus.png`)} width={45} height={45} />  </p>
+                < div className="planet-detail-card" style={{ flexDirection: "column" }} >
+                    <div style={{ marginTop: 20 }}>
 
-                            <SineWave
-                                whichHouse={String(obj.current - 1)}
-                                planet = {houseOwner}
-                            />
+
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'space-around'
+                        }}>
+
+                            <div style={{
+                                background: '#3D3E4F',
+                                borderRadius: 8,
+                                padding: '0px 15px'
+                            }}>
+
+                                <h2 style={{ color: 'white' }}>{obj.awayFrom1stFromNatal}</h2>
+                            </div>
+                            <p>Female Deviation</p>
                         </div>
+                    </div>
+                    <div style={{ marginTop: 20, marginBottom: 20 }}>
 
+
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'space-around'
+                        }}>
+
+                            <div style={{
+                                background: '#3D3E4F',
+                                borderRadius: 8,
+                                padding: '0px 15px'
+                            }}>
+
+                                <h2 style={{ color: 'white' }}>{obj.awayFrom1st}</h2>
+                            </div>
+                            <p>Tranist Deviation</p>
+                        </div>
                     </div>
 
-                </div >
-            </CommanLayout>
+                </div>
+                <div>
+
+                    <p>Current transit for {houseOwner}</p>
+                    <div style={{ backgroundColor: "#D9D9D9", padding: 10, borderRadius: 16 }}>
+
+                        <Image src={require("../components/sineWave.js")} />
+
+                        <SineWave
+                            whichHouse={String(obj.current - 1)}
+                            planet={houseOwner}
+                        />
+                    </div>
+                    <div style={{ backgroundColor: "#D9D9D9", padding: 10, borderRadius: 16, marginTop: 18 }}>
+                        <CurrentTransit />
+                    </div>
+                </div>
+
+            </div >
+            {/* </CommanLayout> */}
         </>
 
     )
