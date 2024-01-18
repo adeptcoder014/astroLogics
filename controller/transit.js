@@ -15,13 +15,3 @@ export const getAlmanac = async () => {
     }
     return response;
 };
-
-// {
-//     "name": "moon",
-//     "position": {
-//             "degree": 16,
-//             "minute": 16.98658935701701,
-//             "name": "pisces",
-//             "sign": "♓"
-//     }
-// }

@@ -4,6 +4,23 @@ import astroServer from "../constants/url"
 import { KonaCard } from "../components/konaCard";
 import CommanLayout from "../layouts/comman";
 import { PlanetCard } from "../components/planetCard";
+import { useQuery } from "react-query";
+import { getUser } from "../controller/user";
+
+
+
+// {
+//     "_id": "654e47ffa520f8a94670819c",
+//     "name": "moon",
+//     "longitude": "27 ♑ 45.74979272388987",
+//     "rulerOf": [
+//         7
+//     ],
+//     "isIn": "1",
+//     "landLord": "saturn",
+//     "__v": 0
+// }
+
 
 
 const LifeArenaScreen = () => {
@@ -22,13 +39,13 @@ const LifeArenaScreen = () => {
     {
         name: 'venus',
         color: 'blue'
-    },{
+    }, {
         name: 'mars',
         color: 'blue'
-    },{
+    }, {
         name: 'jupiter',
         color: 'blue'
-    },{
+    }, {
         name: 'saturn',
         color: 'blue'
     },
@@ -46,14 +63,20 @@ const LifeArenaScreen = () => {
     const [currentTransit, setCurrentTransit] = useState({})
     //============================================================
 
-    useEffect(() => {
-        astroServer.get('/user/get').then(res => {
-            setPlanet(res?.data[0]?.planets[0]);
-            setHouse(res?.data[0]?.houses[0]);
+    const { data } = useQuery('getUserNatalData', getUser)
+    console.log(data?.data[0].planets);
+    
+
+    let assigningNatalPlanetsValue = data?.data[0]?.planets?.map((x) => {
+        planetInfo.filter(w => {
+            if (x.name == w.name) {
+                w.rulerOf = x.rulerOf
+            }
+
         })
-    }, [])
+    })
 
-
+console.log('planetInfo ===',planetInfo);
     return (
         <>
             <CommanLayout>

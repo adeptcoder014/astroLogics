@@ -66,7 +66,7 @@ export const CurrentTransit = () => {
     const [tranistData, setTranistData] = useState([])
     // console.log('tranist data ----', data.data.data[0]);
 
-    let a = data?.data?.data?.map((x) => {
+    let assigningTransitsValue = data?.data?.data?.map((x) => {
         position.filter(w => {
             if (x.name == w.planet) {
                 w.whichHouse = signHouse[x.position.name]

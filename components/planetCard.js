@@ -7,9 +7,14 @@ export const PlanetCard = (x) => {
         <>
 
             <div className="planet-card center">
-                <div onClick={()=>router.push(`/kona-lords/?kona=${x?.data?.kona}`)}>
+                <div style={{
 
-                <h2>{x?.data?.name}</h2>
+                }} onClick={() => router.push(`/kona-lords/?kona=${x?.data?.kona}`)}>
+
+                    <h2>{x?.data?.name}</h2>
+                    <p>Ruler Of : </p>
+                    {x?.data?.rulerOf?.map(w => <p>{w}</p>)}
+
                 </div>
             </div>
         </>
