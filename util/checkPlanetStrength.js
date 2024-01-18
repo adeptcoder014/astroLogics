@@ -373,12 +373,12 @@ const details = [{
                     signRelation: 'neutral',
                     
                     taurus: {
-                        placesAway: '7th',
+                        placesAway: 7,
                         description: 'some story related of some kind',
                         reason: 'reason'
                     },
                     libra: {
-                        placesAway: '2nd',
+                        placesAway: 2,
                         description: 'some story related of some kind',
                         reason: 'reason'
                     },

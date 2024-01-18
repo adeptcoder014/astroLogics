@@ -69,7 +69,6 @@ export const CurrentTransit = () => {
     let a = data?.data?.data?.map((x) => {
         position.filter(w => {
             if (x.name == w.planet) {
-                console.log('mila --', x.name);
                 w.whichHouse = signHouse[x.position.name]
             }
 
