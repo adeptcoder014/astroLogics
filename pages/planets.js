@@ -1,20 +1,74 @@
-import { PlanetInfoCard } from "../components/planetInfoCard";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react"
+import astroServer from "../constants/url"
+import { KonaCard } from "../components/konaCard";
 import CommanLayout from "../layouts/comman";
+import { PlanetCard } from "../components/planetCard";
 
-//============================================================
-export default function Home() {
+
+const LifeArenaScreen = () => {
+    const planetInfo = [{
+        name: 'sun',
+        color: 'red'
+    },
+    {
+        name: 'moon',
+        color: 'brown'
+    },
+    {
+        name: 'mercury',
+        color: 'aqua'
+    },
+    {
+        name: 'venus',
+        color: 'blue'
+    },{
+        name: 'mars',
+        color: 'blue'
+    },{
+        name: 'jupiter',
+        color: 'blue'
+    },{
+        name: 'saturn',
+        color: 'blue'
+    },
+    {
+        name: 'node',
+        color: 'blue'
+    }
+    ]
+
+    const router = useRouter()
+
+    //============================================================
+    const [planet, setPlanet] = useState({})
+    const [house, setHouse] = useState({})
+    const [currentTransit, setCurrentTransit] = useState({})
+    //============================================================
+
+    useEffect(() => {
+        astroServer.get('/user/get').then(res => {
+            setPlanet(res?.data[0]?.planets[0]);
+            setHouse(res?.data[0]?.houses[0]);
+        })
+    }, [])
 
 
     return (
-        // =============== VIEW ===========================
+        <>
+            <CommanLayout>
 
-        <CommanLayout>
-            <div>
 
-                <h1 className="h1  h2Responsive">Meet yours Celestial Companions! </h1>
-            </div>
-            <PlanetInfoCard />
+                <div className="kona-card-container">
 
-        </CommanLayout>
+
+                    {planetInfo.map(item => (
+                        <PlanetCard key={item.kona} data={item} />
+                    ))}
+                </div>
+            </CommanLayout>
+        </>
     )
 }
+
+export default LifeArenaScreen

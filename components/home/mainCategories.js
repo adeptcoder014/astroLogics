@@ -5,6 +5,7 @@ export const MainCategories = () => {
     let cardData = [
         {
             "title": "Natal",
+            "link": "/konas",
             "image":
                 <Image
                     alt="alt tag"
@@ -16,6 +17,8 @@ export const MainCategories = () => {
         },
         {
             "title": "Planets",
+            "link": "/planets",
+
             "image":
                 <Image
                     alt="alt tag"

@@ -2,10 +2,11 @@ import Image from "next/image";
 import { PopUp } from "../popUp";
 import { useState } from "react";
 import Link from 'next/link';
+import { useRouter } from "next/router";
 
 export const CategoryCard = ({ metaInfo }) => {
     const [yes, setYes] = useState(false)
-
+    const router = useRouter()
     // const [count, setCount] = useState(0);
     console.log('==========', yes);
 
@@ -15,7 +16,7 @@ export const CategoryCard = ({ metaInfo }) => {
         <>
             {yes ? <PopUp yes={yes} setYes={setYes} /> : null}
 
-            <div className="categoryCard">
+            <div onClick={()=> router.push(metaInfo.link)} className="categoryCard">
                 <Link href="/planets">
                     <div
                         className="center"

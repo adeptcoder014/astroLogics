@@ -440,7 +440,7 @@ button {
 
 
   .mainContainer {
-    width: 720px;
+    width: 95vw;
 
 
   }
@@ -454,7 +454,7 @@ button {
 }
 
 .kona-card-container {
-  width: 95vw;
+  width: 95vw;  
   display: flex;
   flex-wrap: wrap;
   /* background: rgba(255, 0, 0, 0.1); */
@@ -476,8 +476,19 @@ button {
   border:1px solid rgba(255, 255, 255, 0.43);
   border-radius: 8px;
   height: 250px;
-  /* Set the width of each column */
-  /* You can adjust the width as needed, and consider adding some margin or padding */
+}
+.planet-card {
+  /* background-color: greenyellow; */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+  width:40%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  border:1px solid rgba(255, 255, 255, 0.43);
+  border-radius: 8px;
+  height: 100px;
 }
 .kona-lord-card {
   /* background-color: greenyellow; */

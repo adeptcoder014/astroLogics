@@ -130,6 +130,7 @@ export default function Detail() {
 
 
     console.log('current ---------------', obj.awayFrom1st);
+    console.log('current xxx ---------------', lagna, houseOwner, currentTransitSign);
     // console.log('natalPlacesAway ---------------', natalPlacesAway);
 
     //============================================================
@@ -224,9 +225,9 @@ export default function Detail() {
                                 lagnaSign={rashi}
                             />
                         </div>
-                        <div style={{ backgroundColor: "#D9D9D9", padding: 10, borderRadius: 16, marginTop: 18 }}>
+                        {/* <div style={{ backgroundColor: "#D9D9D9", padding: 10, borderRadius: 16, marginTop: 18 }}>
                             <CurrentTransit />
-                        </div>
+                        </div> */}
                     </div>
 
                 </div >
