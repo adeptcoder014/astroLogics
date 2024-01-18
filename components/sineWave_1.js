@@ -1,57 +1,235 @@
-export const SineWave = ({ whichHouse, planet ,lagnaSign}) => {
+export const SineWave = ({ whichHouse, planet, lagnaSign }) => {
 
-
-    const lagnaColorCodes = {
+    const colorCodes = {
+        aries: {
+            color1: '#690000',
+            color2: '#FF0000',
+        },
         taurus: {
-            firstHouse: {
-                color1: '#FF8A00',
-                color2: '#A15802',
-            },
-            secondHouse: {
-                color1: '#FAFF00',
-                color2: '#9B9E00',
-            },
-            thirdHouse: {
-                color1: '#00FF1A',
-                color2: '#008B0E',
-            },
-            fourthHouse: {
-                color1: '#00F5D7',
-                color2: '#003630',
-            },
-            fifthHouse: {
-                color1: '#0085FF',
-                color2: '#014584',
-            },
-            sixthHouse: {
-                color1: '#0057FF',
-                color2: '#002469',
-            },
-            seventhHouse: {
-                color1: '#0500FF',
-                color2: '#02006B',
-            },
-            eighthHouse: {
-                color1: '#360056',
-                color2: '#9E00FF',
-            },
-            ninthHouse: {
-                color1: '#0500E2',
-                color2: '#01004A',
-            },
-            tenthHouse: {
-                color1: '#210066',
-                color2: '#5200FF',
-            },
-            eleventhHouse: {
-                color1: '#E900FF',
-                color2: '#4C0253',
-            },
-            twelfthHouse: {
-                color1: '#690000',
-                color2: '#FF0000',
-            },
-            
+            color1: '#FF8A00',
+            color2: '#A15802',
+        },
+        gemini: {
+            color1: '#FAFF00',
+            color2: '#9B9E00',
+        },
+        cancer: {
+            color1: '#00FF1A',
+            color2: '#008B0E',
+        },
+        leo: {
+            color1: '#00F5D7',
+            color2: '#003630',
+        },
+        virgo: {
+            color1: '#0085FF',
+            color2: '#014584',
+        },
+        libra: {
+            color1: '#0057FF',
+            color2: '#002469',
+        },
+        scorpio: {
+            color1: '#0500FF',
+            color2: '#02006B',
+        },
+        sagittarius: {
+            color1: '#360056',
+            color2: '#9E00FF',
+        },
+        capricorn: {
+            color1: '#0500E2',
+            color2: '#01004A',
+        },
+        aquarius: {
+            color1: '#210066',
+            color2: '#5200FF',
+        },
+        pisces: {
+            color1: '#E900FF',
+            color2: '#4C0253',
+        },
+    }
+    const lagnaColorCodes = {
+
+        aries: {
+            firstHouse: colorCodes.aries,
+            secondHouse: colorCodes.taurus,
+            thirdHouse: colorCodes.gemini,
+            fourthHouse: colorCodes.cancer,
+            fifthHouse: colorCodes.leo,
+            sixthHouse: colorCodes.virgo,
+            seventhHouse: colorCodes.libra,
+            eighthHouse: colorCodes.scorpio,
+            ninthHouse: colorCodes.sagittarius,
+            tenthHouse: colorCodes.capricorn,
+            eleventhHouse: colorCodes.aquarius,
+            twelfthHouse: colorCodes.aries,
+
+        },
+        taurus: {
+            firstHouse: colorCodes.taurus,
+            secondHouse: colorCodes.gemini,
+            thirdHouse: colorCodes.cancer,
+            fourthHouse: colorCodes.leo,
+            fifthHouse: colorCodes.virgo,
+            sixthHouse: colorCodes.libra,
+            seventhHouse: colorCodes.scorpio,
+            eighthHouse: colorCodes.sagittarius,
+            ninthHouse: colorCodes.capricorn,
+            tenthHouse: colorCodes.aquarius,
+            eleventhHouse: colorCodes.sagittarius,
+            twelfthHouse: colorCodes.aries,
+
+        },
+        gemini: {
+            firstHouse: colorCodes.gemini,
+            secondHouse: colorCodes.cancer,
+            thirdHouse: colorCodes.leo,
+            fourthHouse: colorCodes.virgo,
+            fifthHouse: colorCodes.libra,
+            sixthHouse: colorCodes.scorpio,
+            seventhHouse: colorCodes.sagittarius,
+            eighthHouse: colorCodes.capricorn,
+            ninthHouse: colorCodes.aquarius,
+            tenthHouse: colorCodes.pisces,
+            eleventhHouse: colorCodes.aries,
+            twelfthHouse: colorCodes.taurus,
+
+        }, cancer: {
+            firstHouse: colorCodes.cancer,
+            secondHouse: colorCodes.leo,
+            thirdHouse: colorCodes.virgo,
+            fourthHouse: colorCodes.libra,
+            fifthHouse: colorCodes.scorpio,
+            sixthHouse: colorCodes.sagittarius,
+            seventhHouse: colorCodes.capricorn,
+            eighthHouse: colorCodes.aquarius,
+            ninthHouse: colorCodes.pisces,
+            tenthHouse: colorCodes.aries,
+            eleventhHouse: colorCodes.taurus,
+            twelfthHouse: colorCodes.gemini,
+
+        }, 
+        leo: {
+            firstHouse: colorCodes.leo,
+            secondHouse: colorCodes.virgo,
+            thirdHouse: colorCodes.libra,
+            fourthHouse: colorCodes.scorpio,
+            fifthHouse: colorCodes.sagittarius,
+            sixthHouse: colorCodes.capricorn,
+            seventhHouse: colorCodes.aquarius,
+            eighthHouse: colorCodes.pisces,
+            ninthHouse: colorCodes.aries,
+            tenthHouse: colorCodes.taurus,
+            eleventhHouse: colorCodes.gemini,
+            twelfthHouse: colorCodes.cancer,
+
+        },
+        virgo: {
+            firstHouse: colorCodes.virgo,
+            secondHouse: colorCodes.libra,
+            thirdHouse: colorCodes.scorpio,
+            fourthHouse: colorCodes.sagittarius,
+            fifthHouse: colorCodes.capricorn,
+            sixthHouse: colorCodes.aquarius,
+            seventhHouse: colorCodes.pisces,
+            eighthHouse: colorCodes.aries,
+            ninthHouse: colorCodes.taurus,
+            tenthHouse: colorCodes.gemini,
+            eleventhHouse: colorCodes.cancer,
+            twelfthHouse: colorCodes.leo,
+
+        },
+        libra: {
+            firstHouse: colorCodes.libra,
+            secondHouse: colorCodes.scorpio,
+            thirdHouse: colorCodes.sagittarius,
+            fourthHouse: colorCodes.capricorn,
+            fifthHouse: colorCodes.aquarius,
+            sixthHouse: colorCodes.pisces,
+            seventhHouse: colorCodes.aries,
+            eighthHouse: colorCodes.taurus,
+            ninthHouse: colorCodes.gemini,
+            tenthHouse: colorCodes.cancer,
+            eleventhHouse: colorCodes.leo,
+            twelfthHouse: colorCodes.virgo,
+
+        },
+         scorpio: {
+            firstHouse: colorCodes.scorpio,
+            secondHouse: colorCodes.sagittarius,
+            thirdHouse: colorCodes.capricorn,
+            fourthHouse: colorCodes.aquarius,
+            fifthHouse: colorCodes.pisces,
+            sixthHouse: colorCodes.aries,
+            seventhHouse: colorCodes.taurus,
+            eighthHouse: colorCodes.gemini,
+            ninthHouse: colorCodes.cancer,
+            tenthHouse: colorCodes.leo,
+            eleventhHouse: colorCodes.virgo,
+            twelfthHouse: colorCodes.libra,
+
+        },
+        sagittarius: {
+            firstHouse: colorCodes.sagittarius,
+            secondHouse: colorCodes.capricorn,
+            thirdHouse: colorCodes.aquarius,
+            fourthHouse: colorCodes.pisces,
+            fifthHouse: colorCodes.aries,
+            sixthHouse: colorCodes.taurus,
+            seventhHouse: colorCodes.gemini,
+            eighthHouse: colorCodes.cancer,
+            ninthHouse: colorCodes.leo,
+            tenthHouse: colorCodes.virgo,
+            eleventhHouse: colorCodes.libra,
+            twelfthHouse: colorCodes.scorpio,
+
+        },
+         capricorn: {
+            firstHouse: colorCodes.capricorn,
+            secondHouse: colorCodes.aquarius,
+            thirdHouse: colorCodes.pisces,
+            fourthHouse: colorCodes.aries,
+            fifthHouse: colorCodes.taurus,
+            sixthHouse: colorCodes.gemini,
+            seventhHouse: colorCodes.cancer,
+            eighthHouse: colorCodes.leo,
+            ninthHouse: colorCodes.virgo,
+            tenthHouse: colorCodes.libra,
+            eleventhHouse: colorCodes.scorpio,
+            twelfthHouse: colorCodes.sagittarius,
+
+        },
+        aquarius: {
+            firstHouse: colorCodes.aquarius,
+            secondHouse: colorCodes.pisces,
+            thirdHouse: colorCodes.aries,
+            fourthHouse: colorCodes.taurus,
+            fifthHouse: colorCodes.gemini,
+            sixthHouse: colorCodes.cancer,
+            seventhHouse: colorCodes.leo,
+            eighthHouse: colorCodes.virgo,
+            ninthHouse: colorCodes.libra,
+            tenthHouse: colorCodes.scorpio,
+            eleventhHouse: colorCodes.sagittarius,
+            twelfthHouse: colorCodes.capricorn,
+
+        },
+        pisces: {
+            firstHouse: colorCodes.pisces,
+            secondHouse: colorCodes.aries,
+            thirdHouse: colorCodes.taurus,
+            fourthHouse: colorCodes.gemini,
+            fifthHouse: colorCodes.cancer,
+            sixthHouse: colorCodes.leo,
+            seventhHouse: colorCodes.virgo,
+            eighthHouse: colorCodes.libra,
+            ninthHouse: colorCodes.scorpio,
+            tenthHouse: colorCodes.sagittarius,
+            eleventhHouse: colorCodes.capricorn,
+            twelfthHouse: colorCodes.aquarius,
+
         }
     }
 
@@ -66,7 +244,7 @@ export const SineWave = ({ whichHouse, planet ,lagnaSign}) => {
             <path d="M76.0654 9.00528L75.5974 87.5655L38.0738 19.8066L40.1358 18.5687L42.2811 17.4808L46.8024 15.3669L51.4903 13.5531L53.9495 12.677L57.837 11.5438L60.5269 10.7294L63.7614 10.1884L69.7884 9.37172L76.0654 9.00528Z" fill="url(#paint1_linear_493_3266)" />
             {/* ----- 4th ----------------- */}
             <path d="M113 19.7702L76 87.3971L76.0824 9.39709H78.3898L80.6971 9.56998L85.4766 10.0886L90.2561 10.9531L92.7283 11.4717L96.5189 12.509L99.1559 13.2006L102.122 14.4108L107.561 16.8312L113 19.7702Z" fill="url(#paint2_linear_493_3266)" />
-            
+
             {/* ----- 5th ----------------- */}
             <path d="M140.119 48.644L75.5917 87.7711L113.077 20.4434L115.238 21.7411L117.317 23.1881L121.546 26.3241L122.241 26.9505L124.308 28.7888L127.361 31.8167L129.5 33.8971L131.699 36.6109L135.633 41.7603L140.119 48.644Z" fill="url(#paint3_linear_493_3266)" />
             {/* ----- 2th ----------------- */}
