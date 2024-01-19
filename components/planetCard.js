@@ -13,7 +13,7 @@ export const PlanetCard = (x) => {
 
                     <h2>{x?.data?.name}</h2>
                     <p>Ruler Of : </p>
-                    {x?.data?.rulerOf?.map(w => <p>{w}</p>)}
+                    {x?.data?.rulerOf?.map(w => <p key={x}>{w}</p>)}
 
                 </div>
             </div>
