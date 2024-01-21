@@ -225,7 +225,7 @@ export default function Detail() {
                         padding: 10,
                         marginTop: 25
                     }}>
-                        <p style={{ marginRight: 10 }}>Story of {houseOwner}&apos;s {rashiGender[rashi].gender} side   </p>
+                        <p style={{ marginRight: 10 }}>Story of {houseOwner}&apos;s {rashiGender[rashi]?.gender} side   </p>
                         <Image
                             src={require(`../public/zodiac/${rashi}.png`)}
                             height={35}
@@ -248,7 +248,7 @@ export default function Detail() {
                                     padding: '0px 15px'
                                 }}>
 
-                                    <h2 style={{ color: 'white' }}>{obj.awayFrom1stFromNatal}</h2>
+                                    <h2 style={{ color: 'white' }}>{obj?.awayFrom1stFromNatal}</h2>
                                 </div>
                                 <p>Female Deviation</p>
                             </div>
@@ -267,7 +267,7 @@ export default function Detail() {
                                     padding: '0px 15px'
                                 }}>
 
-                                    <h2 style={{ color: 'white' }}>{obj.awayFrom1st}</h2>
+                                    <h2 style={{ color: 'white' }}>{obj?.awayFrom1st}</h2>
                                 </div>
                                 <p>Tranist Deviation</p>
                             </div>
@@ -282,7 +282,7 @@ export default function Detail() {
                             <Image src={require("../components/sineWave.js")} />
 
                             <SineWave
-                                whichHouse={String(obj.awayFrom1st)}
+                                whichHouse={String(obj?.awayFrom1st)}
                                 planet={houseOwner}
                                 lagnaSign={rashi}
                             />
