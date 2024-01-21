@@ -79,6 +79,7 @@ export const CurrentTransit = () => {
 
     return (
         <>
+
             <SineWave
                 sunPosition={position[0]}
                 moonPosition={position[1]}

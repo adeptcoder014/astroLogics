@@ -26,33 +26,47 @@ import { getUser } from "../controller/user";
 const LifeArenaScreen = () => {
     const planetInfo = [{
         name: 'sun',
+        rulerOf: [],
+
         color: 'red'
     },
     {
         name: 'moon',
-        color: 'brown'
+        color: 'brown',
+        rulerOf: [],
+
     },
     {
-        name: 'mercury',
-        color: 'aqua'
+        name: 'mars',
+        color: 'aqua',
+        rulerOf: [],
+
     },
     {
         name: 'venus',
+        rulerOf: [],
+
         color: 'blue'
     }, {
-        name: 'mars',
-        color: 'blue'
-    }, {
-        name: 'jupiter',
-        color: 'blue'
-    }, {
-        name: 'saturn',
+        name: 'mercury',
+        rulerOf: [],
+
         color: 'blue'
     },
     {
-        name: 'node',
+        name: 'jupiter', rulerOf: [],
+
         color: 'blue'
-    }
+    }, {
+        name: 'saturn', rulerOf: [],
+
+        color: 'blue'
+    },
+        // {
+        //     name: 'node', rulerOf: [],
+
+        //     color: 'blue'
+        // }
     ]
 
     const router = useRouter()
@@ -64,31 +78,37 @@ const LifeArenaScreen = () => {
     //============================================================
 
     const { data } = useQuery('getUserNatalData', getUser)
-    console.log(data?.data[0].planets);
-    
+
 
     let assigningNatalPlanetsValue = data?.data[0]?.planets?.map((x) => {
         planetInfo.filter(w => {
             if (x.name == w.name) {
-                w.rulerOf = x.rulerOf
+                w.link = '/home'
+
+                x.rulerOf.map(z =>
+                    w?.rulerOf?.push({
+                        house: z,
+                        sign: data?.data[0]?.houses[z - 1]?.rashi,
+                    }))
             }
 
         })
     })
 
-console.log('planetInfo ===',planetInfo);
+    console.log('planetInfo ===', planetInfo);
+    // console.log('planetInfo ===', data?.data[0]?.houses[3]);
     return (
         <>
             <CommanLayout>
 
 
-                <div className="kona-card-container">
+                {planetInfo.map(item => (
+                    <div className="planet-card-container">
 
 
-                    {planetInfo.map(item => (
                         <PlanetCard key={item.kona} data={item} />
-                    ))}
-                </div>
+                    </div>
+                ))}
             </CommanLayout>
         </>
     )

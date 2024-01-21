@@ -14,10 +14,15 @@ export default function Home() {
         // =============== VIEW ===========================
 
         <CommanLayout>
-            <SearchBar />
-            < MainCategories />
+            {/* <SearchBar /> */}
             {/* <EventCard /> */}
-            <CurrentTransit/>
+            <h1 className="h1  h1Responsive">Current Transit  :           </h1>
+
+            <div style={{ backgroundColor: "#3D3E4F", padding: 10, borderRadius: 16, marginTop: 25 }}>
+
+                <CurrentTransit />
+            </div>
+            < MainCategories />
         </CommanLayout>
     )
 }

@@ -454,7 +454,7 @@ button {
 }
 
 .kona-card-container {
-  width: 95vw;  
+  width: 95vw;
   display: flex;
   flex-wrap: wrap;
   /* background: rgba(255, 0, 0, 0.1); */
@@ -469,43 +469,58 @@ button {
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
-  width:40%;
+  width: 40%;
   /* Adjust as needed */
   box-sizing: border-box;
   margin-bottom: 20px;
-  border:1px solid rgba(255, 255, 255, 0.43);
+  border: 1px solid rgba(255, 255, 255, 0.43);
   border-radius: 8px;
   height: 250px;
 }
-.planet-card {
-  /* background-color: greenyellow; */
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
-  width:40%;
-  box-sizing: border-box;
-  margin-bottom: 20px;
-  border:1px solid rgba(255, 255, 255, 0.43);
-  border-radius: 8px;
-  /* height: 100px; */
+.planet-card-container {
+  border-radius: 10px;
+  background: #242644;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.40);
 }
+
+.planet-card-container {
+  width: 330px;
+  height: 78px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #373E6A 0.28%, #51395D 99.79%);
+  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.53);
+  margin-top: 10px;
+}
+
+.planet-card-house-lordship-mini-card {
+  width: 72px;
+  height: 55px;
+  border-radius: 13px;
+  border: 1px solid rgba(255, 250, 250, 0.00);
+  background: rgba(217, 217, 217, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .kona-lord-card {
   /* background-color: greenyellow; */
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
-  width:40%;
+  width: 40%;
   /* Adjust as needed */
   box-sizing: border-box;
   margin-bottom: 20px;
-  border:1px solid rgba(255, 255, 255, 0.43);
+  border: 1px solid rgba(255, 255, 255, 0.43);
   border-radius: 8px;
   height: 250px;
   /* Set the width of each column */
   /* You can adjust the width as needed, and consider adding some margin or padding */
 }
+
 .planet-detail-card {
   display: flex;
   justify-content: space-around;
