@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 import Image from "next/image"
+import { redirect } from "next/dist/server/api-utils";
+import Link from "next/link";
 
 
 
@@ -16,7 +18,7 @@ export const PlanetCard = (x) => {
                 display: 'flex',
                 justifyContent: 'space-around'
 
-            }} onClick={() => router.push(`/kona-lords/?kona=${x?.data?.kona}`)}>
+            }}>
                 <div style={{
                     display: 'flex',
                     alignItems: "center",
@@ -47,19 +49,21 @@ export const PlanetCard = (x) => {
                         // console.log('index', index);
                         return (
                             <>
-                                <div
-                                    // onClick={() => router.push(`/detail?house-owner=${x?.data?.name}&rashi=${w.sign}`)}
-                                    onClick={() => router.push(`/home`)}
-                                    className="planet-card-house-lordship-mini-card">
-                                    <h3 className="h3">{w.house}</h3>
-                                    <Image
-                                        alt="planets in svg"
-                                        // src={require(`../public/zodiac/${planetHouseLordhsipZodiac[x?.data?.name][index == 0 ? 'firstSign' : 'secondSign']}.png`)}
-                                        src={require(`../public/zodiac/${w.sign}.png`)}
-                                        height={30}
-                                        width={30}
-                                    />
-                                </div >
+                                <Link href={`/detail?house-owner=${x?.data?.name}&rashi=${w.sign}`}>
+                                    <div
+                                        // onClick={() => router.push(`/detail?house-owner=${x?.data?.name}&rashi=${w.sign}`)}
+                                        // onClick={() => redirect(`/home`)}
+                                        className="planet-card-house-lordship-mini-card">
+                                        <h3 className="h3">{w.house}</h3>
+                                        <Image
+                                            alt="planets in svg"
+                                            // src={require(`../public/zodiac/${planetHouseLordhsipZodiac[x?.data?.name][index == 0 ? 'firstSign' : 'secondSign']}.png`)}
+                                            src={require(`../public/zodiac/${w.sign}.png`)}
+                                            height={30}
+                                            width={30}
+                                        />
+                                    </div >
+                                </Link>
                             </>
                         )
                     }
