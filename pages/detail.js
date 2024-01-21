@@ -210,7 +210,7 @@ export default function Detail() {
                         <div>
 
 
-                            <h3>{rashiGender[rashi].title}</h3>
+                            <h3>{rashiGender[rashi]?.title}</h3>
                             <p style={{ color: "#8B8B8B", fontSize: 13 }}>{rashiGender[rashi].description}  {currentPlanet?.isIn}</p>
                         </div>
                         {/* <div>
