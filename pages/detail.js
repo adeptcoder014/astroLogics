@@ -11,18 +11,66 @@ import CommanLayout from "../layouts/comman";
 import { CurrentTransit } from "../components/currentTransit.js";
 //============================================================
 const rashiGender = {
-    aries: 'male',
-    taurus: 'female',
-    gemini: 'male',
-    cancer: 'female',
-    leo: 'male',
-    virgo: 'female',
-    libra: 'male',
-    scorpio: 'female',
-    sagittarius: 'male',
-    capricorn: 'female',
-    aquarius: 'male',
-    pisces: 'female',
+    aries: {
+        gender: 'male',
+        title: 'The Pioneer ',
+        description: 'Catalyst of New Beginnings in ',
+    },
+    taurus: {
+        gender: 'female',
+        title: 'The Impulsive',
+        description: 'Initiating new things in ',
+    },
+    gemini: {
+        gender: 'male',
+        title: 'The Impulsive',
+        description: 'Initiating new things in ',
+    },
+    cancer: {
+        gender: 'female',
+        title: 'The Impulsive',
+        description: 'Initiating new things in ',
+    },
+    leo: {
+        gender: 'male',
+        title: 'The Impulsive',
+        description: 'Initiating new things in ',
+    },
+    virgo: {
+        gender: 'female',
+        title: 'The Impulsive',
+        description: 'Initiating new things in ',
+    },
+    libra: {
+        gender: 'male',
+        title: 'The Impulsive',
+        description: 'Initiating new things in ',
+    },
+    scorpio: {
+        gender: 'female',
+        title: 'The Impulsive',
+        description: 'Initiating new things in ',
+    },
+    sagittarius: {
+        gender: 'male',
+        title: 'The Impulsive',
+        description: 'Initiating new things in ',
+    },
+    capricorn: {
+        gender: 'female',
+        title: 'The Admin',
+        description: 'Ceo-pana in the ',
+    },
+    aquarius: {
+        gender: 'male',
+        title: 'The Impulsive',
+        description: 'Initiating new things in ',
+    },
+    pisces: {
+        gender: 'female',
+        title: 'The Impulsive',
+        description: 'Initiating new things in ',
+    },
 }
 //============================================================
 
@@ -156,21 +204,35 @@ export default function Detail() {
                     <div className="planet-detail-card">
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
-                            <Image src={require("../public/planets/venus.png")}
+                            <Image src={require(`../public/planets/${houseOwner}.svg`)}
                                 width={50} height={50} />
                         </div>
                         <div>
 
 
-                            <h3>The Liberator</h3>
-                            <p style={{ color: "#8B8B8B", fontSize: 13 }}>The Dushtana ruler</p>
+                            <h3>{rashiGender[rashi].title}</h3>
+                            <p style={{ color: "#8B8B8B", fontSize: 13 }}>{rashiGender[rashi].description}  {currentPlanet?.isIn}</p>
                         </div>
-                        <div>
-                            <h6>Current transit </h6>
+                        {/* <div>
+                            <h6 style={{ color: "#8B8B8B", fontSize: 13 }}>Current transit </h6>
                             <h3> {obj.current}</h3>
-                        </div>
+                        </div> */}
                     </div>
-                    <p>Story of {houseOwner}`&apos;` {rashiGender[rashi]} side   <Image src={require(`../public/zodiac/taurus.png`)} width={45} height={45} />  </p>
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyItems: "center",
+                        padding: 10,
+                        marginTop:25
+                    }}>
+                        <p style={{ marginRight: 10 }}>Story of {houseOwner}&apos;s {rashiGender[rashi].gender} side   </p>
+                        <Image
+                            src={require(`../public/zodiac/${rashi}.png`)}
+                            height={35}
+                            width={35}
+                        />
+
+                    </div>
                     < div className="planet-detail-card" style={{ flexDirection: "column" }} >
                         <div style={{ marginTop: 20 }}>
 
