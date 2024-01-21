@@ -227,7 +227,7 @@ export default function Detail() {
                     }}>
                         <p style={{ marginRight: 10 }}>Story of {houseOwner}&apos;s {rashiGender[rashi]?.gender} side   </p>
                         <Image
-                            src={require(`../public/zodiac/${rashi}.png`)}
+                            src={require(`../public/zodiac/${rashi ? sun : 'sun'}.png`)}
                             height={35}
                             width={35}
                         />
