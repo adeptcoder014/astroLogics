@@ -103,7 +103,7 @@ const LifeArenaScreen = () => {
 
 
                 {planetInfo.map(item => (
-                    <div className="planet-card-container">
+                    <div key={item} className="planet-card-container">
 
 
                         <PlanetCard key={item.kona} data={item} />
