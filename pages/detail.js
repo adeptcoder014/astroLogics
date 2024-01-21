@@ -204,7 +204,7 @@ export default function Detail() {
                     <div className="planet-detail-card">
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
-                            <Image src={require(`../public/planets/${houseOwner}.svg`)}
+                            <Image src={require(`../public/planets/${houseOwner ? houseOwner : 'sun'}.svg`)}
                                 width={50} height={50} />
                         </div>
                         <div>
@@ -223,7 +223,7 @@ export default function Detail() {
                         alignItems: 'center',
                         justifyItems: "center",
                         padding: 10,
-                        marginTop:25
+                        marginTop: 25
                     }}>
                         <p style={{ marginRight: 10 }}>Story of {houseOwner}&apos;s {rashiGender[rashi].gender} side   </p>
                         <Image
