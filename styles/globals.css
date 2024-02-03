@@ -523,9 +523,9 @@ button {
 
 .planet-detail-card {
   display: flex;
-  justify-content: space-between;
-  background: #242538;
-  backdrop-filter: blur(10px);
+  /* justify-content: space-between; */
+  border-radius: 16px;
+  background: linear-gradient(90deg, #373E6A 0.28%, #51395D 99.79%);
   box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.53);
 
   box-sizing: border-box;

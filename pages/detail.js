@@ -18,58 +18,58 @@ const rashiGender = {
     },
     taurus: {
         gender: 'female',
-        title: 'The Impulsive',
-        description: 'Initiating new things in ',
+        title: 'The Stabilizer',
+        description: 'Guardian of Perseverance ',
     },
     gemini: {
         gender: 'male',
-        title: 'The Impulsive',
-        description: 'Initiating new things in ',
+        title: 'The Communicator',
+        description: 'Master of Versatility',
     },
     cancer: {
         gender: 'female',
-        title: 'The Impulsive',
-        description: 'Initiating new things in ',
+        title: 'The Nurturer',
+        description: ' Protector of Emotional Bonds',
     },
     leo: {
         gender: 'male',
-        title: 'The Impulsive',
-        description: 'Initiating new things in ',
+        title: 'The Performer',
+        description: 'Illuminator of Charisma',
     },
     virgo: {
         gender: 'female',
-        title: 'The Impulsive',
-        description: 'Initiating new things in ',
+        title: 'The Analyst',
+        description: ' Architect of Precision ',
     },
     libra: {
         gender: 'male',
-        title: 'The Impulsive',
-        description: 'Initiating new things in ',
+        title: 'The Harmonizer',
+        description: ' Conductor of Balance ',
     },
     scorpio: {
         gender: 'female',
-        title: 'The Impulsive',
-        description: 'Initiating new things in ',
+        title: 'The Intense',
+        description: 'Guardian of Transformative Power',
     },
     sagittarius: {
         gender: 'male',
-        title: 'The Impulsive',
-        description: 'Initiating new things in ',
+        title: 'The Explorer',
+        description: ' Seeker of Boundless Horizons',
     },
     capricorn: {
         gender: 'female',
         title: 'The Admin',
-        description: 'Ceo-pana in the ',
+        description: 'CEO of Steadfast Ambition',
     },
     aquarius: {
         gender: 'male',
-        title: 'The Impulsive',
-        description: 'Initiating new things in ',
+        title: 'The Visionary',
+        description: 'Innovator of Progressive Ideals',
     },
     pisces: {
         gender: 'female',
-        title: 'The Impulsive',
-        description: 'Initiating new things in ',
+        title: 'The Dreamer',
+        description: ' Weaver of Intuitive Realms',
     },
 }
 //============================================================
@@ -202,7 +202,7 @@ export default function Detail() {
                     // height: '95vh',
                 }}>
                     <div className="planet-detail-card">
-                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginRight: 19 }}>
 
                             <Image src={require(`../public/planets/${houseOwner ? houseOwner : 'sun'}.svg`)}
                                 width={50} height={50} />
@@ -210,8 +210,8 @@ export default function Detail() {
                         <div>
 
 
-                            <h3>{rashiGender[rashi]?.title}</h3>
-                            <p style={{ color: "#8B8B8B", fontSize: 13 }}>{rashiGender[rashi]?.description}  {currentPlanet?.isIn}</p>
+                            <h3 style={{  }}>{rashiGender[rashi]?.title}</h3>
+                            <p style={{ color: "#8B8B8B", fontSize: 13 }}>{rashiGender[rashi]?.description} </p>
                         </div>
                         {/* <div>
                             <h6 style={{ color: "#8B8B8B", fontSize: 13 }}>Current transit </h6>
@@ -225,7 +225,7 @@ export default function Detail() {
                         padding: 10,
                         marginTop: 25
                     }}>
-                        <p style={{ marginRight: 10 }}>Story of {houseOwner}&apos;s {rashiGender[rashi]?.gender} side   </p>
+                        <p style={{ marginRight: 10 }}>Story of {houseOwner}&apos;s {rashiGender[rashi]?.gender}  side  </p>
                         <Image
                             src={require(`../public/zodiac/${rashi ? rashi : 'aries'}.png`)}
                             height={35}
@@ -234,6 +234,7 @@ export default function Detail() {
 
                     </div>
                     < div className="planet-detail-card" style={{ flexDirection: "column" }} >
+                        <p style={{ marginRight: 10 }}>{houseOwner} as a lord of  </p>
                         <div style={{ marginTop: 20 }}>
 
 
@@ -293,7 +294,7 @@ export default function Detail() {
                     </div>
 
                 </div >
-            </CommanLayout>
+            </CommanLayout >
         </>
 
     )

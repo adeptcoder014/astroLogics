@@ -75,16 +75,12 @@ const details = [{
                     signRelation: 'own',
                     planetStrength: 'strong',
 
-                    capricorn: {
-                        placesAway: '1st',
+                    cancer: {
+                        placesAway: 7,
                         description: 'some story related of some kind',
                         reason: 'reason'
                     },
-                    aquarius: {
-                        placesAway: '12th',
-                        description: 'some story related of some kind',
-                        reason: 'reason'
-                    },
+
                     
                 },
                 {
@@ -96,13 +92,89 @@ const details = [{
                     signRelation: 'neutral',
                     planetStrength: 'strong',
 
-                    capricorn: {
-                        placesAway: '12th',
+                   
+                    cancer: {
+                        placesAway: 8,
                         description: 'some story related of some kind',
                         reason: 'reason'
                     },
-                    aquarius: {
-                        placesAway: '1st',
+                },
+                {
+                    house: 2,
+                    sign: 'pisces',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    planetStrength: 'strong',
+
+                   
+                    cancer: {
+                        placesAway: 9,
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+                {
+                    house: 2,
+                    sign: 'aries',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    planetStrength: 'strong',
+
+                   
+                    cancer: {
+                        placesAway: 10,
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+                {
+                    house: 2,
+                    sign: 'taurus',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    planetStrength: 'strong',
+
+                   
+                    cancer: {
+                        placesAway: 11,
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+                {
+                    house: 2,
+                    sign: 'gemini',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    planetStrength: 'strong',
+
+                   
+                    cancer: {
+                        placesAway: 11,
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+                {
+                    house: 2,
+                    sign: 'cancer',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    planetStrength: 'strong',
+
+                   
+                    cancer: {
+                        placesAway: 12,
                         description: 'some story related of some kind',
                         reason: 'reason'
                     },
@@ -221,7 +293,6 @@ const details = [{
                         reason: 'reason'
                     },
                 },
-                
                 {
                     house: 12,
                     sign: "sagittarius",
@@ -232,17 +303,18 @@ const details = [{
                     planetStrength: 'strong',
 
                     gemini: {
-                        placesAway: '7th',
+                        placesAway: 7,
                         description: 'some story related of some kind',
                         reason: 'reason'
                     },
                     virgo: {
-                        placesAway: '4th',
+                        placesAway: 4,
                         description: 'some story related of some kind',
                         reason: 'reason'
                     },
                 },
-
+                
+               
             ]
         },
         {
