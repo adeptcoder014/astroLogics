@@ -1,5 +1,7 @@
 import Image from "next/image"
+import { useRouter } from "next/router"
 export const Header = () => {
+    const  router = useRouter()
     return (
         <div className="userInfoSection">
 
@@ -11,7 +13,9 @@ export const Header = () => {
 
                 alignItems: "center",
                 // width: "40%"
-            }}>
+            }}
+                onClick={() => router.push('/home')}
+            >
 
                 <p className="p" style={{
                     fontSize: "10px",

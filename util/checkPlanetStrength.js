@@ -100,7 +100,7 @@ const details = [{
                     },
                 },
                 {
-                    house: 2,
+                    house: 3,
                     sign: 'pisces',
 
                     description: 'mars in the second house in taurus sign',
@@ -116,7 +116,7 @@ const details = [{
                     },
                 },
                 {
-                    house: 2,
+                    house: 4,
                     sign: 'aries',
 
                     description: 'mars in the second house in taurus sign',
@@ -132,7 +132,7 @@ const details = [{
                     },
                 },
                 {
-                    house: 2,
+                    house: 5,
                     sign: 'taurus',
 
                     description: 'mars in the second house in taurus sign',
@@ -148,7 +148,7 @@ const details = [{
                     },
                 },
                 {
-                    house: 2,
+                    house: 6,
                     sign: 'gemini',
 
                     description: 'mars in the second house in taurus sign',
@@ -158,13 +158,13 @@ const details = [{
 
                    
                     cancer: {
-                        placesAway: 11,
+                        placesAway: 12,
                         description: 'some story related of some kind',
                         reason: 'reason'
                     },
                 },
                 {
-                    house: 2,
+                    house: 7,
                     sign: 'cancer',
 
                     description: 'mars in the second house in taurus sign',
@@ -174,7 +174,88 @@ const details = [{
 
                    
                     cancer: {
-                        placesAway: 12,
+                        placesAway: 1,
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+                {
+                    house: 8,
+                    sign: 'leo',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    planetStrength: 'strong',
+
+                   
+                    cancer: {
+                        placesAway: 2,
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+                {
+                    house: 9,
+                    sign: 'virgo',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    planetStrength: 'strong',
+
+                   
+                    cancer: {
+                        placesAway: 3,
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+                {
+                    house: 10,
+                    sign: 'libra',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    planetStrength: 'strong',
+
+                   
+                    cancer: {
+                        placesAway: 4,
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+                {
+                    house: 11,
+                    sign: 'scorpio',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    planetStrength: 'strong',
+
+                   
+                    cancer: {
+                        placesAway: 5,
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+
+                {
+                    house: 12,
+                    sign: 'sagittarius',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    planetStrength: 'strong',
+
+                   
+                    cancer: {
+                        placesAway: 6,
                         description: 'some story related of some kind',
                         reason: 'reason'
                     },
