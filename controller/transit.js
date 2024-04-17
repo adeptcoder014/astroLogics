@@ -6,8 +6,9 @@ export const getAlmanac = async () => {
 
 
     const currentDateTime = getCurrentDateTime()
+    console.log(currentDateTime);
 
-    const response = await axios.post('https://astroserver.onrender.com/almanac/get', currentDateTime);
+    const response = await astroServer.post('/almanac/get', currentDateTime);
     // const response = await axios.get("https://astroserver.onrender.com/user/get");
 
     if (!response) {
