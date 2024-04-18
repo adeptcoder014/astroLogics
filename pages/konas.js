@@ -7,19 +7,19 @@ import CommanLayout from "../layouts/comman";
 
 const LifeArenaScreen = () => {
     const konaInfo = [{
-        kona: 'dharma',
+        kona: 'Fire',
         color: 'red'
     },
     {
-        kona: 'artha',
+        kona: 'Earth',
         color: 'brown'
     },
     {
-        kona: 'kama',
+        kona: 'Air',
         color: 'aqua'
     },
     {
-        kona: 'moksha',
+        kona: 'Water',
         color: 'blue'
     }
     ]
