@@ -33,10 +33,10 @@ const KonaLord = () => {
     let kona = router.query.kona
 
     const konaObj = {
-        dharma: [0, 4, 8],
-        artha: [1, 5, 9],
-        kama: [2, 6, 10],
-        moksha: [3, 7, 11],
+        Fire: [0, 4, 8],
+        Earth: [1, 5, 9],
+        Air: [2, 6, 10],
+        Water: [3, 7, 11],
     }
     // console.log('konaObj ---',konaObj[kona]);
 
@@ -57,7 +57,7 @@ const KonaLord = () => {
 
     const { status, data, error, isFetching } = useQuery('postData', fetchData);
 
-    // console.log('react query data ----', data?.data[0]);
+    console.log('react query data ----', data?.data[0]?.houses);
     // console.log(' data ----', response);
     // useEffect(() => {
     //     astroServer.get('/user/get').then(res => {
