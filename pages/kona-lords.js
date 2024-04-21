@@ -38,7 +38,7 @@ const KonaLord = () => {
         Air: [2, 6, 10],
         Water: [3, 7, 11],
     }
-    // console.log('konaObj ---',konaObj[kona]);
+    console.log('konaObj ---',konaObj[kona]);
 
     //============================================================
     const [planet, setPlanet] = useState([])
@@ -47,7 +47,7 @@ const KonaLord = () => {
     //============================================================
     const fetchData = async () => {
         // const response = await astroServer.get('/user/get');
-        const response = await axios.get("https://astroserver.onrender.com/user/get");
+        const response = await astroServer.get("/user/get");
 
         if (!response) {
             throw new Error('Network response was not ok');
@@ -93,8 +93,9 @@ const KonaLord = () => {
 
                 <div className="kona-card-container">
                     {konaLordData.map(x => {
-                        // console.log(x?.KonaHouseDetails?._id);
+                        console.log(x?.KonaHouseDetails);
                         return (<KonaLordCard
+                            house={x?.KonaHouseDetails?.bhava}
                             method={() => { router.push(`/detail/?house-owner=${x.KonaHouseDetails.owner}&rashi=${x.KonaHouseDetails.rashi}`) }}
                             rashi={x?.KonaHouseDetails?.rashi}
                             owner={x?.KonaHouseDetails?.owner}

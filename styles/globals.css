@@ -517,6 +517,9 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.43);
   border-radius: 8px;
   height: 250px;
+  display: flex;
+  flex-direction: column;
+  /* flex: 1; */
   /* Set the width of each column */
   /* You can adjust the width as needed, and consider adding some margin or padding */
 }

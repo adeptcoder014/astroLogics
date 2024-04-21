@@ -538,6 +538,25 @@ const details = [{
                 },
                 {
                     house: 12,
+                    sign: 'aquarius',
+
+                    description: 'mars in the second house in taurus sign',
+                    houseRelation: 'neutral',
+                    signRelation: 'neutral',
+                    
+                    taurus: {
+                        placesAway: 10,
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                    libra: {
+                        placesAway: 3,
+                        description: 'some story related of some kind',
+                        reason: 'reason'
+                    },
+                },
+                {
+                    house: 12,
                     sign: 'sagittarius',
 
                     description: 'mars in the second house in taurus sign',

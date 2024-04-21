@@ -234,7 +234,8 @@ export default function Detail() {
 
                     </div>
                     < div className="planet-detail-card" style={{ flexDirection: "column" }} >
-                        <p style={{ marginRight: 10 }}>{houseOwner} as a lord of  </p>
+                        {/* <p style={{ marginRight: 10 }}>{houseOwner} as a lord of  </p> */}
+                        <p style={{ marginRight: 10,fontWeight:"bold", fontSize:14 }}>{houseOwner}' s story of achieving <u style={{color:"yellow"}}>value</u> of <u style={{color:"yellow"}}>playfulness</u> through <u style={{color:"yellow"}}>service</u></p>
                         <div style={{ marginTop: 20 }}>
 
 
