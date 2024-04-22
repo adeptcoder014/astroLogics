@@ -38,6 +38,7 @@ const LifeArenaScreen = () => {
             setHouse(res?.data[0]?.houses[0]);
         })
     }, [])
+    // const cssClass = `kona-card-${x?.data?.kona}`
 
 
     return (
@@ -45,13 +46,24 @@ const LifeArenaScreen = () => {
             <CommanLayout>
 
 
-                <div className="kona-card-container">
+
+                {konaInfo.map(item => (
+                    <>
+                        <div className="kona-card-container">
 
 
-                    {konaInfo.map(item => (
-                        <KonaCard key={item.kona} data={item} />
-                    ))}
-                </div>
+                            <div className={`kona-card-${item?.kona}`}>
+                                <div onClick={() => router.push(`/kona-lords/?kona=${item?.kona}`)}>
+
+                                    {/* <h2>{x?.data?.kona}</h2> */}
+                                </div>
+                                {/* <h2>{x?.data?.kona}</h2> */}
+                            </div >
+
+                            {/* <KonaCard key={item.kona} data={item} /> */}
+                        </div >
+                    </>
+                ))}
             </CommanLayout>
         </>
     )

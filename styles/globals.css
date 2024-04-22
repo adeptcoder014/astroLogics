@@ -461,13 +461,23 @@ button {
 
   justify-content: space-around;
   padding: 10px;
+  
 }
-
-.kona-card {
+.kona-card   h2{
+  color: white;
+  font-weight: bolder;
+  font-size: 32px;
+}
+.kona-card-Fire {
+  background-image: url('../public/elements/fire.png');
+  background-repeat: no-repeat;
   /* background-color: greenyellow; */
-  background: rgba(255, 255, 255, 0.1);
+  /* background: rgba(255, 255, 255, 0.1); */
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-position: center; /* Center the image */
+  background-size: cover;
+  /* height: 500px; */
 
   width: 40%;
   /* Adjust as needed */
@@ -475,7 +485,64 @@ button {
   margin-bottom: 20px;
   border: 1px solid rgba(255, 255, 255, 0.43);
   border-radius: 8px;
-  height: 250px;
+  height: 20vh;
+}
+.kona-card-Earth {
+  background-image: url('../public/elements/earth.png');
+  background-repeat: no-repeat;
+  /* background-color: greenyellow; */
+  /* background: rgba(255, 255, 255, 0.1); */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-position: center; /* Center the image */
+  background-size: cover;
+  /* height: 500px; */
+
+  width: 40%;
+  /* Adjust as needed */
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.43);
+  border-radius: 8px;
+  height: 20vh;
+}
+.kona-card-Air {
+  background-image: url('../public/elements/air.png');
+  background-repeat: no-repeat;
+  /* background-color: greenyellow; */
+  /* background: rgba(255, 255, 255, 0.1); */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-position: center; /* Center the image */
+  background-size: cover;
+  /* height: 500px; */
+
+  width: 40%;
+  /* Adjust as needed */
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.43);
+  border-radius: 8px;
+  height: 20vh;
+}
+.kona-card-Water {
+  background-image: url('../public/elements/water.png');
+  background-repeat: no-repeat;
+  /* background-color: greenyellow; */
+  /* background: rgba(255, 255, 255, 0.1); */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-position: center; /* Center the image */
+  background-size: cover;
+  /* height: 500px; */
+
+  width: 40%;
+  /* Adjust as needed */
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.43);
+  border-radius: 8px;
+  height: 20vh;
 }
 
 .planet-card-container {
