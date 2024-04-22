@@ -461,13 +461,15 @@ button {
 
   justify-content: space-around;
   padding: 10px;
-  
+
 }
-.kona-card   h2{
+
+.kona-card h2 {
   color: white;
   font-weight: bolder;
   font-size: 32px;
 }
+
 .kona-card-Fire {
   background-image: url('../public/elements/fire.png');
   background-repeat: no-repeat;
@@ -475,7 +477,8 @@ button {
   /* background: rgba(255, 255, 255, 0.1); */
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background-position: center; /* Center the image */
+  background-position: center;
+  /* Center the image */
   background-size: cover;
   /* height: 500px; */
 
@@ -487,6 +490,7 @@ button {
   border-radius: 8px;
   height: 20vh;
 }
+
 .kona-card-Earth {
   background-image: url('../public/elements/earth.png');
   background-repeat: no-repeat;
@@ -494,7 +498,8 @@ button {
   /* background: rgba(255, 255, 255, 0.1); */
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background-position: center; /* Center the image */
+  background-position: center;
+  /* Center the image */
   background-size: cover;
   /* height: 500px; */
 
@@ -506,6 +511,7 @@ button {
   border-radius: 8px;
   height: 20vh;
 }
+
 .kona-card-Air {
   background-image: url('../public/elements/air.png');
   background-repeat: no-repeat;
@@ -513,7 +519,8 @@ button {
   /* background: rgba(255, 255, 255, 0.1); */
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background-position: center; /* Center the image */
+  background-position: center;
+  /* Center the image */
   background-size: cover;
   /* height: 500px; */
 
@@ -525,6 +532,7 @@ button {
   border-radius: 8px;
   height: 20vh;
 }
+
 .kona-card-Water {
   background-image: url('../public/elements/water.png');
   background-repeat: no-repeat;
@@ -532,7 +540,8 @@ button {
   /* background: rgba(255, 255, 255, 0.1); */
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background-position: center; /* Center the image */
+  background-position: center;
+  /* Center the image */
   background-size: cover;
   /* height: 500px; */
 
@@ -571,26 +580,79 @@ button {
   justify-content: center;
 }
 
-.kona-lord-card {
-  /* background-color: greenyellow; */
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-
-  width: 40%;
+.kona-lord-card-Fire {
+  background-image: url('../public/elements/fireBg.webp');
+  background-size: cover;
+  background-position: center;
+  /* height: 100vh; */
   /* Adjust as needed */
-  box-sizing: border-box;
-  margin-bottom: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.43);
-  border-radius: 8px;
-  height: 250px;
+  /* opacity: .20; */
   display: flex;
   flex-direction: column;
-  /* flex: 1; */
-  /* Set the width of each column */
-  /* You can adjust the width as needed, and consider adding some margin or padding */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  /* background-color: rgba(0, 0, 0, 0.5); Adjust the last value (alpha) for opacity */
+  position: relative;
+  text-align: center;
+  color: white;
 }
 
+.kona-lord-card-Earth {
+  background-image: url('../public/elements/earthyBg.PNG');
+  background-size: cover;
+  background-position: center;
+  /* height: 100vh; */
+  /* Adjust as needed */
+  /* opacity: .20; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  /* background-color: rgba(0, 0, 0, 0.5); Adjust the last value (alpha) for opacity */
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.kona-lord-card-Air {
+  background-image: url('../public/elements/airBg.jpg');
+  background-size: cover;
+  background-position: center;
+  /* height: 100vh; */
+  /* Adjust as needed */
+  /* opacity: .20; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  /* background-color: rgba(0, 0, 0, 0.5); Adjust the last value (alpha) for opacity */
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.kona-lord-card-Water {
+  background-image: url('../public/elements/waterBg.PNG');
+  background-size: cover;
+  background-position: center;
+  /* height: 100vh; */
+  /* Adjust as needed */
+  /* opacity: .20; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  /* background-color: rgba(0, 0, 0, 0.5); Adjust the last value (alpha) for opacity */
+  position: relative;
+  text-align: center;
+  color: white;
+}
 .planet-detail-card {
   display: flex;
   /* justify-content: space-between; */
@@ -603,4 +665,11 @@ button {
   border-radius: 16px;
   padding: 5px 35px;
   /* height: 250px; */
+}
+
+.text-over-img{
+  /* position: absolute;
+  bottom: 8px;
+  left: 16px;
+  color: red; */
 }
