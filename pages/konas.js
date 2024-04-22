@@ -49,11 +49,20 @@ const LifeArenaScreen = () => {
 
                 {konaInfo.map(item => (
                     <>
-                        <div className="kona-card-container">
+                        <div
+                            key={item?.kona}
+                            className="kona-card-container"
+                            onClick={() => {
+                                console.log('iiiiiiiiiiii');
+                                router.push(`/kona-lords/?kona=${item?.kona}`)
+                            }}
+                        >
 
 
                             <div className={`kona-card-${item?.kona}`}>
-                                <div onClick={() => router.push(`/kona-lords/?kona=${item?.kona}`)}>
+                                <div
+
+                                >
 
                                     {/* <h2>{x?.data?.kona}</h2> */}
                                 </div>
