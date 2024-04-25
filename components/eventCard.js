@@ -1,6 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export const EventCard = (props) => {
+    useEffect(
+        axios.get('fdfdjkbhsdkj')
+    )
 
     return (
         <div className='center mt'>
@@ -22,6 +25,7 @@ export const EventCard = (props) => {
                     <g filter="url(#filter4_d_383_87)">
                         <rect x="33.3892" y="139.665" width="5" height="226" transform="rotate(-60 33.3892 139.665)" fill="#D9D9D9" />
                     </g>
+
                     <path d="M30 139L225.583 251.25L0 251V244L0.5 237L2 222.5L4.5 208L6 200.5L9 189L11 181L14.5 172L21.5 155.5L30 139Z" fill="#FB4B4B" />
                     <path d="M226.211 25.9808L226.792 251.486L114.217 56L120.279 52.5L126.591 49.433L139.898 43.4821L153.706 38.3971L160.951 35.9462L172.41 32.7942L180.338 30.5263L189.883 29.0574L207.672 26.8695L226.211 25.9808Z" fill="#F7FB4B" />
                     <path d="M339 56.9224L227 252L227.249 27H234.234L241.218 27.4987L255.686 28.9948L270.154 31.4884L277.637 32.9845L289.111 35.9767L297.094 37.9716L306.073 41.4625L322.537 48.4444L339 56.9224Z" fill="#4BFB5D" />
