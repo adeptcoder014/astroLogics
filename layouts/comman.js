@@ -10,11 +10,13 @@ const CommanLayout = ({ children }) => {
   return (
     <div className="" style={{
       // height: '110vh'
+      display:'flex',
+      backgroundColor:'red',
+      justifyContent:'center'
     }}>
 
       <div className="mainContainer">
-        <div className="container">
-          {/* ------------------- SECTIONS__userInfo ------------------------ */}
+        // <div className="container">
           <Header />
 
           {children}

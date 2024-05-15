@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --primary-color: #0072f5;
   --secondary-color: #3F51B5;
@@ -140,11 +144,11 @@ body {
 .container {
   /* background-color: greenyellow; */
   /* background: linear-gradient(63deg, #152248 24.63%, #251B58 52.61%, #331947 65.32%, #361A3D 77.5%); */
-  background: linear-gradient(63deg, #c33764 24.63%, #1d2671 52.61%);
+  /* background: linear-gradient(63deg, #c33764 24.63%, #1d2671 52.61%); */
+  background-color: #242538;
+    min-height: 100vh;
 
-  min-height: 100vh;
-
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 
@@ -439,11 +443,7 @@ button {
   }
 
 
-  .mainContainer {
-    width: 95vw;
 
-
-  }
 }
 
 
@@ -617,6 +617,7 @@ button {
   text-align: center;
   color: white;
 }
+
 .kona-lord-card-Air {
   background-image: url('../public/elements/airBg.jpg');
   background-size: cover;
@@ -635,6 +636,7 @@ button {
   text-align: center;
   color: white;
 }
+
 .kona-lord-card-Water {
   background-image: url('../public/elements/waterBg.PNG');
   background-size: cover;
@@ -653,6 +655,7 @@ button {
   text-align: center;
   color: white;
 }
+
 .planet-detail-card {
   display: flex;
   /* justify-content: space-between; */
@@ -667,7 +670,7 @@ button {
   /* height: 250px; */
 }
 
-.text-over-img{
+.text-over-img {
   /* position: absolute;
   bottom: 8px;
   left: 16px;
