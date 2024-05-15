@@ -13,7 +13,10 @@ export default function Home() {
 
     return (
         // =============== VIEW ===========================
+        <>
         <TransitDisplay />
+        {/* < MainCategories /> */}
+        </>
         // <Test/>
         //     <>
         //         <h1 className="">Nischal Yogi</h1>
@@ -25,7 +28,7 @@ export default function Home() {
         //             <div style={{ backgroundColor: "#3D3E4F", padding: 10, borderRadius: 16, marginTop: 25 }}>
         //                 <CurrentTransit />
         //             </div>
-        //             < MainCategories />
+                    // < MainCategories />
         //         </CommanLayout>
 
         //     </>
