@@ -10,7 +10,7 @@ const TransitDisplay = () => {
           <h2 class="text-lg font-bold mb-2">Current Transit</h2>
           <div class="bg-gray-700 rounded-lg p-4">
             {/* <img src="./icons/sampleCardImg2.png" alt="Transit Chart" class="flex self-center"/> */}
-            <p class="m-2 text-center font-bold">Transit: 15th Jan '24</p>
+            <p class="m-2 text-center font-bold">Transit: 15th Jan 24</p>
             <CurrentTransit/>
           </div>
         </div>
@@ -49,7 +49,7 @@ const TransitDisplay = () => {
             <img src="./planets/mars.svg" alt="Mars" class="w-10 h-10"/>
             <div>
               <p class="font-bold">Mars sitting in 9th</p>
-              <p class="text-xs">Native's similarity with his father.</p>
+              <p class="text-xs">Native similarity with his father.</p>
             </div>
             <div>
               <span class="bg-orange-600 text-xs font-bold px-2 py-1 rounded-lg">Principle</span>
