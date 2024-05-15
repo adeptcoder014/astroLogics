@@ -93,7 +93,7 @@ const TransitDisplay = () => {
 
             <div
               onClick={() => handleClick(x.link)}
-
+              key={x.title}
               class="bg-custom-gradient p-4 rounded-lg text-center shadow-lg">
               {/* <img src="./icons/sampleCardImg.png" alt="Natal" class="w-12 mx-auto mb-2" /> */}
               {x.image}
