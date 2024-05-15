@@ -6,7 +6,6 @@ import { MainCategories } from "../components/home/mainCategories";
 import CommanLayout from "../layouts/comman";
 import { CurrentTransit } from "../components/currentTransit";
 import TransitDisplay from "../components/TransitDisplay";
-import { Test } from "../components/test";
 
 //============================================================
 export default function Home() {
