@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { CategoryCard } from "../../components/home/CategoryCard";
+import { CategoryCard } from "../../components/CategoryCard";
 
 export const MainCategories = () => {
     let cardData = [

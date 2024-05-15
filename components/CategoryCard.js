@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { PopUp } from "../popUp";
+import { PopUp } from "./popUp";
 import { useState } from "react";
 import Link from 'next/link';
 import { useRouter } from "next/router";

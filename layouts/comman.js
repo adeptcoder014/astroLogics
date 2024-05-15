@@ -8,21 +8,14 @@ import React from 'react';
 
 const CommanLayout = ({ children }) => {
   return (
-    <div className="" style={{
-      // height: '110vh'
-      display:'flex',
-      backgroundColor:'red',
-      justifyContent:'center'
-    }}>
 
-      <div className="mainContainer">
-        // <div className="container">
-          <Header />
+    <div class="bg-containerColor max-w-lg mx-auto p-1">
 
-          {children}
+            <Header />
 
-        </div>
-      </div >
+            {children}
+
+      
     </div>
   );
 };
