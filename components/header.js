@@ -22,7 +22,7 @@ export const Header = () => {
                     float: "right"
                 }}>Good morning 🌞</p>
                 <div style={{
-                    marginTop: "-20px"
+                    marginTop: "20px"
                 }}>
 
                 </div>
