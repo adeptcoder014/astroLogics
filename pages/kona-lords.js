@@ -90,23 +90,42 @@ const KonaLord = () => {
 
                             <div className='text-[#767682] text-sm font-extrabold'>Sagittarius Event</div>
                             <div>Sun enters in Leo</div>
-                            <div className="text-gray-500 text-sm">
+                            <div className="text-gray-500 text-sm flex items-center">
                                 <div className='bg-green-500 rounded-full w-2 h-2 mr-2' />
-                                Event does happened</div>
+                                Event does happened
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div className="text-center">
-                    <h2 className="text-xl font-semibold mb-4">People going with same transit house effect</h2>
-                    <div className="flex justify-center space-x-4">
-                        {["Prachi", "Prachi"].map((name, index) => (
-                            <div key={index} className="bg-gray-800 p-4 rounded text-center">
-                                <div className="h-16 w-16 bg-gray-500 rounded-full mx-auto mb-2"></div>
-                                <div>{name}</div>
-                                <div>DOB: 14th Jul, 1994</div>
-                            </div>
-                        ))}
+                    <h2 className="text-lg font-bold mb-4">People going with same transit house effect</h2>
+                    <div className="overflow-x-auto ">
+                        <div className="flex justify-center space-x-4 w-11">
+                            {["Prachi", "Prachi", "Prachi", "Prachi", "Prachi", "Prachi"].map((name, index) => (
+                                <div key={index} className="bg-custom-gradient  p-4 rounded-xl  text-center">
+                                    <div className="h-16 w-16 bg-gray-300 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                        <img
+                                            src='./icons/person.png'
+                                            alt="Person"
+                                        />
+                                    </div>
+                                    <div className='flex justify-around'>
+                                        <div className='text-center'>{name}</div>
+                                        <img
+                                            src={`./zodiac/capricorn.png`}
+                                            alt="Zodiac"
+                                            width={25}
+                                        />
+                                    </div>
+                                    <div>
+                                        <p className='text-xs mt-2'>
+                                            DOB: 14th Jul, 1994
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
