@@ -100,10 +100,10 @@ const KonaLord = () => {
 
                 <div className="text-center">
                     <h2 className="text-lg font-bold mb-4">People going with same transit house effect</h2>
-                    <div className="overflow-x-auto ">
-                        <div className="flex justify-center space-x-4 w-11">
+                    <div className=" overflow-scroll ">
+                        <div className="flex justify-center space-x-4 p-8 ">
                             {["Prachi", "Prachi", "Prachi", "Prachi", "Prachi", "Prachi"].map((name, index) => (
-                                <div key={index} className="bg-custom-gradient  p-4 rounded-xl  text-center">
+                                <div key={index} className="bg-custom-gradient  p-8 rounded-xl  text-center">
                                     <div className="h-16 w-16 bg-gray-300 rounded-full mx-auto mb-2 flex items-center justify-center">
                                         <img
                                             src='./icons/person.png'

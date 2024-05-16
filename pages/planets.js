@@ -101,13 +101,14 @@ const LifeArenaScreen = () => {
         <>
             <CommanLayout>
 
+                <h2 className="text-xl font-semibold mb-4 text-center">Upcoming Saturn Event</h2>
 
                 {planetInfo.map(item => (
-                    <div key={item} className="planet-card-container">
+                    // <div key={item} className="planet-card-container">
 
 
-                        <PlanetCard key={item.kona} data={item} />
-                    </div>
+                    <PlanetCard key={item.kona} data={item} />
+                    // </div>
                 ))}
             </CommanLayout>
         </>

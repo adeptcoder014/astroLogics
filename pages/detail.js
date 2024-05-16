@@ -95,211 +95,83 @@ function getCurrentDateTime() {
 }
 
 //============================================================
-export default function Detail() {
-    const router = useRouter();
-    //============================================================
-    const [planet, setPlanet] = useState([])
-    const [house, setHouse] = useState([])
-    const [currentTransit, setCurrentTransit] = useState([])
-    //============================================================
+// export default function Detail() {
 
-    const currentDateTimeObject = getCurrentDateTime();
-
-
-
-
-    useEffect(() => {
-        astroServer.get('/user/get').then(res => {
-            // console.log(res.data[0].planets[0]);
-            setPlanet(res?.data[0]?.planets);
-            setHouse(res?.data[0]?.houses);
-        }),
-            astroServer.post('/almanac/get', currentDateTimeObject).then(res => {
-                setCurrentTransit(res?.data?.data)
-            })
-    }, [])
-
-
-
-    //============================================================
-    const data = router.query
-    // console.log('router.query.data =', data);
-    const houseOwner = data["house-owner"]
-    const rashi = data['rashi']
-    const lagna = house[0]?.rashi
-
-    let currentPlanet = planet.find(x => x.name === houseOwner)
-
-
-    let natalPlanetPosition = currentPlanet?.isIn
-
-    //------------------------------------
-    let currentTransitForPlanet = {}
-    if (currentTransit) {
-        currentTransitForPlanet = currentTransit?.find((x) => {
-            if (x.name === houseOwner) {
-                return x
-            }
-        })
-    }
-    let planetRashi = house[natalPlanetPosition - 1]?.rashi
-    let currentTransitSign = currentTransitForPlanet?.position?.name
-
-    let currentPlacesAway = getTransitForPlanet_lagnaSpecific(lagna, houseOwner, currentTransitSign)
-    let natalPlacesAway = getTransitForPlanet_lagnaSpecific(lagna, houseOwner, planetRashi)
-
-    let currentPlanetPosition = currentPlacesAway?.house
-
-    let currentPlanetPositionPlacesAwayFromTheNatalPosition = (currentPlanetPosition - natalPlanetPosition) + 1
-
-    // let obj = {
-    //     awayFrom1stFromNatal: natalPlacesAway?.taurus?.placesAway,
-    //     awayFrom2ndFromNatal: natalPlacesAway?.libra?.placesAway,
-    //     awayFrom1st: currentPlacesAway?.taurus?.placesAway,
-    //     awayFrom2nd: currentPlacesAway?.libra?.placesAway,
-    //     current: currentPlanetPositionPlacesAwayFromTheNatalPosition,
-    // }
-
-    // let obj = {
-    //     awayFrom1stFromNatal: natalPlacesAway?.taurus?.placesAway,
-    //     awayFrom2ndFromNatal: natalPlacesAway?.libra?.placesAway,
-    //     awayFrom1st: currentPlacesAway?.taurus?.placesAway,
-    //     awayFrom2nd: currentPlacesAway?.libra?.placesAway,
-    //     current: currentPlanetPositionPlacesAwayFromTheNatalPosition,
-    // }
-
-    let obj = {
-        awayFrom1stFromNatal: natalPlacesAway?.[rashi]?.placesAway,
-        // awayFrom2ndFromNatal: natalPlacesAway?.libra?.placesAway,
-        awayFrom1st: currentPlacesAway?.[rashi]?.placesAway,
-        // awayFrom2nd: currentPlacesAway?.libra?.placesAway,
-        current: currentPlanetPositionPlacesAwayFromTheNatalPosition,
-    }
-
-
-    console.log('current ---------------', obj.awayFrom1st);
-    console.log('current xxx ---------------', lagna, houseOwner, currentTransitSign);
-    // console.log('natalPlacesAway ---------------', natalPlacesAway);
-
-    //============================================================
-
-    // const planet_any = 'mars'
-    // const lagna = 'aries'
-    // const planetSign = 'gemini'
-
-    // const planetAspect = 'aries'
-    //============================================================
-
-
-
-    return (
-        // =============== VIEW ===========================
-        <>
-
+    
+    const Detail = () => {
+        const router = useRouter();
+        const [planet, setPlanet] = useState([]);
+        const [house, setHouse] = useState([]);
+        const [currentTransit, setCurrentTransit] = useState([]);
+        const [selectedDiv, setSelectedDiv] = useState(''); // State to track selected div
+    
+        const currentDateTimeObject = getCurrentDateTime();
+    
+        useEffect(() => {
+            astroServer.get('/user/get').then((res) => {
+                setPlanet(res?.data[0]?.planets);
+                setHouse(res?.data[0]?.houses);
+            });
+    
+            astroServer.post('/almanac/get', currentDateTimeObject).then((res) => {
+                setCurrentTransit(res?.data?.data);
+            });
+        }, []);
+    
+        const data = router.query;
+        const houseOwner = data['house-owner'];
+        const rashi = data['rashi'];
+        const lagna = house[0]?.rashi;
+    
+        let currentPlanet = planet.find((x) => x.name === houseOwner);
+        let natalPlanetPosition = currentPlanet?.isIn;
+    
+        let currentTransitForPlanet = {};
+        if (currentTransit) {
+            currentTransitForPlanet = currentTransit?.find((x) => {
+                if (x.name === houseOwner) {
+                    return x;
+                }
+            });
+        }
+        let planetRashi = house[natalPlanetPosition - 1]?.rashi;
+        let currentTransitSign = currentTransitForPlanet?.position?.name;
+    
+        let currentPlacesAway = getTransitForPlanet_lagnaSpecific(lagna, houseOwner, currentTransitSign);
+        let natalPlacesAway = getTransitForPlanet_lagnaSpecific(lagna, houseOwner, planetRashi);
+    
+        let currentPlanetPosition = currentPlacesAway?.house;
+    
+        let currentPlanetPositionPlacesAwayFromTheNatalPosition = currentPlanetPosition - natalPlanetPosition + 1;
+    
+        return (
             <CommanLayout>
-                <div style={{
-                    width: '95vw',
-                    // height: '95vh',
-                }}>
-                    <div className="planet-detail-card">
-                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginRight: 19 }}>
-
-                            <Image src={require(`../public/planets/${houseOwner ? houseOwner : 'sun'}.svg`)}
-                                width={50} height={50} />
-                        </div>
-                        <div>
-
-
-                            <h3 style={{  }}>{rashiGender[rashi]?.title}</h3>
-                            <p style={{ color: "#8B8B8B", fontSize: 13 }}>{rashiGender[rashi]?.description} </p>
-                        </div>
-                        {/* <div>
-                            <h6 style={{ color: "#8B8B8B", fontSize: 13 }}>Current transit </h6>
-                            <h3> {obj.current}</h3>
-                        </div> */}
+                <div className="flex flex-col h-screen p-2">
+                    <div className="flex flex-col items-center justify-center mt-5">
+                        <img src={`./planets/sun.svg`} alt="Natal" width={75} />
+                        <h2 className='text-4xl text-white font-extrabold mt-2'>Sun</h2>
+                        <h2 className='text-md text-white mt-2 text-center w-3/4 mb-5'>Meet your 8th lord, he is your occult ruler</h2>
                     </div>
-                    <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyItems: "center",
-                        padding: 10,
-                        marginTop: 25
-                    }}>
-                        <p style={{ marginRight: 10 }}>Story of {houseOwner}&apos;s {rashiGender[rashi]?.gender}  side  </p>
-                        <Image
-                            src={require(`../public/zodiac/${rashi ? rashi : 'aries'}.png`)}
-                            height={35}
-                            width={35}
-                        />
-
-                    </div>
-                    < div className="planet-detail-card" style={{ flexDirection: "column" }} >
-                        {/* <p style={{ marginRight: 10 }}>{houseOwner} as a lord of  </p> */}
-                        <p style={{ marginRight: 10,fontWeight:"bold", fontSize:14 }}>{houseOwner} s story of achieving <u style={{color:"yellow"}}>value</u> of <u style={{color:"yellow"}}>playfulness</u> through <u style={{color:"yellow"}}>service</u></p>
-                        <div style={{ marginTop: 20 }}>
-
-
-                            <div style={{
-                                display: 'flex',
-                                justifyContent: 'space-around'
-                            }}>
-
-                                <div style={{
-                                    background: '#3D3E4F',
-                                    borderRadius: 8,
-                                    padding: '0px 15px'
-                                }}>
-
-                                    <h2 style={{ color: 'white' }}>{obj?.awayFrom1stFromNatal}</h2>
-                                </div>
-                                <p>Female Deviation</p>
+                    <div className="bg-[#34354F] flex flex-row p-1 justify-around rounded-xl">
+                        <div className='bg-[#2D2E44] w-auto rounded-xl flex items-around justify-around p-2 shadow-sm gap-2'>
+                            <div
+                                className={`text-white bg-custom-gradient rounded-2xl px-8 py-2 ${selectedDiv === '1st-lord' ? 'shadow-lg' : 'shadow-md'}`}
+                                onClick={() => setSelectedDiv('1st-lord')}
+                            >
+                                <p className="font-extrabold text-lg">1st lord</p>
+                            </div>
+                            <div
+                                className={`text-white bg-custom-gradient rounded-2xl px-8 py-2 ${selectedDiv === '11st-lord' ? 'shadow-lg' : 'shadow-md'}`}
+                                onClick={() => setSelectedDiv('11st-lord')}
+                            >
+                                <p className="font-extrabold text-lg">11st lord</p>
                             </div>
                         </div>
-                        <div style={{ marginTop: 20, marginBottom: 20 }}>
-
-
-                            <div style={{
-                                display: 'flex',
-                                justifyContent: 'space-around'
-                            }}>
-
-                                <div style={{
-                                    background: '#3D3E4F',
-                                    borderRadius: 8,
-                                    padding: '0px 15px'
-                                }}>
-
-                                    <h2 style={{ color: 'white' }}>{obj?.awayFrom1st}</h2>
-                                </div>
-                                <p>Tranist Deviation</p>
-                            </div>
-                        </div>
-
                     </div>
-                    <div>
-
-                        <p>Current transit for {houseOwner}</p>
-                        <div style={{ backgroundColor: "#D9D9D9", padding: 10, borderRadius: 16 }}>
-
-                            <Image src={require("../components/sineWave.js")} />
-
-                            <SineWave
-                                whichHouse={String(obj?.awayFrom1st)}
-                                planet={houseOwner}
-                                lagnaSign={rashi}
-                            />
-                        </div>
-                        {/* <div style={{ backgroundColor: "#D9D9D9", padding: 10, borderRadius: 16, marginTop: 18 }}>
-                            <CurrentTransit />
-                        </div> */}
-                    </div>
-
-                </div >
-            </CommanLayout >
-        </>
-
-    )
-}
-
-
-// checkPlanetStrength --------------- saturn capricorn capricorn
+                </div>
+            </CommanLayout>
+        );
+    };
+    
+    export default Detail;
+    

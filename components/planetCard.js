@@ -7,73 +7,55 @@ import Link from "next/link";
 
 
 
-export const PlanetCard = (x) => {
+export const PlanetCard = ({ data }) => {
     const router = useRouter()
     // console.log('data ===', x.data);
 
     return (
-        <>
-
-            <div style={{
-                display: 'flex',
-                justifyContent: 'space-around'
-
-            }}>
-                <div style={{
-                    display: 'flex',
-                    alignItems: "center",
-                    alignContent: 'space-between',
-                    justifyContent: 'space-between',
-
-                }}>
-
-                    <h2 style={{ marginRight: 10 }}>{x?.data?.name}</h2>
-                    <Image
-                        alt="planets in svg"
-                        src={require(`../public/planets/${x?.data?.name}.svg`)}
-                        height={35}
-                        width={35}
+        <div
+         className="p-5"
+         onClick={()=>(router.push('/detail'))}
+         >
+            <div className="bg-custom-gradient p-4 rounded-xl flex ">
+                <div className="flex items-center ">
+                    <img
+                        src={`./planets/${data.name}.svg`}
+                        alt="Natal"
+                        width={45}
+                        class='mr-5'
                     />
                 </div>
-                <div style={{
-                    display: "flex",
-                    width: '50%',
-                    alignItems: 'center',
-                    justifyContent: 'space-around',
-                    // padding: 15
-                    // backgroundColor: 'red'
-                }}>
+                <div className="w-full">
+
+                    <div className="flex items-between justify-between">
+                        <div className="flex">
+
+                            <div className='text-[white] text-lg font-extrabold mr-1'>
+                                Mars in 9th
+                            </div>
+                            <img
+                                src={`./zodiac/capricorn.png`}
+                                alt="Zodiac"
+                                width={29}
+                            />
+                        </div>
+                        <div>
+                            <div className="bg-gray-700 shadow-lg rounded-full   flex items-center justify-center">
 
 
-                    {x?.data?.rulerOf?.map((w, index) => {
-                        // console.log('index', index);
-                        return (
-                            <>
-                                <Link href={`/detail?house-owner=${x?.data?.name}&rashi=${w.sign}`}>
-                                    <div
-                                        // onClick={() => router.push(`/detail?house-owner=${x?.data?.name}&rashi=${w.sign}`)}
-                                        // onClick={() => redirect(`/home`)}
-                                        className="planet-card-house-lordship-mini-card">
-                                        <h3 className="h3">{w.house}</h3>
-                                        <Image
-                                            alt="planets in svg"
-                                            // src={require(`../public/zodiac/${planetHouseLordhsipZodiac[x?.data?.name][index == 0 ? 'firstSign' : 'secondSign']}.png`)}
-                                            src={require(`../public/zodiac/${w.sign}.png`)}
-                                            height={30}
-                                            width={30}
-                                        />
-                                    </div >
-                                </Link>
-                            </>
-                        )
-                    }
-                        // {/* {x?.data?.rulerOf?.map(w => <p key={x}>{w}</p>)} */}
-
-                    )}
+                                <img
+                                    src={`./elements/fire.png`}
+                                    alt="Natal"
+                                    width={29}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="text-gray-500 text-sm flex items-center">
+                        He is in the enemy house
+                    </div>
                 </div>
-
-
-            </div >
-        </>
+            </div>
+        </div>
     )
 }
