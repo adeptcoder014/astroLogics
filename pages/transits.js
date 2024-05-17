@@ -64,7 +64,7 @@ const TransitPanel = () => {
                 </div>
 
                 <div className="mb-4">
-                    <h3 className="text-lg font-semibold">Moon's current mundane transit</h3>
+                    <h3 className="text-lg font-semibold">Moon current mundane transit</h3>
                     <div className="items-center bg-[#3D3E4F] rounded-xl">
 
                         <CurrentTransit />
