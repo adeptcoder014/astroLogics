@@ -10,68 +10,68 @@ import Image from "next/image";
 import CommanLayout from "../layouts/comman";
 import { CurrentTransit } from "../components/currentTransit.js";
 //============================================================
-const rashiGender = {
-    aries: {
-        gender: 'male',
-        title: 'The Pioneer ',
-        description: 'Catalyst of New Beginnings in ',
-    },
-    taurus: {
-        gender: 'female',
-        title: 'The Stabilizer',
-        description: 'Guardian of Perseverance ',
-    },
-    gemini: {
-        gender: 'male',
-        title: 'The Communicator',
-        description: 'Master of Versatility',
-    },
-    cancer: {
-        gender: 'female',
-        title: 'The Nurturer',
-        description: ' Protector of Emotional Bonds',
-    },
-    leo: {
-        gender: 'male',
-        title: 'The Performer',
-        description: 'Illuminator of Charisma',
-    },
-    virgo: {
-        gender: 'female',
-        title: 'The Analyst',
-        description: ' Architect of Precision ',
-    },
-    libra: {
-        gender: 'male',
-        title: 'The Harmonizer',
-        description: ' Conductor of Balance ',
-    },
-    scorpio: {
-        gender: 'female',
-        title: 'The Intense',
-        description: 'Guardian of Transformative Power',
-    },
-    sagittarius: {
-        gender: 'male',
-        title: 'The Explorer',
-        description: ' Seeker of Boundless Horizons',
-    },
-    capricorn: {
-        gender: 'female',
-        title: 'The Admin',
-        description: 'CEO of Steadfast Ambition',
-    },
-    aquarius: {
-        gender: 'male',
-        title: 'The Visionary',
-        description: 'Innovator of Progressive Ideals',
-    },
-    pisces: {
-        gender: 'female',
-        title: 'The Dreamer',
-        description: ' Weaver of Intuitive Realms',
-    },
-}
+// const rashiGender = {
+//     aries: {
+//         gender: 'male',
+//         title: 'The Pioneer ',
+//         description: 'Catalyst of New Beginnings in ',
+//     },
+//     taurus: {
+//         gender: 'female',
+//         title: 'The Stabilizer',
+//         description: 'Guardian of Perseverance ',
+//     },
+//     gemini: {
+//         gender: 'male',
+//         title: 'The Communicator',
+//         description: 'Master of Versatility',
+//     },
+//     cancer: {
+//         gender: 'female',
+//         title: 'The Nurturer',
+//         description: ' Protector of Emotional Bonds',
+//     },
+//     leo: {
+//         gender: 'male',
+//         title: 'The Performer',
+//         description: 'Illuminator of Charisma',
+//     },
+//     virgo: {
+//         gender: 'female',
+//         title: 'The Analyst',
+//         description: ' Architect of Precision ',
+//     },
+//     libra: {
+//         gender: 'male',
+//         title: 'The Harmonizer',
+//         description: ' Conductor of Balance ',
+//     },
+//     scorpio: {
+//         gender: 'female',
+//         title: 'The Intense',
+//         description: 'Guardian of Transformative Power',
+//     },
+//     sagittarius: {
+//         gender: 'male',
+//         title: 'The Explorer',
+//         description: ' Seeker of Boundless Horizons',
+//     },
+//     capricorn: {
+//         gender: 'female',
+//         title: 'The Admin',
+//         description: 'CEO of Steadfast Ambition',
+//     },
+//     aquarius: {
+//         gender: 'male',
+//         title: 'The Visionary',
+//         description: 'Innovator of Progressive Ideals',
+//     },
+//     pisces: {
+//         gender: 'female',
+//         title: 'The Dreamer',
+//         description: ' Weaver of Intuitive Realms',
+//     },
+// }
 //============================================================
 
 
