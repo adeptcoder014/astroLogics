@@ -33,12 +33,12 @@ export const Header = () => {
                 }} >Nischal Gupta 👋</p>
             </div>
 
-            <div className="center" style={{ padding: "1.8%" }}>
+            <div className="h-10 w-10 bg-white rounded-full  flex items-center justify-center">
                 <Image
                     alt="alt tag"
-                    src={require("../public/icons/userSign.png")}
-                    height={45}
-                    width={40}
+                    src={require("../public/zodiac/capricornSign.png")}
+                    // height={45}
+                    width={35}
                 />
             </div>
         </div>

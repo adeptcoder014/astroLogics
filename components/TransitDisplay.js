@@ -38,6 +38,8 @@ const TransitDisplay = () => {
     },
     {
       "title": "Transits",
+      "link": "/transits",
+
       "image":
         <Image
           alt="alt tdsdag"

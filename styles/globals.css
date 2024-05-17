@@ -146,7 +146,7 @@ body {
   /* background: linear-gradient(63deg, #152248 24.63%, #251B58 52.61%, #331947 65.32%, #361A3D 77.5%); */
   /* background: linear-gradient(63deg, #c33764 24.63%, #1d2671 52.61%); */
   background-color: #242538;
-    min-height: 100vh;
+  min-height: 100vh;
 
   /* padding: 10px; */
 }
@@ -674,4 +674,85 @@ button {
   bottom: 8px;
   left: 16px;
   color: red; */
+}
+
+
+
+/* src/index.css (add this to your Tailwind CSS file) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  padding: 10px;
+}
+
+.switch input:checked+.slider {
+  background-color: #4CAF50;
+}
+
+.switch input:checked+.slider:before {
+  transform: translateX(26px);
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
+}
+
+
+.bgImg {
+  background-image: url('../public/transit/chandraSakranti.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+
+  /* bg-contain bg-center bg-no-repeat */
 }
