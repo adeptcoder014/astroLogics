@@ -57,7 +57,7 @@ export const Header = () => {
                         <div className="px-2 pt-2 pb-3 text-white   space-y-1 sm:px-3">
                             <Link href="/" className=" text-white block px-3 py-2  rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">Home</Link>
                             <Link href="/about" className="block px-3 text-white py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">About</Link>
-                            <Link href="/services" className="block px-3 py-2  text-white rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">Services</Link>
+                            <Link href="/login" className="block px-3 py-2  text-white rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">Login</Link>
                             <Link href="/contact" className="block px-3 py-2 text-white rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">Contact</Link>
                         </div>
                     </div>

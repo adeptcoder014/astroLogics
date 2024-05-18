@@ -192,7 +192,7 @@ const Detail = () => {
                                         src={`./zodiac/aries.png`}
                                         alt="Natal"
                                         width={33}
-                                    // class='mr-5'
+                                    // className='mr-5'
                                     />
                                     <p className='text-[#8A95BB] text-sm font-extrabold'>Male Aspect</p>
                                 </div>
@@ -205,7 +205,7 @@ const Detail = () => {
                                         src={`./icons/transit.svg`}
                                         alt="Natal"
                                         width={28}
-                                        class='mr-1'
+                                        className='mr-1'
                                     />
                                     <div className='text-[#8A95BB] text-sm font-extrabold'>3rd house</div>
 

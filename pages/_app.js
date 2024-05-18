@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import { AuthProvider } from '../context/token';
+import { AuthProvider } from '../context/userContext';
 import '../styles/Home.module.css'
 import { QueryClient, QueryClientProvider } from "react-query";
 

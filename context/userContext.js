@@ -5,7 +5,7 @@ import astroServer from '../constants/url';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [userToken, setUserToken] = useState('TOKEN_369');
+  const [userToken, setUserToken] = useState('');
 
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
 
   }, [])
   const login = (token) => {
-    // console.log("=== token ---> ", token);
+    console.log("=== token ---> ", token);
     setUserToken(token);
   };
 
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => {
+export const userContext = () => {
   const context = useContext(AuthContext); // Ensure you're returning the correct context value
   return context
 };

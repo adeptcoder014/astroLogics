@@ -1,8 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CommanLayout from '../layouts/comman';
+import { userContext } from '../context/userContext';
+import { getUserById } from '../controller/user';
 
 const KonaLord = () => {
     const [activeIndex, setActiveIndex] = useState(null);
+    const [user, setUser] = useState([]);
+    const [error, setError] = useState([]);
+    const [loading, setLoading] = useState([]);
+
+    const { userToken } = userContext()
+    console.log(' token',userToken);
+    console.log(user.name);
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const userData = await getUserById(userToken);
+                setUser(userData?.data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchUser();
+    }, [userToken]);
+
+
+    if (loading) return <div>Loading...</div>;
+    // if (error) return <div>Error: {error}</div>;
 
     const handleToggle = (index) => {
         console.log(index);
@@ -83,7 +111,7 @@ const KonaLord = () => {
                                 src={`./planets/sun.svg`}
                                 alt="Natal"
                                 width={45}
-                                class='mr-5'
+                                className='mr-5'
                             />
                         </div>
                         <div>

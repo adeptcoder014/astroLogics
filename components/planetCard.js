@@ -22,7 +22,7 @@ export const PlanetCard = ({ data }) => {
                         src={`./planets/${data.name}.svg`}
                         alt="Natal"
                         width={45}
-                        class='mr-5'
+                        className='mr-5'
                     />
                 </div>
                 <div className="w-full">

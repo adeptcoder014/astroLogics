@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import astroServer from '../constants/url';
 import { PopUp } from '../components/popUp';
-import { useAuth } from '../context/token'; // Import the user context
+import { userContext } from '../context/userContext'; // Import the user context
 
 const Login = () => {
   const router = useRouter();
-  const { setUserToken,userToken } = useAuth(); // Use the user context
+  const { login,userToken,setUserToken } = userContext(); // Use the user context
   const [userLoginData, setUserLoginData] = useState({
     name:'',
     password:''
@@ -19,6 +19,7 @@ const Login = () => {
     try {
       const res = await astroServer.post('/auth/authenticate', userLoginData );
       localStorage.setItem('accessToken', res?.data?.userId); 
+      login(res?.data?.userId) 
       setUserToken(res?.data?.userId) 
       router.push('/home'); 
     } catch (error) {
