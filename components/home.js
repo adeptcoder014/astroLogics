@@ -2,11 +2,11 @@ import { Container, Card, Row, Text, Button } from "@nextui-org/react";
 import { useTheme } from "@nextui-org/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useAuth } from "../context/token";
+// import { useAuth } from "../context/token";
 
 //=========================================================
 export default function HomeScreen() {
-  const context = useAuth();
+  // const context = useAuth();
 
   const router = useRouter();
   const theme = useTheme();
