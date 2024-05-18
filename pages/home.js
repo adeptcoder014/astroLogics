@@ -6,16 +6,34 @@ import { MainCategories } from "../components/home/mainCategories";
 import CommanLayout from "../layouts/comman";
 import { CurrentTransit } from "../components/currentTransit";
 import TransitDisplay from "../components/TransitDisplay";
+import { useAuth } from '../context/token'; // Import the user context
+import { getUserById } from "../controller/user";
+import { useState } from "react";
 
 //============================================================
 export default function Home() {
+    const { login, userToken } = useAuth(); // Use the user context
+    const [userData, setUserData] = useState()
 
 
+    const userDataById = async () => {
+        try {
+            const userResponse = await getUserById();
+            setUserData(userResponse.data);
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+
+        }
+    };
+    console.log('userDataById', userDataById);
     return (
         // =============== VIEW ===========================
         <>
-        <TransitDisplay />
-        {/* < MainCategories /> */}
+            <CommanLayout>
+
+                <TransitDisplay />
+            </CommanLayout>
+            {/* < MainCategories /> */}
         </>
         // <Test/>
         //     <>
@@ -28,7 +46,7 @@ export default function Home() {
         //             <div style={{ backgroundColor: "#3D3E4F", padding: 10, borderRadius: 16, marginTop: 25 }}>
         //                 <CurrentTransit />
         //             </div>
-                    // < MainCategories />
+        // < MainCategories />
         //         </CommanLayout>
 
         //     </>

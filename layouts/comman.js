@@ -9,7 +9,7 @@ import React from 'react';
 const CommanLayout = ({ children }) => {
   return (
 
-    <div class="bg-containerColor max-w-lg mx-auto p-1">
+    <div class="bg-containerColor max-w-lg mx-auto p-1 rounded-xl ">
 
       <div class="">
 

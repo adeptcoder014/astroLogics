@@ -1,13 +1,20 @@
 // AuthContext.js
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
+import astroServer from '../constants/url';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [userToken, setUserToken] = useState('TOKEN_369');
 
+
+  useEffect(() => {
+    // astroServer.get('/user/get').then(res => 
+    //   console.log('-----',res.data[0]))
+
+  }, [])
   const login = (token) => {
-    console.log("=== token ---> ", token);
+    // console.log("=== token ---> ", token);
     setUserToken(token);
   };
 
@@ -16,7 +23,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ userToken, login, logout }}>
+    <AuthContext.Provider value={{ userToken, login, logout,setUserToken}}>
       {children}
     </AuthContext.Provider>
   );
@@ -26,3 +33,7 @@ export const useAuth = () => {
   const context = useContext(AuthContext); // Ensure you're returning the correct context value
   return context
 };
+
+
+
+

@@ -8,7 +8,8 @@ const LifeArenaScreen = () => {
         kona: 'Fire',
         color: 'red',
         gradient: 'bg-fireGradient',
-        description: 'Ones arrival to begins his dharma'
+        description: 'Ones arrival to begins his dharma',
+        link:'kona-lords'
     },
     {
         kona: 'Earth',
@@ -52,9 +53,9 @@ const LifeArenaScreen = () => {
                 <div className="grid grid-cols-2  gap-10">
                     {konaInfo.map((x) => (
                         <div
-                            onClick={() => handleClick(x.link)}
+                            onClick={() => router.push(x.link)}
                             key={x.kona}
-                            className={`${x.gradient}  p-4 rounded-lg text-center shadow-lg relative flex flex-col items-center justify-center`}>
+                            className={`${x.gradient} cursor-pointer p-4 rounded-lg text-center shadow-lg relative flex flex-col items-center justify-center`}>
 
                             <div className="p-15 absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-16 w-16 bg-[#D9D9D9] bg-opacity-50 rounded-full mx-auto mb-2 flex items-center justify-center">
                                 <img
