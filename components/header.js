@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 
 export const Header = () => {
@@ -54,10 +55,10 @@ export const Header = () => {
                 isOpen ? (
                     <div className="bg-[#2D2E44]">
                         <div className="px-2 pt-2 pb-3 text-white   space-y-1 sm:px-3">
-                            <a href="/" className=" text-white block px-3 py-2  rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">Home</a>
-                            <a href="/about" className="block px-3 text-white py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">About</a>
-                            <a href="/services" className="block px-3 py-2  text-white rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">Services</a>
-                            <a href="/contact" className="block px-3 py-2 text-white rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">Contact</a>
+                            <Link href="/" className=" text-white block px-3 py-2  rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">Home</a>
+                            <Link href="/about" className="block px-3 text-white py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">About</a>
+                            <Link href="/services" className="block px-3 py-2  text-white rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">Services</a>
+                            <Link href="/contact" className="block px-3 py-2 text-white rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">Contact</a>
                         </div>
                     </div>
                 ) : null
