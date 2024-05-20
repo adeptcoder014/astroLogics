@@ -2,22 +2,39 @@ import React, { useEffect, useState } from 'react';
 import CommanLayout from '../layouts/comman';
 import { userContext } from '../context/userContext';
 import { getUserById } from '../controller/user';
+import { useRouter } from "next/router";
 
 const KonaLord = () => {
     const [activeIndex, setActiveIndex] = useState(null);
-    const [user, setUser] = useState([]);
+    const router = useRouter();
+    let currentKona = router?.query?.kona
+    const [userDetail, setUserDetail] = useState([]);
+    const [userHousesDetails, setUserHousesDetails] = useState([]);
+    const [userPlanetsDetails, setUserPlanetsDetails] = useState([]);
+
     const [error, setError] = useState([]);
-    const [loading, setLoading] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-    const { userToken } = userContext()
-    console.log(' token',userToken);
-    console.log(user.name);
+    // conole.log(user.name);
 
+    let { userToken } = userContext()
+    console.log(userToken);
+    if (userToken || userToken === null || userToken === '') {
+        const ISSERVER = typeof window === "undefined";
+
+        if (!ISSERVER) {
+
+            userToken = localStorage.getItem('accessToken');
+        }
+    }
     useEffect(() => {
         const fetchUser = async () => {
             try {
+                setLoading(true)
                 const userData = await getUserById(userToken);
-                setUser(userData?.data);
+                // console.log(userData?.data);
+                setUserHousesDetails(userData?.data?.houses);
+                setUserPlanetsDetails(userData?.data?.planets);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -26,14 +43,55 @@ const KonaLord = () => {
         };
 
         fetchUser();
-    }, [userToken]);
+    }, []);
 
 
-    if (loading) return <div>Loading...</div>;
-    // if (error) return <div>Error: {error}</div>;
 
+
+
+    const getOrdinal = (num) => {
+        const ordinalSuffixes = ["th", "st", "nd", "rd"];
+        const remainder = num % 100;
+        return num + (ordinalSuffixes[(remainder - 20) % 10] || ordinalSuffixes[remainder] || ordinalSuffixes[0]);
+    };
+
+
+
+    const konaMapping = {
+        dharma: [1, 5, 9],
+        artha: [2, 6, 10],
+        kama: [3, 7, 11],
+        moksha: [4, 8, 12]
+    };
+
+    function assignKona(house) {
+        for (const kona in konaMapping) {
+            if (konaMapping[kona].includes(house.bhava)) {
+                house.kona = kona;
+                break;
+            }
+        }
+        return house;
+    }
+
+    const housesWithKona = userHousesDetails.map(assignKona);
+    const filterByKona = (kona) => housesWithKona.filter(house => house.kona === kona);
+
+    const dharmaHouses = filterByKona('dharma');
+    const arthaHouses = filterByKona('artha');
+    const kamaHouses = filterByKona('kama');
+    const mokshaHouses = filterByKona('moksha');
+
+    let userKonaDetails = {
+        fire: dharmaHouses,
+        earth: arthaHouses,
+        air: kamaHouses,
+        water: mokshaHouses,
+    }
+
+    console.log('user current kona lords ----', userKonaDetails[currentKona]);
+    console.log('userPlanetsDetails ----', userPlanetsDetails);
     const handleToggle = (index) => {
-        console.log(index);
         setActiveIndex(activeIndex === index ? null : index);
     };
 
@@ -58,18 +116,29 @@ const KonaLord = () => {
                 <div className="mb-8">
                     <h2 className="text-xl font-semibold mb-4 text-center">Planets sitting in the VI house</h2>
                     <div className="flex flex-wrap sm:justify-center space-x-4">
-                        {["6th & 9th", "6th & 9th", "8th"].map((text, index) => (
+                        {userKonaDetails[currentKona].map((item, index) => (
                             <div key={index} className="bg-custom-gradient px-2 py-2  text-center rounded-xl mt-3">
                                 <div className="bg-[#242538] px-2 py-2 sm:px-4 sm:py-4 md:px-6 md:py-6 lg:px-8 lg:py-8 shadow-slate-500 flex items-center justify-between sm:justify-start md:justify-center lg:justify-around xl:justify-evenly rounded-xl">
                                     <div>
                                         <img
-                                            src={`./planets/sun.svg`}
+                                            src={`./planets/${item.owner}.svg`}
                                             alt="Natal"
                                             width={45}
                                         />
                                     </div>
                                 </div>
-                                <p className="mt-2 font-bold text-xs sm:text-sm md:text-md lg:text-lg xl:text-lg">{text}</p>
+                                <p className="mt-2 font-bold text-xs sm:text-sm md:text-md lg:text-lg xl:text-lg">
+                                    <p className="mt-2 font-bold text-xs sm:text-sm md:text-md lg:text-lg xl:text-lg">
+                                        {userPlanetsDetails.filter(x => x.name === item.owner).map(x => (
+                                            <span key={x._id} className=' font-extrabold text-sm  mr-2'>
+                                                {x.rulerOf.map((num, index) => getOrdinal(num)).join(' and ')}
+
+                                            </span>
+                                        ))}
+                                    </p>
+
+
+                                </p>
                             </div>
                         ))}
                     </div>

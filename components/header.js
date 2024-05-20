@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { userContext } from '../context/userContext';
 
 
 export const Header = () => {
+    const { logout } = userContext()
+
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
+
 
     return (
         <header className="bg-custom-gradient rounded-xl  shadow-md mb-2">
@@ -58,7 +62,10 @@ export const Header = () => {
                             <Link href="/" className=" text-white block px-3 py-2  rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">Home</Link>
                             <Link href="/about" className="block px-3 text-white py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">About</Link>
                             <Link href="/login" className="block px-3 py-2  text-white rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">Login</Link>
-                            <Link href="/contact" className="block px-3 py-2 text-white rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">Contact</Link>
+                            <div onClick={logout}>
+
+                                <Link href="/" className="block px-3 py-2 text-white rounded-md text-base font-medium text-gray-800 hover:bg-gray-100">Log out</Link>
+                            </div>
                         </div>
                     </div>
                 ) : null
