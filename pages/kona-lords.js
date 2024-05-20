@@ -116,7 +116,7 @@ const KonaLord = () => {
                 <div className="mb-8">
                     <h2 className="text-xl font-semibold mb-4 text-center">Planets sitting in the VI house</h2>
                     <div className="flex flex-wrap sm:justify-center space-x-4">
-                        {userKonaDetails[currentKona].map((item, index) => (
+                        {userKonaDetails[currentKona]?.map((item, index) => (
                             <div key={index} className="bg-custom-gradient px-2 py-2  text-center rounded-xl mt-3">
                                 <div className="bg-[#242538] px-2 py-2 sm:px-4 sm:py-4 md:px-6 md:py-6 lg:px-8 lg:py-8 shadow-slate-500 flex items-center justify-between sm:justify-start md:justify-center lg:justify-around xl:justify-evenly rounded-xl">
                                     <div>
