@@ -74,8 +74,8 @@ const KonaLord = () => {
         return house;
     }
 
-    const housesWithKona = userHousesDetails.map(assignKona);
-    const filterByKona = (kona) => housesWithKona.filter(house => house.kona === kona);
+    const housesWithKona = userHousesDetails?.map(assignKona);
+    const filterByKona = (kona) => housesWithKona?.filter(house => house.kona === kona);
 
     const dharmaHouses = filterByKona('dharma');
     const arthaHouses = filterByKona('artha');
