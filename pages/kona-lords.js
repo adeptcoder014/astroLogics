@@ -18,8 +18,8 @@ const KonaLord = () => {
 
     // conole.log(user.name);
 
-    let { userToken } = userContext()
-    // console.log(userToken);
+    // let { userToken } = userContext()
+    let userToken = ''
     if (userToken || userToken === null || userToken === '') {
         const ISSERVER = typeof window === "undefined";
 
@@ -28,13 +28,19 @@ const KonaLord = () => {
             userToken = localStorage.getItem('accessToken');
         }
     }
+
+
+
+
     useEffect(() => {
         const fetchUser = async () => {
             try {
                 setLoading(true)
                 const userData = await getUserById(userToken);
-                setUserHousesDetails(userData?.houses);
-                setUserPlanetsDetails(userData?.planets);
+                console.log('userToken', userToken);
+                console.log('-----', userData?.data);
+                setUserHousesDetails(userData?.data?.houses);
+                setUserPlanetsDetails(userData?.data?.planets);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -91,8 +97,7 @@ const KonaLord = () => {
 
     // console.log('user current kona lords ----', userKonaDetails[currentKona]);
     // console.log('userPlanetsDetails ----', userPlanetsDetails);
-    const handlePlanetSubEvent = (index) => {
-        console.log('userPlanetsDetails ----');
+    const handleToggle = (index) => {
         setActiveIndex(activeIndex === index ? null : index);
     };
 
@@ -127,18 +132,12 @@ const KonaLord = () => {
                 </ul>
 
                 <div className="mb-8">
-                    <h2 className="text-xl font-semibold mb-4 text-center">Ruler Of the {router?.query?.kona} kona</h2>
-                    <div
-                        className="flex flex-wrap sm:justify-center space-x-4"
-
-                    >
+                    <h2 className="text-xl font-semibold mb-4 text-center">Rulers of The <strong>ARTHA</strong></h2>
+                    <h2 className="text-xl font-semibold mb-4 text-center">( 2nd 6th 10th ) </h2>
+                    <div className="flex flex-wrap sm:justify-center space-x-4">
                         {userKonaDetails[currentKona]?.map((item, index) => (
-                            <div
-                                key={index}
-                                className="bg-custom-gradient px-2 py-2  text-center rounded-xl mt-3"
-                                onClick={() => handlePlanetEvent(item?.owner)}
-                            >
-                                <div className="bg-[#242538] px-2 py-2 sm:px-4 sm:py-4 md:px-6 md:py-6 lg:px-8 lg:py-8 shadow-slate-500 flex items-center justify-between sm:justify-start md:justify-center lg:justify-around xl:justify-evenly rounded-xl">
+                            <div key={index} className="bg-custom-gradient px-2 py-2  text-center rounded-xl mt-3">
+                                <div className="bg-[#242538] px-2 py-2 sm:px-1 sm:py-4 md:px-6 md:py-6 lg:px-4 lg:py-4 shadow-slate-500 flex items-center justify-between sm:justify-around md:justify-around lg:justify-around xl:justify-around rounded-xl">
                                     <div>
                                         <img
                                             src={`./planets/${item.owner}.svg`}
@@ -180,7 +179,7 @@ const KonaLord = () => {
                                         </div>
                                         <p className="text-sm font-bold">20th May, 2024</p>
                                     </div>
-                                    <div className={`accordion-content ${activeIndex === index ? "block" : "hidden"} ease-out text-center bg-[#A1A1B0] p-4 rounded-xl`}>
+                                    <div className={`accordion-content ${activeIndex === index ? "block" : "hidden"} ease-out text-center bg-[#5E5F73] p-4 rounded-xl`}>
                                         <h3 className="font-extrabold mb-2 text-white">{planet} in Shatabhisha:</h3>
                                         <p className="text-sm text-white">
                                             Independence, innovation, analytical prowess, visionary thinking. Unique values, innovative financial strategies, strategic communication.
