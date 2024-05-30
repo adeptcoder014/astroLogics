@@ -11,6 +11,7 @@ const KonaLord = () => {
     const [userDetail, setUserDetail] = useState([]);
     const [userHousesDetails, setUserHousesDetails] = useState([]);
     const [userPlanetsDetails, setUserPlanetsDetails] = useState([]);
+    const [selectedPlanet, setSelectedPlanet] = useState({name : 'planet'});
 
     const [error, setError] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -18,7 +19,7 @@ const KonaLord = () => {
     // conole.log(user.name);
 
     let { userToken } = userContext()
-    console.log(userToken);
+    // console.log(userToken);
     if (userToken || userToken === null || userToken === '') {
         const ISSERVER = typeof window === "undefined";
 
@@ -32,9 +33,8 @@ const KonaLord = () => {
             try {
                 setLoading(true)
                 const userData = await getUserById(userToken);
-                // console.log(userData?.data);
-                setUserHousesDetails(userData?.data?.houses);
-                setUserPlanetsDetails(userData?.data?.planets);
+                setUserHousesDetails(userData?.houses);
+                setUserPlanetsDetails(userData?.planets);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -47,7 +47,7 @@ const KonaLord = () => {
 
 
 
-
+    console.log('userPlanetsDetails -------', userPlanetsDetails);
 
     const getOrdinal = (num) => {
         const ordinalSuffixes = ["th", "st", "nd", "rd"];
@@ -89,11 +89,24 @@ const KonaLord = () => {
         water: mokshaHouses,
     }
 
-    console.log('user current kona lords ----', userKonaDetails[currentKona]);
-    console.log('userPlanetsDetails ----', userPlanetsDetails);
-    const handleToggle = (index) => {
+    // console.log('user current kona lords ----', userKonaDetails[currentKona]);
+    // console.log('userPlanetsDetails ----', userPlanetsDetails);
+    const handlePlanetSubEvent = (index) => {
+        console.log('userPlanetsDetails ----');
         setActiveIndex(activeIndex === index ? null : index);
     };
+
+
+    const handlePlanetEvent = async (owner) => {
+        let data = {}
+        data = userPlanetsDetails.find(x => {
+            if (x.name == owner) {
+
+                setSelectedPlanet(x);
+            }
+        })
+        return (data)
+    }
 
     return (
         <CommanLayout>
@@ -114,10 +127,17 @@ const KonaLord = () => {
                 </ul>
 
                 <div className="mb-8">
-                    <h2 className="text-xl font-semibold mb-4 text-center">Planets sitting in the VI house</h2>
-                    <div className="flex flex-wrap sm:justify-center space-x-4">
+                    <h2 className="text-xl font-semibold mb-4 text-center">Ruler Of the {router?.query?.kona} kona</h2>
+                    <div
+                        className="flex flex-wrap sm:justify-center space-x-4"
+
+                    >
                         {userKonaDetails[currentKona]?.map((item, index) => (
-                            <div key={index} className="bg-custom-gradient px-2 py-2  text-center rounded-xl mt-3">
+                            <div
+                                key={index}
+                                className="bg-custom-gradient px-2 py-2  text-center rounded-xl mt-3"
+                                onClick={() => handlePlanetEvent(item?.owner)}
+                            >
                                 <div className="bg-[#242538] px-2 py-2 sm:px-4 sm:py-4 md:px-6 md:py-6 lg:px-8 lg:py-8 shadow-slate-500 flex items-center justify-between sm:justify-start md:justify-center lg:justify-around xl:justify-evenly rounded-xl">
                                     <div>
                                         <img
@@ -145,14 +165,14 @@ const KonaLord = () => {
                 </div>
 
                 <div className="mb-8">
-                    <h2 className="text-xl font-semibold mb-4 text-center">Planets through the zodiac</h2>
+                    <h2 className="text-xl font-semibold mb-4 text-center">Planets {selectedPlanet?.name} through the zodiac</h2>
                     <div className="bg-[#3D3E4F] p-4 rounded-xl">
                         {["Saturn", "Moon", "Saturn"].map((planet, index) => (
                             <div key={index}>
                                 <div className="text-center mb-4 ">
                                     <div
                                         className="space-x-2 mb-2 mt-3 flex items-between justify-between cursor-pointer"
-                                        onClick={() => handleToggle(index)}
+                                        onClick={() => handlePlanetSubEvent(index)}
                                     >
                                         <div className="flex items-center">
                                             <div className={`bg-${planet === "Saturn" ? "red" : "green"}-500 rounded-full w-2 h-2 mr-2`} />
@@ -173,11 +193,11 @@ const KonaLord = () => {
                 </div>
 
                 <div className="mb-8 ">
-                    <h2 className="text-xl font-semibold mb-4 text-center">Upcoming Saturn Event</h2>
+                    <h2 className="text-xl font-semibold mb-4 text-center">Upcoming {selectedPlanet?.name} Event</h2>
                     <div className="bg-custom-gradient p-4 rounded-xl flex">
                         <div className="flex items-center">
                             <img
-                                src={`./planets/sun.svg`}
+                                src={`./planets/${selectedPlanet?.name.toLocaleLowerCase()}.svg`}
                                 alt="Natal"
                                 width={45}
                                 className='mr-5'
@@ -186,7 +206,7 @@ const KonaLord = () => {
                         <div>
 
                             <div className='text-[#767682] text-sm font-extrabold'>Sagittarius Event</div>
-                            <div>Sun enters in Leo</div>
+                            <div>{selectedPlanet?.name} enters in Leo</div>
                             <div className="text-gray-500 text-sm flex items-center">
                                 <div className='bg-green-500 rounded-full w-2 h-2 mr-2' />
                                 Event does happened

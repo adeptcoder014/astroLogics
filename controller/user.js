@@ -12,12 +12,12 @@ export const getUser = async () => {
 
 
 export const getUserById = async (userId) => {
-    console.log('sssssssss userId',userId);
-    const response = await astroServer.post('/user/byId', {userId});
+    const response = await astroServer.post('/user/byId', { userId });
+
     if (!response) {
         throw new Error('Network response was not ok');
     }
-    return response;
+    return response?.data;
 };
 
 
@@ -37,12 +37,19 @@ export const deleteUser = async (userId) => {
     return response;
 };
 
-// Add more functions as needed
 
-// Export all functions
+
+export const getUserNatalPlanets = async (userId) => {
+    const response = await astroServer.delete(`/user/delete/${userId}`);
+    if (!response) {
+        throw new Error('Network response was not ok');
+    }
+    return response;
+};
+
+
 export default {
     getUser,
     updateUser,
     deleteUser
-    // Add other functions here
 };
