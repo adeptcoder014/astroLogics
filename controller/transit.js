@@ -16,3 +16,24 @@ export const getAlmanac = async () => {
     }
     return response;
 };
+
+
+
+export const getPlanetAlmanac = async () => {
+
+
+    const currentDateTime = getCurrentDateTime()
+    console.log(currentDateTime);
+
+    const response = await astroServer.post('/almanac/get-planet-transit');
+    // const response = await axios.get("https://astroserver.onrender.com/user/get");
+
+    if (!response) {
+        throw new Error('Network response was not ok');
+    }
+    return response;
+};
+
+
+
+

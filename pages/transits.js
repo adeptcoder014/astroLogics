@@ -1,6 +1,8 @@
 // src/components/TransitPanel.js
 import React from 'react';
 import { useEffect, useState } from "react"
+import { useQuery } from "react-query"
+import { getPlanetAlmanac } from "../controller/transit"
 
 import CommanLayout from '../layouts/comman';
 import { CurrentTransit } from '../components/currentTransit';
@@ -31,13 +33,41 @@ const TransitPanel = () => {
 
     ]
 
-    const [selectedDiv, setSelectedDiv] = useState(''); // State to track selected div
-
+    const [selectedDiv, setSelectedDiv] = useState('');
     const handleToggle = (index) => {
         console.log(index);
         setActiveIndex(activeIndex === index ? null : index);
     };
 
+    const { data } = useQuery('getPlanetTransitData', getPlanetAlmanac)
+
+    const currentDate = new Date();
+    let month = currentDate.getMonth() + 1;
+
+    const transitData = data?.data?.filter(x => {
+        // console.log('month ---', month);
+        // console.log(`incoming month  ${x?.date?.split('-')[1].split('')[1]} `);
+        if (x?.date?.split('-')[1].split('')[1] === String(month)) {
+            console.log('found data --------', x);
+            return (
+
+                < p > {x?.date}</p>
+            )
+        }
+    }
+    )
+    console.log('transitData======', transitData);
+
+
+
+    function formatDate(date) {
+        const day = date.getDate();
+        const suffix = day === 1 || day === 21 || day === 31 ? 'st' : (day === 2 || day === 22 ? 'nd' : (day === 3 || day === 23 ? 'rd' : 'th'));
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const month = monthNames[date.getMonth()];
+        const year = date.getFullYear().toString().slice(-2);
+        return `${day}${suffix} ${month}'${year}`;
+    }
     return (
         <CommanLayout>
 
@@ -83,8 +113,8 @@ const TransitPanel = () => {
                             <div className='flex items-center'>
 
                                 <div className={`bg-green-500 rounded-full w-2 h-2 mr-2`} />
-
-                                <p>14th May, 2024</p>
+                                <p>{formatDate(new Date(transitData[0]['date']))}</p>
+                                @ <p>{((transitData[0]['time']))}</p>
                             </div>
                             {/* </div> */}
                         </div>
