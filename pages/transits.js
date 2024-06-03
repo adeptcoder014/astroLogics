@@ -77,15 +77,15 @@ const TransitPanel = () => {
 
                     <div className='bg-[#2D2E44] rounded-xl p-2 shadow-sm'>
                         <div className='flex overflow-x-scroll space-x-4 scrollbar-hide'>
-                            {arr.map((x, index) => (
+                            {arr?.map((x, index) => (
                                 <div
                                     key={index}
                                     className={`text-white bg-custom-gradient rounded-2xl flex-shrink-0 px-8 py-2 ${selectedDiv === `lord-${index}` ? 'shadow-md shadow-black' : 'shadow-md'}  mb-2 flex items-center`}
                                     onClick={() => setSelectedDiv(`lord-${index}`)}
                                 >
-                                    <img src={`./planets/${x.planet}.svg`} alt="Natal" width={x.planet == 'saturn' ? 45 : 25} />
+                                    <img src={`./planets/${x?.planet}.svg`} alt="Natal" width={x.planet == 'saturn' ? 45 : 25} />
 
-                                    <p className="font-extrabold text-lg ml-2">{x.planet}</p>
+                                    <p className="font-extrabold text-lg ml-2">{x?.planet}</p>
                                 </div>
                             ))}
                         </div>
@@ -114,7 +114,7 @@ const TransitPanel = () => {
 
                                 <div className={`bg-green-500 rounded-full w-2 h-2 mr-2`} />
                                 <p>{formatDate(new Date(transitData[0]['date']))}</p>
-                                @ <p>{((transitData[0]['time']))}</p>
+                                 <p>{((transitData[0]['time']))}</p>
                             </div>
                             {/* </div> */}
                         </div>
