@@ -44,20 +44,23 @@ const TransitPanel = () => {
     const currentDate = new Date();
     let month = currentDate.getMonth() + 1;
 
-    const transitData = data?.data?.filter(x => {
-        // console.log('month ---', month);
-        // console.log(`incoming month  ${x?.date?.split('-')[1].split('')[1]} `);
-        if (x?.date?.split('-')[1].split('')[1] === String(month)) {
-            console.log('found data --------', x);
-            return (
-
-                < p > {x?.date}</p>
-            )
-        }
-    }
-    )
-    console.log('transitData======', transitData);
-
+    const today = new Date();
+    const yesterday = new Date(today);
+    const tomorrow = new Date(today);
+    
+    yesterday.setDate(today.getDate() - 1);
+    tomorrow.setDate(today.getDate() + 1);
+    
+    const transitData = data?.data?.find(x => {
+        const apiDate = new Date(x?.date);
+        // if(today < tomorrow || today > yesterday)
+        // console.log(apiDate.toDateString() ,'========= ', yesterday.toDateString());
+        // console.log( tomorrow.toDateString());
+        // Check if the date falls one day before or after today
+        
+        return  apiDate < tomorrow && apiDate > yesterday
+    })
+    
 
 
     function formatDate(date) {
@@ -68,6 +71,7 @@ const TransitPanel = () => {
         const year = date.getFullYear().toString().slice(-2);
         return `${day}${suffix} ${month}'${year}`;
     }
+console.log('0000',transitData);
     return (
         <CommanLayout>
 
@@ -103,7 +107,7 @@ const TransitPanel = () => {
 
                 <div className="mb-4">
                     <h3 className="text-lg font-semibold">Upcoming Moon Transit</h3>
-                    <div className="bg-custom-gradient bgImg p-4 rounded-lg flex shadow-md shadow-black mt-5 mb-5">
+                    <div className="bg-custom-gradient bgImg p-4 rounded-lg flex items-start justify-between shadow-md shadow-black mt-5 mb-5">
                         <div className="">
 
                             {/* <div className="ml-4"> */}
@@ -112,12 +116,21 @@ const TransitPanel = () => {
 
                             <div className='flex items-center'>
 
-                                <div className={`bg-green-500 rounded-full w-2 h-2 mr-2`} />
-                                <p>{formatDate(new Date(transitData[0]['date']))}</p>
-                                 <p>{((transitData[0]['time']))}</p>
+                                <div className={`bg-green-500 rounded-full w-2 h-2 mr-2 flex flex-col`} />
+                                {transitData ? (
+                                    <div className='flex'>
+                                        <p>{formatDate(new Date(transitData.date))} _</p>
+                                        <p> @ {transitData.time}</p>
+                                    </div>
+                                ) : (
+                                    <p>No upcoming transits found</p>
+                                )}
                             </div>
                             {/* </div> */}
                         </div>
+                        {transitData && transitData.length > 0 ? (
+                            <img src={`./zodiac/${transitData.position?.name}.png`} alt="Natal" width={25} />
+                        ) : null}
                     </div>
                 </div>
 
