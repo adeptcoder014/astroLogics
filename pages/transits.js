@@ -3,11 +3,23 @@ import React from 'react';
 import { useEffect, useState } from "react"
 import { useQuery } from "react-query"
 import { getPlanetAlmanac } from "../controller/transit"
+import astroServer from "../constants/url";
 
 import CommanLayout from '../layouts/comman';
 import { CurrentTransit } from '../components/currentTransit';
 
 const TransitPanel = () => {
+    const planetVedicNames = {
+        'moon': 'Chandra',
+        'sun': 'Surya',
+        'mercury': 'Budha',
+        'venus': 'Shukra',
+        'mars': 'Mangal',
+        'jupiter': 'Brihaspati',
+        'saturn': 'Shani',
+    }
+
+
     const arr = [
         {
             planet: 'sun'
@@ -33,34 +45,14 @@ const TransitPanel = () => {
 
     ]
 
-    const [selectedDiv, setSelectedDiv] = useState('');
-    const handleToggle = (index) => {
-        console.log(index);
-        setActiveIndex(activeIndex === index ? null : index);
-    };
+    const [selectedPlanetTab, setSelectedPlanetTab] = useState('moon');
+    const [planetTransitData, setPlanetTransitData] = useState([]);
 
-    const { data } = useQuery('getPlanetTransitData', getPlanetAlmanac)
 
-    const currentDate = new Date();
-    let month = currentDate.getMonth() + 1;
 
-    const today = new Date();
-    const yesterday = new Date(today);
-    const tomorrow = new Date(today);
-    
-    yesterday.setDate(today.getDate() - 1);
-    tomorrow.setDate(today.getDate() + 1);
-    
-    const transitData = data?.data?.find(x => {
-        const apiDate = new Date(x?.date);
-        // if(today < tomorrow || today > yesterday)
-        // console.log(apiDate.toDateString() ,'========= ', yesterday.toDateString());
-        // console.log( tomorrow.toDateString());
-        // Check if the date falls one day before or after today
-        
-        return  apiDate < tomorrow && apiDate > yesterday
-    })
-    
+
+
+
 
 
     function formatDate(date) {
@@ -71,7 +63,48 @@ const TransitPanel = () => {
         const year = date.getFullYear().toString().slice(-2);
         return `${day}${suffix} ${month}'${year}`;
     }
-console.log('0000',transitData);
+    // const { data } = useQuery(['getPlanetTransitData_new'], getPlanetAlmanac(selectedPlanetTab))
+    // console.log('planetTransitData===', planetTransitData);
+
+
+
+
+    let transitData = planetTransitData?.find(x => {
+        let today = new Date();
+        let yesterday = new Date(today);
+        let tomorrow = new Date(today);
+        // console.log('selectedPlanetTab ---------', selectedPlanetTab);
+        let apiDate = new Date(x?.date);
+        if (selectedPlanetTab === 'moon') {
+            yesterday.setDate(today.getDate() - 1)
+            tomorrow.setDate(today.getDate() + 1)
+            return apiDate < tomorrow && apiDate > yesterday
+        } else {
+
+            yesterday.setDate(today.getDate() - 15)
+            tomorrow.setDate(today.getDate() + 15)
+            return apiDate > today && apiDate < tomorrow 
+        }
+        // console.log('yesterday ----', yesterday, 'tomorrow --', tomorrow);
+
+    })
+
+    // useEffect(() => {
+
+    //     console.log('data =========', data?.data);
+    //     setPlanetTransitData(data?.data)
+    // }, [planetTransitData]) 
+
+    const togglePlanetTab = async (planet) => {
+        setSelectedPlanetTab(planet)
+        const response = await astroServer.get(`/almanac/get-planet-transit?planet=${planet}`);
+
+        setPlanetTransitData(response?.data)
+
+    }
+
+    console.log('transitData===', transitData);
+    console.log('planetTransitData=== --------------->', planetTransitData);
     return (
         <CommanLayout>
 
@@ -84,8 +117,8 @@ console.log('0000',transitData);
                             {arr?.map((x, index) => (
                                 <div
                                     key={index}
-                                    className={`text-white bg-custom-gradient rounded-2xl flex-shrink-0 px-8 py-2 ${selectedDiv === `lord-${index}` ? 'shadow-md shadow-black' : 'shadow-md'}  mb-2 flex items-center`}
-                                    onClick={() => setSelectedDiv(`lord-${index}`)}
+                                    className={`text-white bg-custom-gradient rounded-2xl flex-shrink-0 px-8 py-2 ${selectedPlanetTab === `${x?.planet}` ? 'shadow-md shadow-black' : 'shadow-md'}  mb-2 flex items-center`}
+                                    onClick={() => togglePlanetTab(x?.planet)}
                                 >
                                     <img src={`./planets/${x?.planet}.svg`} alt="Natal" width={x.planet == 'saturn' ? 45 : 25} />
 
@@ -98,7 +131,7 @@ console.log('0000',transitData);
                 </div>
 
                 <div className="mb-4">
-                    <h3 className="text-lg font-semibold">Moon current mundane transit</h3>
+                    <h3 className="text-lg font-semibold">{selectedPlanetTab} current mundane transit</h3>
                     <div className="items-center bg-[#3D3E4F] rounded-xl">
 
                         <CurrentTransit />
@@ -106,12 +139,12 @@ console.log('0000',transitData);
                 </div>
 
                 <div className="mb-4">
-                    <h3 className="text-lg font-semibold">Upcoming Moon Transit</h3>
+                    <h3 className="text-lg font-semibold">Upcoming {selectedPlanetTab} Transit</h3>
                     <div className="bg-custom-gradient bgImg p-4 rounded-lg flex items-start justify-between shadow-md shadow-black mt-5 mb-5">
                         <div className="">
 
                             {/* <div className="ml-4"> */}
-                            <p className='text-white font-extrabold text-xl'>Chandra</p>
+                            <p className='text-white font-extrabold text-xl'>{planetVedicNames[selectedPlanetTab]}</p>
                             <p className='text-white font-extrabold text-xl mb-2'>Sankranti</p>
 
                             <div className='flex items-center'>
@@ -128,8 +161,9 @@ console.log('0000',transitData);
                             </div>
                             {/* </div> */}
                         </div>
-                        {transitData && transitData.length > 0 ? (
-                            <img src={`./zodiac/${transitData.position?.name}.png`} alt="Natal" width={25} />
+                        {transitData ? (
+                            // <img src={`./zodiac/${transitData?.zodiacSign}.png`} alt="Natal" width={25} />
+                            <img src={`./zodiac/${transitData?.zodiacSign}.png`} alt="Natal" width={25} />
                         ) : null}
                     </div>
                 </div>
