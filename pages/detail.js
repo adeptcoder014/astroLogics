@@ -11,6 +11,7 @@ import CommanLayout from "../layouts/comman";
 import { CurrentTransit } from "../components/currentTransit.js";
 import { useQuery } from "react-query";
 import { getUserById } from "../controller/user";
+import { getAlmanac } from "../controller/transit"
 
 //============================================================
 
@@ -21,44 +22,54 @@ const Detail = () => {
     const [activeIndex, setActiveIndex] = useState(null);
 
     const router = useRouter();
-    const [planet, setPlanet] = useState([]);
-    const [house, setHouse] = useState([]);
-    const [currentTransit, setCurrentTransit] = useState([]);
-    const [selectedDiv, setSelectedDiv] = useState(''); // State to track selected div
-
-    let userToken = ''
-    if (userToken || userToken === null || userToken === '') {
-        const ISSERVER = typeof window === "undefined";
-
-        if (!ISSERVER) {
-
-            userToken = localStorage.getItem('accessToken');
-        }
-    }
+        const houseOwner = router?.query['house-owner'];
+        let userToken = ''
+        if (userToken || userToken === null || userToken === '') {
+            const ISSERVER = typeof window === "undefined";
     
-    const { data } = useQuery('getUserNatalData', getUserById(userToken))
+            if (!ISSERVER) {
+    
+                userToken = localStorage.getItem('accessToken');
+            }
+        }
+        
+        const { data } = useQuery('getUserNatalData', getUserById(userToken))
+        const currentTransitData = useQuery('getTransitData', getAlmanac)
+        const selectedPlanetCurrentTransitData = currentTransitData?.data?.data?.data?.find(transit=>(
+            transit.name === houseOwner
+        ))
+    const [planet, setPlanet] = useState([]);
+    const [selectedHouse, setSelectedHouse] = useState({});
+    const [currentTransit, setCurrentTransit] = useState([]);
+    
     // console.log('----------- useR__planet ---------',data?.data[0]?.planets)
 
-    const houseOwner = router?.query['house-owner'];
 
     let selectedPlanetInfo = data?.data[0]?.planets?.find((planet) => {
-        console.log(planet.name, '=======', houseOwner);
+        // console.log(planet.name, '=======', houseOwner);
         return planet.name == houseOwner;
     });
+    const [selectedDiv, setSelectedDiv] = useState(selectedPlanetInfo?.rulerOf[0]); // State to track selected div
     
-    const handleToggle = (index) => {
-        console.log(index);
+    const handleUpcomingPlanetEvents = (index) => {
         setActiveIndex(activeIndex === index ? null : index);
     };
+    const handlePlanetHouseRulership = (house) => {
+    console.log('----- house -----------', selectedHouse)
+    setSelectedHouse(data?.data[0]?.houses[house-1])
+        setSelectedDiv(house)   
+     };
 
-console.log('selectedPlanetInfo -------',selectedPlanetInfo)
-const getOrdinal = (num) => {
+     const getOrdinal = (num) => {
     const ordinalSuffixes = ["th", "st", "nd", "rd"];
     const remainder = num % 100;
     return num + (ordinalSuffixes[(remainder - 20) % 10] || ordinalSuffixes[remainder] || ordinalSuffixes[0]);
 };
+console.log('selectedPlanetCurrentTransitData -------',selectedPlanetCurrentTransitData)
 
- 
+ let planetTransitUserHouse = data?.data[0]?.houses.find(house=>(
+    house.rashi == selectedPlanetCurrentTransitData.position.name
+ ))
     return (
         <CommanLayout>
             <div className="flex flex-col  p-2">
@@ -68,19 +79,19 @@ const getOrdinal = (num) => {
                     <h2 className='text-md text-white mt-2 text-center w-3/4 mb-5'>Meet your 8th lord, he is your occult ruler</h2>
                 </div>
                 <div className="bg-[#34354F] flex flex-col p-1 justify-around rounded-xl">
-                    <div className='bg-[#2D2E44] rounded-xl flex   items-center justify-center p-2 shadow-sm'>
+                    <div className='bg-[#2D2E44] rounded-xl flex   items-around justify-around p-2 shadow-sm'>
                         {/* <div
                             className={`text-white bg-custom-gradient rounded-2xl mr-5 px-8 py-2 ${selectedDiv === '1st-lord' ? 'shadow-md shadow-black' : 'shadow-md'}`}
                             onClick={() => setSelectedDiv('1st-lord')}
                         >
                             <p className="font-extrabold text-lg">1st lord</p>
                         </div> */}
-                        {selectedPlanetInfo?.rulerOf?.map(house =>(
+                        {selectedPlanetInfo && selectedPlanetInfo?.rulerOf?.map(house =>(
 
                         <div
                         key={house}
-                            className={`text-white bg-custom-gradient rounded-2xl px-8 py-2 ${selectedDiv === '11st-lord' ? 'shadow-md shadow-black' : 'shadow-md'}`}
-                            onClick={() => setSelectedDiv('11st-lord')}
+                            className={`text-white bg-custom-gradient rounded-2xl px-8 py-2 ${selectedDiv === house ? 'shadow-md shadow-black' : 'shadow-md'} `}
+                            onClick={() => handlePlanetHouseRulership(house)}
                         >
                             <p className="font-extrabold text-lg">{getOrdinal(house)} lord</p>
                         </div>
@@ -100,12 +111,12 @@ const getOrdinal = (num) => {
 
                                 <div className="flex items-center justify-between">
                                     <img
-                                        src={`./zodiac/aries.png`}
+                                        src={`./zodiac/${selectedHouse?.rashi ? selectedHouse?.rashi :  data?.data[0]?.houses[selectedPlanetInfo?.rulerOf[0]-1].rashi}.png`}
                                         alt="Natal"
                                         width={33}
-                                    // className='mr-5'
+                                    className='mr-2'
                                     />
-                                    <p className='text-[#8A95BB] text-sm font-extrabold'>Male Aspect</p>
+                                    <p className='text-[#8A95BB] text-sm font-extrabold'>{selectedHouse?.gender} Aspect</p>
                                 </div>
 
                                 {/* <div className="flex items-end justify-end"> */}
@@ -118,7 +129,7 @@ const getOrdinal = (num) => {
                                         width={28}
                                         className='mr-1'
                                     />
-                                    <div className='text-[#8A95BB] text-sm font-extrabold'>3rd house</div>
+                                    <div className='text-[#8A95BB] text-sm font-extrabold'>{getOrdinal(planetTransitUserHouse.bhava)} house</div>
 
                                 </div>
                             </div>
@@ -145,7 +156,7 @@ const getOrdinal = (num) => {
                                 <div className="text-center mb-4 ">
                                     <div
                                         className="space-x-2 mb-2 mt-3 flex items-between justify-between cursor-pointer"
-                                        onClick={() => handleToggle(index)}
+                                        onClick={() => handleUpcomingPlanetEvents(index)}
                                     >
                                         <div className="flex items-center">
                                             <div className={`bg-${planet === "Saturn" ? "red" : "green"}-500 rounded-full w-2 h-2 mr-2`} />

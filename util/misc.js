@@ -16,3 +16,11 @@ export const getCurrentDateTime = () => {
         time: formattedTime
     };
 }
+
+
+
+export const getOrdinal = (num) => {
+    const ordinalSuffixes = ["th", "st", "nd", "rd"];
+    const remainder = num % 100;
+    return num + (ordinalSuffixes[(remainder - 20) % 10] || ordinalSuffixes[remainder] || ordinalSuffixes[0]);
+};
