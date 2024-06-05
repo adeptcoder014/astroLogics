@@ -9,12 +9,17 @@ import Link from "next/link";
 
 export const  PlanetCard = ({ data }) => {
     const router = useRouter()
-    // console.log('data ===', data);
+    // console.log('houseSIgn ===', data.houseSIgn);
+    const getOrdinal = (num) => {
+        const ordinalSuffixes = ["th", "st", "nd", "rd"];
+        const remainder = num % 100;
+        return num + (ordinalSuffixes[(remainder - 20) % 10] || ordinalSuffixes[remainder] || ordinalSuffixes[0]);
+    };
 
     return (
         <div
          className="p-5"
-         onClick={()=>(router.push('/detail'))}
+         onClick={()=>(router.push(`/detail?house-owner=${data.name}`))}
          >
             <div className="bg-custom-gradient p-4 rounded-xl flex ">
                 <div className="flex items-center ">
@@ -31,10 +36,10 @@ export const  PlanetCard = ({ data }) => {
                         <div className="flex">
 
                             <div className='text-[white] text-lg font-extrabold mr-1'>
-                                {} in 9th
+                                {} in {getOrdinal(data.isIn)}
                             </div>
                             <img
-                                src={`./zodiac/capricorn.png`}
+                                src={`./zodiac/${data.houseSIgn}.png`}
                                 alt="Zodiac"
                                 width={29}
                             />
@@ -44,7 +49,7 @@ export const  PlanetCard = ({ data }) => {
 
 
                                 <img
-                                    src={`./elements/fire.png`}
+                                    src={`./elements/${data.element}.png`}
                                     alt="Natal"
                                     width={29}
                                 />

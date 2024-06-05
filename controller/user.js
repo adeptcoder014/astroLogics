@@ -17,7 +17,7 @@ export const getUserById = async (userId) => {
     if (!response) {
         throw new Error('Network response was not ok');
     }
-    return response?.data;
+    return response;
 };
 
 

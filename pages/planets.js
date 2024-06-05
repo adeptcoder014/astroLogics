@@ -80,17 +80,28 @@ const LifeArenaScreen = () => {
 
     const { data } = useQuery('getUserNatalData', getUser)
 
-    console.log('-----------', data?.data[0]?.houses[0]);
-    console.log('-----------', data?.data[0]?.planets[0]);
-    let assigningNatalPlanetsValue = data?.data[0]?.planets?.map((x) => {
-        planetInfo.filter(w => {
-            if (x.name == w.name) {
-                w.link = '/home'
 
-                x.rulerOf.map(z =>
-                    w?.rulerOf?.push({
-                        house: z,
-                        sign: data?.data[0]?.houses[z - 1]?.rashi, // extracting houses 
+  
+
+
+
+
+
+    // console.log(' house-----------', data?.data[0]?.houses[0]);
+    // console.log(' planet -----------', data?.data[0]?.planets[0]);
+    let assigningNatalPlanetsValue = data?.data[0]?.planets?.map((planet) => {
+        planetInfo.filter(info => {
+            // console.log('xdata?.data[0]?.houses[parseInt(planet.isIn)+1]?.rashi ============', data?.data[0]?.houses[(parseInt(planet.isIn))+1]);
+            if (planet.name == info.name) {
+                info.link = '/home'
+                info.isIn = planet.isIn
+                info.element =data?.data[0]?.houses[parseInt(planet.isIn)-1]?.element
+                info.houseSIgn = data?.data[0]?.houses[parseInt(planet.isIn)-1]?.rashi
+
+                planet.rulerOf.map(house =>
+                    info?.rulerOf?.push({
+                        house: house,
+                        sign: data?.data[0]?.houses[house - 1]?.rashi, // extracting houses 
                     }))
             }
 
