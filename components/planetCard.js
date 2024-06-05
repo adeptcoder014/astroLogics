@@ -7,9 +7,9 @@ import Link from "next/link";
 
 
 
-export const PlanetCard = ({ data }) => {
+export const  PlanetCard = ({ data }) => {
     const router = useRouter()
-    // console.log('data ===', x.data);
+    // console.log('data ===', data);
 
     return (
         <div
@@ -31,7 +31,7 @@ export const PlanetCard = ({ data }) => {
                         <div className="flex">
 
                             <div className='text-[white] text-lg font-extrabold mr-1'>
-                                Mars in 9th
+                                {} in 9th
                             </div>
                             <img
                                 src={`./zodiac/capricorn.png`}

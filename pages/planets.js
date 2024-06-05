@@ -26,6 +26,7 @@ import { getUser } from "../controller/user";
 const LifeArenaScreen = () => {
     const planetInfo = [{
         name: 'sun',
+        name: 'sun',
         rulerOf: [],
 
         color: 'red'
@@ -79,7 +80,8 @@ const LifeArenaScreen = () => {
 
     const { data } = useQuery('getUserNatalData', getUser)
 
-
+    console.log('-----------', data?.data[0]?.houses[0]);
+    console.log('-----------', data?.data[0]?.planets[0]);
     let assigningNatalPlanetsValue = data?.data[0]?.planets?.map((x) => {
         planetInfo.filter(w => {
             if (x.name == w.name) {
@@ -88,14 +90,14 @@ const LifeArenaScreen = () => {
                 x.rulerOf.map(z =>
                     w?.rulerOf?.push({
                         house: z,
-                        sign: data?.data[0]?.houses[z - 1]?.rashi,
+                        sign: data?.data[0]?.houses[z - 1]?.rashi, // extracting houses 
                     }))
             }
 
         })
     })
 
-    console.log('planetInfo ===', planetInfo);
+    // console.log('planetInfo ===', planetInfo);
     // console.log('planetInfo ===', data?.data[0]?.houses[3]);
     return (
         <>
