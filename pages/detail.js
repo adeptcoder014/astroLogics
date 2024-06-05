@@ -129,7 +129,7 @@ console.log('selectedPlanetCurrentTransitData -------',selectedPlanetCurrentTran
                                         width={28}
                                         className='mr-1'
                                     />
-                                    <div className='text-[#8A95BB] text-sm font-extrabold'>{getOrdinal(planetTransitUserHouse.bhava)} house</div>
+                                    <div className='text-[#8A95BB] text-sm font-extrabold'>{getOrdinal(planetTransitUserHouse?.bhava)} house</div>
 
                                 </div>
                             </div>
