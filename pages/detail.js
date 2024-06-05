@@ -78,6 +78,7 @@ const getOrdinal = (num) => {
                         {selectedPlanetInfo.rulerOf.map(house =>(
 
                         <div
+                        key={house}
                             className={`text-white bg-custom-gradient rounded-2xl px-8 py-2 ${selectedDiv === '11st-lord' ? 'shadow-md shadow-black' : 'shadow-md'}`}
                             onClick={() => setSelectedDiv('11st-lord')}
                         >
