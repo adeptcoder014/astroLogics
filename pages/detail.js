@@ -65,10 +65,10 @@ const Detail = () => {
     const remainder = num % 100;
     return num + (ordinalSuffixes[(remainder - 20) % 10] || ordinalSuffixes[remainder] || ordinalSuffixes[0]);
 };
-console.log('selectedPlanetCurrentTransitData -------',selectedPlanetCurrentTransitData)
+// console.log('selectedPlanetCurrentTransitData -------',selectedPlanetCurrentTransitData)
 
  let planetTransitUserHouse = data?.data[0]?.houses.find(house=>(
-    house.rashi == selectedPlanetCurrentTransitData.position.name
+    house.rashi == selectedPlanetCurrentTransitData?.position?.name
  ))
     return (
         <CommanLayout>
