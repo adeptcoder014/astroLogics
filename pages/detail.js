@@ -75,7 +75,7 @@ const getOrdinal = (num) => {
                         >
                             <p className="font-extrabold text-lg">1st lord</p>
                         </div> */}
-                        {selectedPlanetInfo.rulerOf.map(house =>(
+                        {selectedPlanetInfo?.rulerOf?.map(house =>(
 
                         <div
                         key={house}
