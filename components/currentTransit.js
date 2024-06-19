@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react"
-import { SineWave } from "./sineWave"
-import { useQuery } from "react-query"
-import { getAlmanac } from "../controller/transit"
+import { useEffect, useState } from "react";
+import { SineWave } from "./sineWave";
+import { useQuery } from "react-query";
+import { getAlmanac } from "../controller/transit";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const signHouse = {
     aries: '1',
@@ -16,81 +18,62 @@ const signHouse = {
     capricorn: '10',
     aquarius: '11',
     pisces: '12',
-}
+};
+
+const positionTemplate = [
+    { planet: 'sun', whichHouse: '0' },
+    { planet: 'moon', whichHouse: '0' },
+    { planet: 'mercury', whichHouse: '0' },
+    { planet: 'venus', whichHouse: '0' },
+    { planet: 'mars', whichHouse: '10' },
+    { planet: 'jupiter', whichHouse: '0' },
+    { planet: 'saturn', whichHouse: '0' },
+    { planet: 'mean node', whichHouse: '0' },
+];
 
 export const CurrentTransit = () => {
-    // =============================================================
-    const position = [
-        {
-            planet: 'sun',
-            whichHouse: '0',
-        },
-        {
-            planet: 'moon',
-            whichHouse: '0',
-        },
-        {
-            planet: 'mercury',
-            whichHouse: '0',
-        },
-        {
-            planet: 'venus',
-            whichHouse: '0',
-        },
-        {
-            planet: 'mars',
-            whichHouse: '10',
-        },
-        {
-            planet: 'jupiter',
-            whichHouse: '0',
-        },
-        {
-            planet: 'saturn',
-            whichHouse: '0',
-        },
-        {
-            planet: 'mean node',
-            whichHouse: '0',
-        },
-    ]
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [positions, setPositions] = useState(positionTemplate);
+
+    const formattedDate = selectedDate.toISOString().slice(0, 10);
+
+    const { data } = useQuery(['getTransitData', formattedDate], () => getAlmanac(formattedDate));
+
+    useEffect(() => {
+        if (data?.data?.data) {
+            const updatedPositions = positionTemplate.map(pos => {
+                const transit = data?.data?.data?.find(x => x.name === pos.planet);
+                if (transit) {
+                    return { ...pos, whichHouse: signHouse[transit.position.name] };
+                }
+                return pos;
+            });
+            setPositions(updatedPositions);
+        }
+    }, [data]);
 
 
 
-
-
-
-    // =============================================================
-
-    const { data } = useQuery('getTransitData', getAlmanac)
-    const [tranistData, setTranistData] = useState([])
-    // console.log('tranist data ----', data.data.data[0]);
-
-    let assigningTransitsValue = data?.data?.data?.map((x) => {
-        position.filter(w => {
-            if (x.name == w.planet) {
-                w.whichHouse = signHouse[x.position.name]
-            }
-
-        })
-    })
-
-
-
+    console.log('-------------positions--------', data?.data);
     return (
         <>
-
+            <div>
+                <DatePicker
+                    selected={selectedDate}
+                    onChange={(date) => setSelectedDate(date)}
+                    dateFormat="yyyy-MM-dd"
+                />
+            </div>
             <SineWave
-                sunPosition={position[0]}
-                moonPosition={position[1]}
-                mercuryPosition={position[2]}
-                venusPosition={position[3]}
-                marsPosition={position[4]}
-                jupiterPosition={position[5]}
-                saturnPosition={position[6]}
-                nodePosition={position[7]}
+                sunPosition={positions[0]}
+                moonPosition={positions[1]}
+                mercuryPosition={positions[2]}
+                venusPosition={positions[3]}
+                marsPosition={positions[4]}
+                jupiterPosition={positions[5]}
+                saturnPosition={positions[6]}
+                nodePosition={positions[7]}
             />
-
         </>
-    )
-}
+    );
+};
