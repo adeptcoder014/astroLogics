@@ -4,7 +4,7 @@ import Image from "next/image"
 import { useRouter } from "next/router";
 import { EventCard } from './eventCard';
 
-const TransitDisplay = () => {
+const HomePageDisplay = () => {
   const router = useRouter();
 
   let cardData = [
@@ -56,6 +56,7 @@ const TransitDisplay = () => {
 
     {
       "title": "Events",
+      "link": "/events",
       "image":
         <Image
           alt="alt tag"
@@ -81,7 +82,7 @@ const TransitDisplay = () => {
         <h2 className="text-lg font-bold mb-2">Current Transit</h2>
         <div className="bg-gray-700 rounded-lg p-4 shadow-lg">
           {/* <!-- <img src="./icons/sampleCardImg2.png" alt="Transit Chart" className="flex self-center" /> --> */}
-          <p className="m-2 text-center font-bold">Transit: 15th Jan 24</p>
+          <p className=" text-center font-bold mb-5">Transit: 15th Jan 24</p>
           <CurrentTransit />
         </div>
         {/* </div> */}
@@ -97,7 +98,7 @@ const TransitDisplay = () => {
             <div
               onClick={() => handleClick(x.link)}
               key={x.title}
-              className="bg-custom-gradient p-4 rounded-lg text-center shadow-lg">
+              className="bg-custom-gradient p-4 rounded-lg text-center shadow-xl  ">
               {/* <img src="./icons/sampleCardImg.png" alt="Natal" className="w-12 mx-auto mb-2" /> */}
               {x.image}
               <p className="font-bold">{x.title}</p>
@@ -107,7 +108,7 @@ const TransitDisplay = () => {
 
         </div>
       </div>
-      <EventCard/>
+      <EventCard />
 
     </div >
 
@@ -116,4 +117,4 @@ const TransitDisplay = () => {
   );
 };
 
-export default TransitDisplay;
+export default HomePageDisplay;

@@ -57,7 +57,7 @@ export const CurrentTransit = () => {
     console.log('-------------positions--------', data?.data);
     return (
         <>
-            <div>
+            <div className="items-center">
                 <DatePicker
                     selected={selectedDate}
                     onChange={(date) => setSelectedDate(date)}
