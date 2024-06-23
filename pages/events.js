@@ -5,7 +5,10 @@ import astroServer from '../constants/url';
 const AstrologyPage = () => {
     const [selectedPlanet, setSelectedPlanet] = useState('Select Planet');
     const [transitingHouse, setTransitingHouse] = useState('Select House');
-    const [apiData, setApiData] = useState(null);
+    const [apiData, setApiData] = useState([]);
+    const [apiError, setApiError] = useState('');
+    const [selectedEventTypeTab, setSelectedEventTypeTab] = useState('');
+    // const [selectedEvent, setSelectedEventTypeTab] = useState([]);
 
     const planets = [
         { name: 'Sun', icon: <img src="./planets/sun.svg" alt="Sun" width={25} /> },
@@ -31,10 +34,12 @@ const AstrologyPage = () => {
         { house: '11th', value: '11' },
         { house: '12th', value: '12' },
     ];
-    
+
     const fetchAlmanacData = async () => {
         if (selectedPlanet !== 'Select Planet' && transitingHouse !== 'Select House') {
             try {
+                setApiData([])
+                setSelectedEventTypeTab('')
                 const response = await astroServer.post('/user/house-specific-data', {
                     planet: selectedPlanet,
                     house: transitingHouse
@@ -42,11 +47,47 @@ const AstrologyPage = () => {
 
                 setApiData(response?.data);
             } catch (error) {
-                console.error('Error fetching almanac data:', error);
+                setApiError(error?.response?.data)
+                // console.error('Error fetching almanac data:', error);
             }
         }
     };
-console.log('-- apiData 0-', apiData);
+    const eventTypes = [
+        {
+            type: "Fire",
+            naturalHouseRulership: [1, 5, 9],
+        },
+        {
+            type: "Earth",
+            naturalHouseRulership: [2, 6, 10],
+        },
+        {
+            type: "Air",
+            naturalHouseRulership: [3, 7, 11],
+        },
+        {
+            type: "Water",
+            naturalHouseRulership: [4, 8, 12],
+        },
+    ]
+    // console.log(selectedPlanet, transitingHouse);
+
+    const apiData1 = apiData?.filter(x => {
+        // console.log('---- foundPlanet ----------', x?.planetDetails.rulerOf)
+        // if(x?.planetDetails.rulerOf)
+
+        // const allElementsPresent = x?.planetDetails.rulerOf.every(element => selectedEventTypeTab?.naturalHouseRulership?.includes(element));
+
+        if (x?.planetDetails.rulerOf.every(element => selectedEventTypeTab?.naturalHouseRulership?.includes(element))
+        ) {
+            return x
+        }
+
+        // const foundPlanet = x?.planetDetails?.map(y => y?.name === selectedPlanet?.toLocaleLowerCase());
+        // return foundPlanet;
+    });
+
+    console.log('---- apiData1 -----', apiData1);
     return (
         <CommanLayout>
             <div className="p-4 max-w-sm mx-auto bg-gray-800 text-white rounded-lg shadow-md">
@@ -94,11 +135,21 @@ console.log('-- apiData 0-', apiData);
                 </div>
                 <div className="mb-4">
                     <h2 className="text-lg font-semibold mb-2">Choose Event Type</h2>
-                    <div className="flex space-x-2">
-                        <div className="bg-red-500 p-2 rounded">Fire</div>
-                        <div className="bg-blue-500 p-2 rounded">Air</div>
-                        <div className="bg-green-500 p-2 rounded">Earth</div>
-                        <div className="bg-blue-800 p-2 rounded">Water</div>
+                    <div className="flex flex-wrap space-x-2">
+
+
+
+
+                        {eventTypes?.map(x => (
+
+                            <div
+                                className={`text-white bg-${x.type.toLocaleLowerCase()}Gradient rounded-2xl flex-shrink-0 px-8 py-2 ${selectedEventTypeTab?.type === `${x?.type}` ? 'shadow-md shadow-black' : 'shadow-md'} mb-2 flex items-center`}
+                                onClick={() => (setSelectedEventTypeTab(x))}
+                            >
+                                {x.type}
+                            </div>
+                        ))}
+
                     </div>
                 </div>
                 <div className="mb-4">
@@ -109,31 +160,46 @@ console.log('-- apiData 0-', apiData);
                     />
                 </div>
                 <div className="space-y-4">
-                    <div className="bg-custom-gradient p-4 rounded-xl flex">
-                        <div className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center">
-                            {/* Placeholder for profile image */}
+                    {/* {apiData &&  apiData?.map(x => (<div className="bg-custom-gradient p-4 rounded-xl flex">
+                        <div key={x} className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center">
+                            <img src={`./planets/${x?.houseDetails[0].owner}.svg`} alt="Natal" width={25} />
                         </div>
                         <div className="ml-4">
-                            <p>Ankit Gupta</p>
+                            <p>{x.name}</p>
                             <p className="text-sm">1st lord ⚕ 9th house</p>
                         </div>
                     </div>
-                    <div className="bg-custom-gradient p-4 rounded-xl flex">
-                        <div className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center">
-                            {/* Placeholder for profile image */}
+                    ))} */}
+                    {apiData && selectedEventTypeTab == '' ? (
+                        apiData?.map(x => (<div className="bg-custom-gradient p-4 rounded-xl flex">
+                            <div key={x} className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center">
+                                <img src={`./planets/${x?.houseDetails[0].owner}.svg`} alt="Natal" width={25} />
+                            </div>
+                            <div className="ml-4">
+                                <p>{x.name}</p>
+                                <p className="text-sm">1st lord ⚕ 9th house</p>
+                            </div>
                         </div>
-                        <div className="ml-4">
-                            <p>Shivansh</p>
-                            <p className="text-sm">11th Lord ♄ 12th house</p>
+                        ))
+                    ) : (
+
+                        apiData1?.map(x => (<div className="bg-custom-gradient p-4 rounded-xl flex">
+                            <div key={x} className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center">
+                                <img src={`./planets/${x?.planetDetails?.name}.svg`} alt="Natal" width={25} />
+                            </div>
+                            <div className="ml-4">
+                                <p>{x.name}</p>
+                                <p className="text-sm">1st lord ⚕ 9th house</p>
+                            </div>
                         </div>
-                    </div>
+                        ))
+
+
+                    )}
+                    {apiError && apiData.length === 0 && <span>{apiError.message}</span>}
+
                 </div>
-                {apiData && (
-                    <div className="mt-4 p-4 bg-gray-700 rounded-lg text-white">
-                        <h3 className="text-lg font-semibold mb-2">Almanac Data:</h3>
-                        <pre>{JSON.stringify(apiData, null, 2)}</pre>
-                    </div>
-                )}
+
             </div>
         </CommanLayout>
     );
