@@ -172,8 +172,8 @@ const AstrologyPage = () => {
                     </div>
                     ))} */}
                     {apiData && selectedEventTypeTab == '' ? (
-                        apiData?.map(x => (<div className="bg-custom-gradient p-4 rounded-xl flex">
-                            <div key={x._id} className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center">
+                        apiData?.map(x => (<div  key={x._id}  className="bg-custom-gradient p-4 rounded-xl flex">
+                            <div className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center">
                                 <img src={`./planets/${x?.houseDetails[0].owner}.svg`} alt="Natal" width={25} />
                             </div>
                             <div className="ml-4">
