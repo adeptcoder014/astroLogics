@@ -143,6 +143,7 @@ const AstrologyPage = () => {
                         {eventTypes?.map(x => (
 
                             <div
+                                key={x.type}
                                 className={`text-white bg-${x.type.toLocaleLowerCase()}Gradient rounded-2xl flex-shrink-0 px-8 py-2 ${selectedEventTypeTab?.type === `${x?.type}` ? 'shadow-md shadow-black' : 'shadow-md'} mb-2 flex items-center`}
                                 onClick={() => (setSelectedEventTypeTab(x))}
                             >
