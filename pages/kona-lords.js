@@ -11,7 +11,8 @@ const KonaLord = () => {
     const [userDetail, setUserDetail] = useState([]);
     const [userHousesDetails, setUserHousesDetails] = useState([]);
     const [userPlanetsDetails, setUserPlanetsDetails] = useState([]);
-    const [selectedPlanet, setSelectedPlanet] = useState({name : 'planet'});
+    const [selectedPlanet, setSelectedPlanet] = useState('');
+    // const [selectedEventTypeTab, setSelectedEventTypeTab] = useState('');
 
     const [error, setError] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -37,10 +38,10 @@ const KonaLord = () => {
             try {
                 setLoading(true)
                 const userData = await getUserById(userToken);
-                console.log('userToken', userToken);
-                console.log('-----', userData?.data);
-                setUserHousesDetails(userData?.data?.houses);
-                setUserPlanetsDetails(userData?.data?.planets);
+                // console.log('userToken', userToken);
+                // console.log('-----', userData?.data);
+                setUserHousesDetails(userData?.houses);
+                setUserPlanetsDetails(userData?.planets);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -53,7 +54,7 @@ const KonaLord = () => {
 
 
 
-    console.log('userPlanetsDetails -------', userPlanetsDetails);
+    // console.log('userPlanetsDetails -------', userPlanetsDetails);
 
     const getOrdinal = (num) => {
         const ordinalSuffixes = ["th", "st", "nd", "rd"];
@@ -95,24 +96,9 @@ const KonaLord = () => {
         water: mokshaHouses,
     }
 
-    // console.log('user current kona lords ----', userKonaDetails[currentKona]);
-    // console.log('userPlanetsDetails ----', userPlanetsDetails);
-    const handleToggle = (index) => {
-        setActiveIndex(activeIndex === index ? null : index);
-    };
 
 
-    const handlePlanetEvent = async (owner) => {
-        let data = {}
-        data = userPlanetsDetails.find(x => {
-            if (x.name == owner) {
-
-                setSelectedPlanet(x);
-            }
-        })
-        return (data)
-    }
-
+    console.log(userKonaDetails[currentKona], '====');
     return (
         <CommanLayout>
             <div className="bg-gray-900 text-white min-h-screen p-6 rounded-xl">
@@ -132,13 +118,22 @@ const KonaLord = () => {
                 </ul>
 
                 <div className="mb-8">
-                    <h2 className="text-xl font-semibold mb-4 text-center">Rulers of The <strong>ARTHA</strong></h2>
-                    <h2 className="text-xl font-semibold mb-4 text-center">( 2nd 6th 10th ) </h2>
-                    <div className="flex flex-wrap sm:justify-center space-x-4">
+                    <h2 className="text-xl font-semibold mb-4 text-center">Rulers of The ARTHA</h2>
+                    {/* <h2 className="text-xl font-semibold mb-4 text-center">( 2nd 6th 10th ) </h2> */}
+                    <div className="flex  sm:justify-center space-x-4">
                         {userKonaDetails[currentKona]?.map((item, index) => (
-                            <div key={index} className="bg-custom-gradient px-2 py-2  text-center rounded-xl mt-3">
-                                <div className="bg-[#242538] px-2 py-2 sm:px-1 sm:py-4 md:px-6 md:py-6 lg:px-4 lg:py-4 shadow-slate-500 flex items-center justify-between sm:justify-around md:justify-around lg:justify-around xl:justify-around rounded-xl">
-                                    <div>
+                            <div
+                                key={index}
+                                // className="bg-custom-gradient px-2 py-2  text-center rounded-xl mt-3"
+                                className={`text-white bg-custom-gradient rounded-2xl  px-5 py-2 ${selectedPlanet === `${item?.owner}` ? 'shadow-md shadow-[black]' : 'shadow-md'} mb-2  items-center`}
+                                onClick={() => {
+                                    // console.log('item--',item);
+                                    setSelectedPlanet(item?.owner)
+                                    // console.log('selectedPlanet --',selectedPlanet);
+                                }}
+                            >
+                                <div className="bg-[#242538] px-1 py-1 sm:px-1 sm:py-1 md:px-2 md:py-2 lg:px-4 lg:py-4 shadow-slate-500 flex items-center justify-between sm:justify-around md:justify-around lg:justify-around xl:justify-around rounded-xl">
+                                    <div className='m-auto'>
                                         <img
                                             src={`./planets/${item.owner}.svg`}
                                             alt="Natal"
@@ -149,7 +144,7 @@ const KonaLord = () => {
                                 <p className="mt-2 font-bold text-xs sm:text-sm md:text-md lg:text-lg xl:text-lg">
                                     <p className="mt-2 font-bold text-xs sm:text-sm md:text-md lg:text-lg xl:text-lg">
                                         {userPlanetsDetails.filter(x => x.name === item.owner).map(x => (
-                                            <span key={x._id} className=' font-extrabold text-sm  mr-2'>
+                                            <span key={x._id} className=' font-extrabold text-xs  mr-2'>
                                                 {x.rulerOf.map((num, index) => getOrdinal(num)).join(' and ')}
 
                                             </span>
@@ -171,7 +166,7 @@ const KonaLord = () => {
                                 <div className="text-center mb-4 ">
                                     <div
                                         className="space-x-2 mb-2 mt-3 flex items-between justify-between cursor-pointer"
-                                        onClick={() => handlePlanetSubEvent(index)}
+                                        // onClick={() => handlePlanetSubEvent(index)}
                                     >
                                         <div className="flex items-center">
                                             <div className={`bg-${planet === "Saturn" ? "red" : "green"}-500 rounded-full w-2 h-2 mr-2`} />
@@ -196,7 +191,7 @@ const KonaLord = () => {
                     <div className="bg-custom-gradient p-4 rounded-xl flex">
                         <div className="flex items-center">
                             <img
-                                src={`./planets/${selectedPlanet?.name.toLocaleLowerCase()}.svg`}
+                                src={`./planets/${selectedPlanet?.toLocaleLowerCase()}.svg`}
                                 alt="Natal"
                                 width={45}
                                 className='mr-5'
