@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import CommanLayout from '../layouts/comman';
 import astroServer from '../constants/url';
+import { useRouter } from 'next/router';
 
 const AstrologyPage = () => {
+
+    const router = useRouter()
     const [selectedPlanet, setSelectedPlanet] = useState('Select Planet');
     const [transitingHouse, setTransitingHouse] = useState('Select House');
     const [apiData, setApiData] = useState([]);
@@ -78,7 +81,7 @@ const AstrologyPage = () => {
 
         // const allElementsPresent = x?.planetDetails.rulerOf.every(element => selectedEventTypeTab?.naturalHouseRulership?.includes(element));
 
-        if (x?.planetDetails.rulerOf.every(element => selectedEventTypeTab?.naturalHouseRulership?.includes(element))
+        if (x?.planetDetails.rulerOf.find(element => selectedEventTypeTab?.naturalHouseRulership?.includes(element))
         ) {
             return x
         }
@@ -144,7 +147,7 @@ const AstrologyPage = () => {
 
                             <div
                                 key={x.type}
-                                className={`text-white bg-${x.type.toLocaleLowerCase()}Gradient rounded-2xl flex-shrink-0 px-8 py-2 ${selectedEventTypeTab?.type === `${x?.type}` ? 'shadow-md shadow-black' : 'shadow-md'} mb-2 flex items-center`}
+                                className={`text-white bg-${x.type.toLocaleLowerCase()}Gradient rounded-2xl flex-shrink-0 px-5 py-2 ${selectedEventTypeTab?.type === `${x?.type}` ? 'shadow-md shadow-black' : 'shadow-md'} mb-2 flex items-center`}
                                 onClick={() => (setSelectedEventTypeTab(x))}
                             >
                                 {x.type}
@@ -172,7 +175,7 @@ const AstrologyPage = () => {
                     </div>
                     ))} */}
                     {apiData && selectedEventTypeTab == '' ? (
-                        apiData?.map(x => (<div  key={x._id}  className="bg-custom-gradient p-4 rounded-xl flex">
+                        apiData?.map(x => (<div key={x._id} className="bg-custom-gradient p-4 rounded-xl flex">
                             <div className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center">
                                 <img src={`./planets/${x?.houseDetails[0].owner}.svg`} alt="Natal" width={25} />
                             </div>
@@ -184,15 +187,20 @@ const AstrologyPage = () => {
                         ))
                     ) : (
 
-                        apiData1?.map(x => (<div key={x._id} className="bg-custom-gradient p-4 rounded-xl flex">
-                            <div  className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center">
-                                <img src={`./planets/${x?.planetDetails?.name}.svg`} alt="Natal" width={25} />
+                        apiData1?.map(x => (
+                            <div
+                                key={x._id}
+                                className="bg-custom-gradient p-4 rounded-xl flex"
+                                onClick={()=>router.push(`/user-details?id=${x._id}`)}
+                            >
+                                <div className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center">
+                                    <img src={`./planets/${x?.planetDetails?.name}.svg`} alt="Natal" width={25} />
+                                </div>
+                                <div className="ml-4">
+                                    <p>{x.name}</p>
+                                    <p className="text-sm">1st lord ⚕ 9th house</p>
+                                </div>
                             </div>
-                            <div className="ml-4">
-                                <p>{x.name}</p>
-                                <p className="text-sm">1st lord ⚕ 9th house</p>
-                            </div>
-                        </div>
                         ))
 
 

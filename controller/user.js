@@ -13,11 +13,11 @@ export const getUser = async () => {
 
 export const getUserById = async (userId) => {
     const response = await astroServer.post('/user/byId', { userId });
-
+    // console.log('resp --------->',response.data);
     if (!response) {
         throw new Error('Network response was not ok');
     }
-    return response;
+    return response?.data;
 };
 
 

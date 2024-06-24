@@ -22,26 +22,26 @@ const Detail = () => {
     const [activeIndex, setActiveIndex] = useState(null);
 
     const router = useRouter();
-        const houseOwner = router?.query['house-owner'];
-        let userToken = ''
-        if (userToken || userToken === null || userToken === '') {
-            const ISSERVER = typeof window === "undefined";
-    
-            if (!ISSERVER) {
-    
-                userToken = localStorage.getItem('accessToken');
-            }
+    const houseOwner = router?.query['house-owner'];
+    let userToken = ''
+    if (userToken || userToken === null || userToken === '') {
+        const ISSERVER = typeof window === "undefined";
+
+        if (!ISSERVER) {
+
+            userToken = localStorage.getItem('accessToken');
         }
-        
-        const { data } = useQuery('getUserNatalData', getUserById(userToken))
-        const currentTransitData = useQuery('getTransitData', getAlmanac)
-        const selectedPlanetCurrentTransitData = currentTransitData?.data?.data?.data?.find(transit=>(
-            transit.name === houseOwner
-        ))
+    }
+
+    const { data } = useQuery('getUserNatalData', getUserById(userToken))
+    const currentTransitData = useQuery('getTransitData', getAlmanac)
+    const selectedPlanetCurrentTransitData = currentTransitData?.data?.data?.data?.find(transit => (
+        transit.name === houseOwner
+    ))
     const [planet, setPlanet] = useState([]);
     const [selectedHouse, setSelectedHouse] = useState({});
     const [currentTransit, setCurrentTransit] = useState([]);
-    
+
     // console.log('----------- useR__planet ---------',data?.data[0]?.planets)
 
 
@@ -50,26 +50,26 @@ const Detail = () => {
         return planet.name == houseOwner;
     });
     const [selectedDiv, setSelectedDiv] = useState(selectedPlanetInfo?.rulerOf[0]); // State to track selected div
-    
+
     const handleUpcomingPlanetEvents = (index) => {
         setActiveIndex(activeIndex === index ? null : index);
     };
     const handlePlanetHouseRulership = (house) => {
-    console.log('----- house -----------', selectedHouse)
-    setSelectedHouse(data?.data[0]?.houses[house-1])
-        setSelectedDiv(house)   
-     };
+        console.log('----- house -----------', selectedHouse)
+        setSelectedHouse(data?.data[0]?.houses[house - 1])
+        setSelectedDiv(house)
+    };
 
-     const getOrdinal = (num) => {
-    const ordinalSuffixes = ["th", "st", "nd", "rd"];
-    const remainder = num % 100;
-    return num + (ordinalSuffixes[(remainder - 20) % 10] || ordinalSuffixes[remainder] || ordinalSuffixes[0]);
-};
-// console.log('selectedPlanetCurrentTransitData -------',selectedPlanetCurrentTransitData)
+    const getOrdinal = (num) => {
+        const ordinalSuffixes = ["th", "st", "nd", "rd"];
+        const remainder = num % 100;
+        return num + (ordinalSuffixes[(remainder - 20) % 10] || ordinalSuffixes[remainder] || ordinalSuffixes[0]);
+    };
+    // console.log('selectedPlanetCurrentTransitData -------',selectedPlanetCurrentTransitData)
 
- let planetTransitUserHouse = data?.data[0]?.houses.find(house=>(
-    house.rashi == selectedPlanetCurrentTransitData?.position?.name
- ))
+    let planetTransitUserHouse = data?.data[0]?.houses.find(house => (
+        house.rashi == selectedPlanetCurrentTransitData?.position?.name
+    ))
     return (
         <CommanLayout>
             <div className="flex flex-col  p-2">
@@ -86,15 +86,15 @@ const Detail = () => {
                         >
                             <p className="font-extrabold text-lg">1st lord</p>
                         </div> */}
-                        {selectedPlanetInfo && selectedPlanetInfo?.rulerOf?.map(house =>(
+                        {selectedPlanetInfo && selectedPlanetInfo?.rulerOf?.map(house => (
 
-                        <div
-                        key={house}
-                            className={`text-white bg-custom-gradient rounded-2xl px-8 py-2 ${selectedDiv === house ? 'shadow-md shadow-black' : 'shadow-md'} `}
-                            onClick={() => handlePlanetHouseRulership(house)}
-                        >
-                            <p className="font-extrabold text-lg">{getOrdinal(house)} lord</p>
-                        </div>
+                            <div
+                                key={house}
+                                className={`text-white bg-custom-gradient rounded-2xl px-8 py-2 ${selectedDiv === house ? 'shadow-md shadow-black' : 'shadow-md'} `}
+                                onClick={() => handlePlanetHouseRulership(house)}
+                            >
+                                <p className="font-extrabold text-lg">{getOrdinal(house)} lord</p>
+                            </div>
                         ))}
 
                     </div>
@@ -111,10 +111,10 @@ const Detail = () => {
 
                                 <div className="flex items-center justify-between">
                                     <img
-                                        src={`./zodiac/${selectedHouse?.rashi ? selectedHouse?.rashi :  data?.data[0]?.houses[selectedPlanetInfo?.rulerOf[0]-1].rashi}.png`}
+                                        src={`./zodiac/${selectedHouse?.rashi ? selectedHouse?.rashi : data?.data[0]?.houses[selectedPlanetInfo?.rulerOf[0] - 1].rashi}.png`}
                                         alt="Natal"
                                         width={33}
-                                    className='mr-2'
+                                        className='mr-2'
                                     />
                                     <p className='text-[#8A95BB] text-sm font-extrabold'>{selectedHouse?.gender} Aspect</p>
                                 </div>

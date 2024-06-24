@@ -54,7 +54,7 @@ export const CurrentTransit = () => {
 
 
 
-    console.log('-------------positions--------', data?.data);
+    // console.log('-------------positions--------', data?.data);
     return (
         <>
             <div className="items-center">
