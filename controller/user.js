@@ -48,8 +48,22 @@ export const getUserNatalPlanets = async (userId) => {
 };
 
 
+
+export const getUserEvents = async (userId) => {
+    const response = await astroServer.post(`/user/event/get-byId`,{userId});
+    if (!response) {
+        throw new Error('Network response was not ok');
+    }
+    // console.log('rsponse --',response.data);
+    return response?.data;
+};
+
+
+
+
 export default {
     getUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    getUserEvents
 };

@@ -3,6 +3,8 @@ import CommanLayout from '../layouts/comman';
 import { userContext } from '../context/userContext';
 import { getUserById } from '../controller/user';
 import { useRouter } from "next/router";
+import { useQuery } from "react-query"
+import { getUserEvents } from "../controller/user"
 
 const KonaLord = () => {
     const [activeIndex, setActiveIndex] = useState(null);
@@ -96,9 +98,10 @@ const KonaLord = () => {
         water: mokshaHouses,
     }
 
+    // const { data } = useQuery(['getUserEvents'], getUserEvents(userToken))
+    const { data } = useQuery('getUserEvents', getUserEvents(userToken))
 
-
-    console.log(userKonaDetails[currentKona], '====');
+    console.log('event -----', data,userToken);
     return (
         <CommanLayout>
             <div className="bg-gray-900 text-white min-h-screen p-6 rounded-xl">
@@ -166,7 +169,7 @@ const KonaLord = () => {
                                 <div className="text-center mb-4 ">
                                     <div
                                         className="space-x-2 mb-2 mt-3 flex items-between justify-between cursor-pointer"
-                                        // onClick={() => handlePlanetSubEvent(index)}
+                                    // onClick={() => handlePlanetSubEvent(index)}
                                     >
                                         <div className="flex items-center">
                                             <div className={`bg-${planet === "Saturn" ? "red" : "green"}-500 rounded-full w-2 h-2 mr-2`} />

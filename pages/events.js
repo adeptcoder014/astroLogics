@@ -90,7 +90,6 @@ const AstrologyPage = () => {
         // return foundPlanet;
     });
 
-    console.log('---- apiData1 -----', apiData1);
     return (
         <CommanLayout>
             <div className="p-4 max-w-sm mx-auto bg-gray-800 text-white rounded-lg shadow-md">
