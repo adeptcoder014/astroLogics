@@ -36,7 +36,6 @@ export const CurrentTransit = () => {
     const [positions, setPositions] = useState(positionTemplate);
 
     const formattedDate = selectedDate.toISOString().slice(0, 10);
-
     const { data } = useQuery(['getTransitData', formattedDate], () => getAlmanac(formattedDate));
 
     useEffect(() => {
@@ -54,7 +53,7 @@ export const CurrentTransit = () => {
 
 
 
-    // console.log('-------------positions--------', data?.data);
+    console.log('-------------positions--------', data?.data);
     return (
         <>
             <div className="items-center">
