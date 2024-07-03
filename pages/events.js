@@ -81,7 +81,7 @@ const AstrologyPage = () => {
 
         // const allElementsPresent = x?.planetDetails.rulerOf.every(element => selectedEventTypeTab?.naturalHouseRulership?.includes(element));
 
-        if (x?.planetDetails.rulerOf.find(element => selectedEventTypeTab?.naturalHouseRulership?.includes(element))
+        if (x?.planetDetails?.rulerOf?.find(element => selectedEventTypeTab?.naturalHouseRulership?.includes(element))
         ) {
             return x
         }
@@ -90,6 +90,7 @@ const AstrologyPage = () => {
         // return foundPlanet;
     });
 
+    console.log('---- apiData1 -----', apiData);
     return (
         <CommanLayout>
             <div className="p-4 max-w-sm mx-auto bg-gray-800 text-white rounded-lg shadow-md">
@@ -174,9 +175,9 @@ const AstrologyPage = () => {
                     </div>
                     ))} */}
                     {apiData && selectedEventTypeTab == '' ? (
-                        apiData?.map(x => (<div key={x._id} className="bg-custom-gradient p-4 rounded-xl flex">
+                        apiData && apiData?.map(x => (<div key={x._id} className="bg-custom-gradient p-4 rounded-xl flex">
                             <div className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center">
-                                <img src={`./planets/${x?.houseDetails[0].owner}.svg`} alt="Natal" width={25} />
+                                <img src={`./planets/${x?.houseDetails[0]?.owner}.svg`} alt="Natal" width={25} />
                             </div>
                             <div className="ml-4">
                                 <p>{x.name}</p>
