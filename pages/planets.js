@@ -6,20 +6,9 @@ import CommanLayout from "../layouts/comman";
 import { PlanetCard } from "../components/planetCard";
 import { useQuery } from "react-query";
 import { getUser } from "../controller/user";
+import CandlestickChart from "../components/priceChart";
 
 
-
-// {
-//     "_id": "654e47ffa520f8a94670819c",
-//     "name": "moon",
-//     "longitude": "27 ♑ 45.74979272388987",
-//     "rulerOf": [
-//         7
-//     ],
-//     "isIn": "1",
-//     "landLord": "saturn",
-//     "__v": 0
-// }
 
 
 
@@ -81,7 +70,7 @@ const LifeArenaScreen = () => {
     const { data } = useQuery('getUserNatalData', getUser)
 
 
-  
+
 
 
 
@@ -95,8 +84,8 @@ const LifeArenaScreen = () => {
             if (planet.name == info.name) {
                 info.link = '/home'
                 info.isIn = planet.isIn
-                info.element =data?.data[0]?.houses[parseInt(planet.isIn)-1]?.element
-                info.houseSIgn = data?.data[0]?.houses[parseInt(planet.isIn)-1]?.rashi
+                info.element = data?.data[0]?.houses[parseInt(planet.isIn) - 1]?.element
+                info.houseSIgn = data?.data[0]?.houses[parseInt(planet.isIn) - 1]?.rashi
 
                 planet.rulerOf.map(house =>
                     info?.rulerOf?.push({
@@ -113,6 +102,7 @@ const LifeArenaScreen = () => {
     return (
         <>
             <CommanLayout>
+                <CandlestickChart />
 
                 <h2 className="text-xl font-semibold mb-4 text-center">Upcoming Saturn Event</h2>
 

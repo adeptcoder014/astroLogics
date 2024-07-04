@@ -7,8 +7,14 @@ export default function Document() {
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
                 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet" />
+
+
+
+                <script src='https://cdn.plot.ly/plotly-2.32.0.min.js'></script>
+                <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
             </Head>
             <body>
+            <div id='myDiv'></div>
                 <Main />
                 <NextScript />
             </body>
