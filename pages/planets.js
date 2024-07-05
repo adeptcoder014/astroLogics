@@ -7,6 +7,7 @@ import { PlanetCard } from "../components/planetCard";
 import { useQuery } from "react-query";
 import { getUser } from "../controller/user";
 import CandlestickChart from "../components/priceChart";
+import { PlanetaryHours } from "../components/planetaryHours";
 
 
 
@@ -102,6 +103,11 @@ const LifeArenaScreen = () => {
     return (
         <>
             <CommanLayout>
+
+
+
+                <PlanetaryHours />
+
                 <CandlestickChart />
 
                 <h2 className="text-xl font-semibold mb-4 text-center">Upcoming Saturn Event</h2>

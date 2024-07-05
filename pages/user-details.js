@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import CommanLayout from '../layouts/comman';
 import { CurrentTransit } from '../components/currentTransit';
 import { getUserById } from '../controller/user';
+import CandlestickChart from '../components/priceChart';
 
 const UserDetail = () => {
 
@@ -232,6 +233,7 @@ const UserDetail = () => {
                     <div className="items-center bg-[#3D3E4F] rounded-xl">
 
                         <CurrentTransit />
+
                     </div>
                 </div>
 
@@ -254,6 +256,12 @@ const UserDetail = () => {
                     </label>
                     <span>Obstructive</span>
                 </div> */}
+
+
+                <CandlestickChart
+                    planetaryEvent={selectedPlanetTab}
+                />
+
 
                 <h3 className="text-lg font-semibold">Find People</h3>
                 <div className="mb-4">

@@ -2,19 +2,31 @@ import React, { useEffect, useState } from 'react';
 import { Chart } from 'react-google-charts';
 import Papa from 'papaparse'; // Using PapaParse for CSV parsing
 
-function CandlestickChart() {
+function CandlestickChart({planetaryEvent}) {
     const [ohlcData, setOhlcData] = useState([]);
     const [numDays, setNumDays] = useState(30); // State for number of days, defaulting to 30
     const [customDays, setCustomDays] = useState(30); // State for custom number of days
-    const [selectedAsset, setSelectedAsset] = useState('Pound'); // Default selected asset
+    const [selectedAsset, setSelectedAsset] = useState('gbpusd'); // Default selected asset
 
+
+
+
+    const planetSymbol = {
+        sun: '☉',
+        moon: '☾',
+        mercury: '☿️',
+        venus: '♀️',
+        mars: '♂️',
+        jupiter: '♃',
+        saturn: '♄',
+    }
     const importantEvents = [
         {
             'event': 'sun @ 150°',
             'eventDate': new Date('2024-06-24'),
         },
         {
-            'event': 'moon @ 45°',
+            'event': 'mercury @ 45°',
             'eventDate': new Date('2024-07-01'),
         },
         {
@@ -22,6 +34,19 @@ function CandlestickChart() {
             'eventDate': new Date('2024-07-04'),
         },
     ];
+    function replacePlanetSymbols(eventString) {
+        // console.log('eventString', eventString);
+        // Iterate through each planet and replace its name with symbol
+        Object.keys(planetSymbol).forEach(planet => {
+            eventString = eventString.replace(new RegExp(planet), planetSymbol[planet]);
+        });
+        return eventString;
+    }
+
+    // Modify each event's 'event' field to use symbols
+    importantEvents.forEach(event => {
+        event['event'] = replacePlanetSymbols(event['event']);
+    });
 
     useEffect(() => {
         async function fetchCSVData() {
@@ -58,28 +83,29 @@ function CandlestickChart() {
 
     return (
         <div>
-            <div className='flex flex-col items-center justify-center'>
-                <p className='font-white font-bold'>
-                    Number of Days:
-                </p>
-                <select
-                    className='m-2 w-1/2'
-                    value={numDays}
-                    onChange={(e) => {
-                        const value = parseInt(e.target.value);
-                        if (!isNaN(value)) {
-                            setNumDays(value);
-                        }
-                    }}
-                >
-                    <option value={7}>7 days</option>
-                    <option value={14}>14 days</option>
-                    <option value={30}>30 days</option>
-                    <option value={90}>3 months</option>
-                    <option value={365}>1 year</option>
-                    <option value={customDays}>Custom</option>
-                </select>
-                {numDays === customDays && (
+            <div className='flex items-center justify-center'>
+                <div className='flex flex-col items-center justify-center'>
+                    <p className='font-white font-bold'>
+                        Number of Days:
+                    </p>
+                    <select
+                        className='m-2 w-1/2 text-gray-800'
+                        value={numDays}
+                        onChange={(e) => {
+                            const value = parseInt(e.target.value);
+                            if (!isNaN(value)) {
+                                setNumDays(value);
+                            }
+                        }}
+                    >
+                        <option value={7}>7 days</option>
+                        <option value={14}>14 days</option>
+                        <option value={30}>30 days</option>
+                        <option value={90}>3 months</option>
+                        <option value={365}>1 year</option>
+                        <option value={customDays}>Custom</option>
+                    </select>
+                    {/* {numDays === customDays && (
                     <input
                         className='m-2 w-1/2'
                         type="number"
@@ -93,22 +119,25 @@ function CandlestickChart() {
                         min={1}
                         max={1000} // Adjust max as per your application requirements
                     />
-                )}
+                )} */}
+                </div>
+                <div className='flex flex-col items-center justify-center'>
+                    <p className='font-white font-bold'>
+                        Select Asset:
+                    </p>
+                    <select
+                        className=' text-gray-800'
+                        value={selectedAsset}
+                        onChange={(e) => setSelectedAsset(e.target.value)}
+                    >
+                        <option value="gbpusd">GBP/USD</option>
+                        <option value="eurusd">EUR/USD</option>
+                        <option value="xauusd">XAU/USD</option>
+                        {/* Add more options for other assets as needed */}
+                    </select>
+                </div>
             </div>
-            <div className='flex flex-col items-center justify-center'>
-                <p className='font-white font-bold'>
-                    Select Asset:
-                </p>
-                <select
-                    className='m-2 w-1/2'
-                    value={selectedAsset}
-                    onChange={(e) => setSelectedAsset(e.target.value)}
-                >
-                    <option value="GBP/USD">GBP/USD</option>
-                    <option value="EUR/USD">EUR/USD</option>
-                    {/* Add more options for other assets as needed */}
-                </select>
-            </div>
+
             <div className='flex items-center justify-center shadow-lg m-2 rounded-xl bg-[white]'>
                 <Chart
                     width={'100%'}
