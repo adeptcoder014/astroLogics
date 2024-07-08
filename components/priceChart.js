@@ -1,15 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { Chart } from 'react-google-charts';
 import Papa from 'papaparse'; // Using PapaParse for CSV parsing
+import { useQuery } from "react-query"
+import { getUserById } from '../controller/user';
+import astroServer from '../constants/url';
+import ephemerisServer from '../constants/urlPython';
+import { PlanetaryEventAccordion } from './planetaryEventAccordion';
 
-function CandlestickChart({planetaryEvent}) {
+function CandlestickChart({ planetaryEvent }) {
+    const [selectedPlanetTab, setSelectedPlanetTab] = useState('moon');
+    const [planetEvent, setPlanetEvent] = useState([]);
+
     const [ohlcData, setOhlcData] = useState([]);
     const [numDays, setNumDays] = useState(30); // State for number of days, defaulting to 30
     const [customDays, setCustomDays] = useState(30); // State for custom number of days
     const [selectedAsset, setSelectedAsset] = useState('gbpusd'); // Default selected asset
+    let userToken = ''
+    if (userToken || userToken === null || userToken === '') {
+        const ISSERVER = typeof window === "undefined";
+
+        if (!ISSERVER) {
+
+            userToken = localStorage.getItem('accessToken');
+        }
+    }
+    let userId = userToken
 
 
-
+    const { data, isLoading } = useQuery(['getUserNatalDataById', userId], () => getUserById(userId));
 
     const planetSymbol = {
         sun: '☉',
@@ -48,6 +66,23 @@ function CandlestickChart({planetaryEvent}) {
         event['event'] = replacePlanetSymbols(event['event']);
     });
 
+
+    // useEffect(() => {
+    //     togglePlanetTab()
+    // }, [selectedPlanetTab])
+
+
+    const togglePlanetTab = async (planet) => {
+        setPlanetEvent([])
+        setSelectedPlanetTab(planet)
+        const response = await ephemerisServer.get(`/get-planet-transit-py?planet=${planet}`);
+
+        setPlanetEvent(response?.data?.data)
+
+    }
+
+
+
     useEffect(() => {
         async function fetchCSVData() {
             try {
@@ -81,8 +116,38 @@ function CandlestickChart({planetaryEvent}) {
         fetchCSVData();
     }, [numDays, selectedAsset]); // Depend on numDays and selectedAsset to refetch data when they change
 
+    // console.log('selectedPlanetTab', selectedPlanetTab);
+    console.log('----------- planetEvent --------->', planetEvent);
+
     return (
         <div>
+
+
+            <h2 className="text-xl font-bold">Show Transit</h2>
+
+            <div className='bg-[#2D2E44] rounded-xl p-2 shadow-md shadow-black mb-5'>
+                <div className='flex overflow-x-scroll space-x-4 scrollbar-hide'>
+                    {data?.planets?.map((x, index) => (
+                        <div
+                            key={index}
+                            className={`text-white bg-custom-gradient rounded-2xl flex-shrink-0 px-8 py-2 ${selectedPlanetTab === `${x?.name}` ? 'shadow-md shadow-black' : 'shadow-md'}  mb-2 flex items-center`}
+                            onClick={() => togglePlanetTab(x?.name)}
+                        >
+                            <img src={`./planets/${x?.name}.svg`} alt="Natal" width={x.planet == 'saturn' ? 45 : 25} />
+
+                            {/* <p className="font-extrabold text-lg ml-2">{x?.name}</p> */}
+                            {/* <p className="font-extrabold text-lg ml-2">{x?.rulerOf}</p><p>Lord</p> */}
+                            {/* <p className="font-extrabold text-lg ml-2">
+                                {x?.rulerOf?.join(' and ')}
+                            </p> */}
+                            <p className='font-extrabold text-lg ml-1'>{x.name}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+
+
             <div className='flex items-center justify-center'>
                 <div className='flex flex-col items-center justify-center'>
                     <p className='font-white font-bold'>
@@ -251,7 +316,7 @@ function CandlestickChart({planetaryEvent}) {
                                     line.setAttribute('y1', chartArea.top);
                                     line.setAttribute('y2', chartArea.top + chartArea.height);
                                     line.setAttribute('stroke', 'orange');
-                                    line.setAttribute('stroke-width', .3);
+                                    line.setAttribute('stroke-width', .5);
                                     svg.appendChild(line);
 
                                     // Adjust yOffset to prevent label overlap
@@ -272,6 +337,10 @@ function CandlestickChart({planetaryEvent}) {
                     ]}
                 />
             </div>
+
+            <PlanetaryEventAccordion
+                planetEvent={planetEvent}
+            />
         </div>
     );
 }

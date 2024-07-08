@@ -8,6 +8,7 @@ import { useQuery } from "react-query";
 import { getUser } from "../controller/user";
 import CandlestickChart from "../components/priceChart";
 import { PlanetaryHours } from "../components/planetaryHours";
+import { PlanetaryEventAccordion } from "../components/planetaryEventAccordion";
 
 
 
@@ -98,17 +99,21 @@ const LifeArenaScreen = () => {
         })
     })
 
-    // console.log('planetInfo ===', planetInfo);
-    // console.log('planetInfo ===', data?.data[0]?.houses[3]);
     return (
         <>
             <CommanLayout>
 
 
 
-                <PlanetaryHours />
+                {/* <PlanetaryHours /> */}
 
                 <CandlestickChart />
+
+
+
+
+
+
 
                 <h2 className="text-xl font-semibold mb-4 text-center">Upcoming Saturn Event</h2>
 
