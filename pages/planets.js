@@ -105,7 +105,7 @@ const LifeArenaScreen = () => {
 
 
 
-                {/* <PlanetaryHours /> */}
+                <PlanetaryHours />
 
                 <CandlestickChart />
 
