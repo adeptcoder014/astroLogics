@@ -13,7 +13,8 @@ function CandlestickChart({ planetaryEvent }) {
     const [customDays, setCustomDays] = useState(30); // State for custom number of days
     const [selectedAsset, setSelectedAsset] = useState('gbpusd'); // Default selected asset
 
-
+    const [selectedPlanetTab, setSelectedPlanetTab] = useState('moon');
+    const [importantEvents, setImportantEvents] = useState([])
 
     const planetSymbol = {
         sun: '☉',
@@ -24,20 +25,20 @@ function CandlestickChart({ planetaryEvent }) {
         jupiter: '♃',
         saturn: '♄',
     }
-    const importantEvents = [
-        {
-            'event': 'sun @ 150°',
-            'eventDate': new Date('2024-06-24'),
-        },
-        {
-            'event': 'mercury @ 45°',
-            'eventDate': new Date('2024-07-01'),
-        },
-        {
-            'event': 'sun ☌ moon',
-            'eventDate': new Date('2024-07-04'),
-        },
-    ];
+    // const importantEvents = [
+    //     {
+    //         'event': 'sun @ 150°',
+    //         'eventDate': new Date('2024-06-24'),
+    //     },
+    //     {
+    //         'event': 'mercury @ 45°',
+    //         'eventDate': new Date('2024-07-01'),
+    //     },
+    //     {
+    //         'event': 'sun ☌ moon',
+    //         'eventDate': new Date('2024-07-04'),
+    //     },
+    // ];
     function replacePlanetSymbols(eventString) {
         // console.log('eventString', eventString);
         // Iterate through each planet and replace its name with symbol
@@ -48,9 +49,6 @@ function CandlestickChart({ planetaryEvent }) {
     }
 
     // Modify each event's 'event' field to use symbols
-    importantEvents.forEach(event => {
-        event['event'] = replacePlanetSymbols(event['event']);
-    });
 
 
     // useEffect(() => {
@@ -94,7 +92,15 @@ function CandlestickChart({ planetaryEvent }) {
         fetchCSVData();
     }, [numDays, selectedAsset]); // Depend on numDays and selectedAsset to refetch data when they change
 
-    // console.log('selectedPlanetTab', selectedPlanetTab);
+    console.log('importantEvents -----------', importantEvents);
+
+
+
+    importantEvents?.forEach(event => {
+        event['event'] = replacePlanetSymbols(event['name']);
+    });
+
+
 
     return (
         <div>
@@ -272,7 +278,7 @@ function CandlestickChart({ planetaryEvent }) {
                                     line.setAttribute('y1', chartArea.top);
                                     line.setAttribute('y2', chartArea.top + chartArea.height);
                                     line.setAttribute('stroke', 'orange');
-                                    line.setAttribute('stroke-width', .5);
+                                    line.setAttribute('stroke-width', .9);
                                     svg.appendChild(line);
 
                                     // Adjust yOffset to prevent label overlap
@@ -282,7 +288,7 @@ function CandlestickChart({ planetaryEvent }) {
                                     text.setAttribute('fill', 'gray');
                                     text.setAttribute('font-size', '12px');
                                     // text.setAttribute('margin', '8px');
-                                    text.textContent = event.event;
+                                    text.textContent = event?.event;
                                     svg.appendChild(text);
 
                                     // Increment yOffset for the next label
@@ -296,7 +302,11 @@ function CandlestickChart({ planetaryEvent }) {
 
 
 
-            <PlanetaryEventAccordion />
+            <PlanetaryEventAccordion
+                setSelectedPlanetTab={setSelectedPlanetTab}
+                selectedPlanetTab={selectedPlanetTab}
+                setImportantEvents={setImportantEvents}
+            />
         </div>
     );
 }

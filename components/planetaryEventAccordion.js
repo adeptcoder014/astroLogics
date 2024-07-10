@@ -3,13 +3,16 @@ import { Loader } from "./loader";
 import { useQuery } from "react-query"
 import { getUserById } from '../controller/user';
 import ephemerisServer from "../constants/urlPython";
-export const PlanetaryEventAccordion = ({ }) => {
+export const PlanetaryEventAccordion = ({
+    setSelectedPlanetTab,
+    selectedPlanetTab,
+    setImportantEvents }) => {
 
 
     // const [planetEvents, setPlanetEvents] = useState(planetEvent);
     // console.log('-----------planetEvent --------->', planetEvent[0]);
     const [activeIndex, setActiveIndex] = useState(null);
-    const [selectedPlanetTab, setSelectedPlanetTab] = useState('moon');
+    // const [selectedPlanetTab, setSelectedPlanetTab] = useState('moon');
     const [planetEvent, setPlanetEvent] = useState([]);
 
 
@@ -24,7 +27,6 @@ export const PlanetaryEventAccordion = ({ }) => {
     }
     let userId = userToken
     const { data, isLoading } = useQuery(['getUserNatalDataById', userId], () => getUserById(userId));
-
 
     const handlePlanetSubEvent = (index) => {
         setActiveIndex(activeIndex === index ? null : index);
@@ -44,8 +46,10 @@ export const PlanetaryEventAccordion = ({ }) => {
     const togglePlanetTab = async (planet) => {
         setPlanetEvent([])
         setSelectedPlanetTab(planet)
+        
         const response = await ephemerisServer.get(`/get-planet-transit-py?planet=${planet}`);
-        console.log('response ----->', response?.data?.data);
+        // console.log('response ----->', response?.data?.data);
+        setImportantEvents(response?.data?.data)
         setPlanetEvent(response?.data?.data)
 
     }
@@ -63,7 +67,7 @@ export const PlanetaryEventAccordion = ({ }) => {
         // return filteredEvents;
     };
     let x = data?.houses.find(x => { if (x.rashi == 'aries') { return (x?.bhava) } })
-    console.log('-----------   user --------->', x);
+    // console.log('-----------   user --------->', x);
 
     return (
         <div className="mb-8">
