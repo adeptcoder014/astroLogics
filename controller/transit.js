@@ -1,5 +1,6 @@
 import axios from "axios";
 import astroServer from "../constants/url";
+import ephemerisServer from "../constants/urlPython";
 import { getCurrentDateTime } from "../util/misc";
 
 export const getAlmanac = async (formattedDate) => {
@@ -17,6 +18,25 @@ export const getAlmanac = async (formattedDate) => {
     }
     return response;
 };
+
+
+
+export const getAlmanac_py = async (formattedDate) => {
+
+
+    // const currentDateTime = getCurrentDateTime()
+    let datObj = {
+        date: formattedDate,
+        time: '12:00'
+    }
+    const response = await ephemerisServer.post('/get-planet-byDateTime', datObj);
+
+    if (!response) {
+        throw new Error('Network response was not ok');
+    }
+    return response;
+};
+
 
 
 

@@ -9,6 +9,7 @@ import { getUser } from "../controller/user";
 import CandlestickChart from "../components/priceChart";
 import { PlanetaryHours } from "../components/planetaryHours";
 import { PlanetaryEventAccordion } from "../components/planetaryEventAccordion";
+import { LocalTransit } from "../components/localTransit";
 
 
 
@@ -103,8 +104,11 @@ const LifeArenaScreen = () => {
         <>
             <CommanLayout>
 
+                <div className="bg-slate-100">
+                    <h2 className=" text-gray-900 font-extrabold p-2 text-center">Lucknow current transit</h2>
+                    <LocalTransit />
 
-
+                </div>
                 <PlanetaryHours />
 
                 <CandlestickChart />
@@ -116,14 +120,14 @@ const LifeArenaScreen = () => {
 
 
                 <h2 className="text-xl font-semibold mb-4 text-center">Upcoming Saturn Event</h2>
-
+                {/* 
                 {planetInfo.map(item => (
                     // <div key={item} className="planet-card-container">
 
 
                     <PlanetCard key={item.kona} data={item} />
                     // </div>
-                ))}
+                ))} */}
             </CommanLayout>
         </>
     )

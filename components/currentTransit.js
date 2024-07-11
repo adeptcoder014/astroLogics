@@ -56,13 +56,11 @@ export const CurrentTransit = () => {
     console.log('-------------positions--------', data?.data);
     return (
         <>
-            <div className="items-center">
-                <DatePicker
+              <DatePicker
                     selected={selectedDate}
                     onChange={(date) => setSelectedDate(date)}
                     dateFormat="yyyy-MM-dd"
                 />
-            </div>
             <SineWave
                 sunPosition={positions[0]}
                 moonPosition={positions[1]}
