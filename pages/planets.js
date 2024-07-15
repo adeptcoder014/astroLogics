@@ -110,7 +110,7 @@ const LifeArenaScreen = () => {
                     <LocalTransit />
 
                 </div>
-                <LocalTransitChart/>
+                {/* <LocalTransitChart/> */}
                 
                 {/* <PlanetaryHours /> */}
 

@@ -8,21 +8,22 @@ import ephemerisServer from '../constants/urlPython';
 
 export const LocalTransit = () => {
     const [positions, setPositions] = useState([]);
+    const [risingSign, setRisingSign] = useState('aries');
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [selectedPlanet, setSelectedPlanet] = useState(null);
     const [location, setLocation] = useState('london');
-
     const calculatePosition = (angle, risingHouse) => {
         const diameter = 194; // Diameter of the circle
         const radius = diameter / 2; // Radius of the circle
         const houseAngleShift = (risingHouse - 1) * 30; // Each house is 30 degrees
-        const adjustedAngle = (angle + houseAngleShift + 180) % 360; // Adjust angle to start from the left side (0 degrees) and include house shift
+        const adjustedAngle = (angle - houseAngleShift + 270) % 360; // Adjust angle to start from the left side (0 degrees) and include house shift
         const radian = (adjustedAngle * Math.PI) / 180; // Convert angle to radians
         const x = radius * Math.cos(radian); // Calculate x-coordinate
         const y = radius * Math.sin(radian); // Calculate y-coordinate
         return { x, y }; // Return object with x and y coordinates
     };
     
+
 
     // Function to determine the starting angle based on rising house
     const calculateStartAngle = (risingHouse) => {
@@ -35,7 +36,7 @@ export const LocalTransit = () => {
     const { data, isLoading } = useQuery(['getTransitData_py', formattedDate], () => getAlmanac_py(formattedDate));
 
 
-    const  getLocationWiseHouses = async () => {
+    const getLocationWiseHouses = async () => {
         const currentDateTime = getCurrentDateTime()
 
         const cityPositionObj = {
@@ -57,16 +58,16 @@ export const LocalTransit = () => {
             }
         }
 
-        
-    
+
+
         let datObj = {
             lat: cityPositionObj[location]['latitude'],
             long: cityPositionObj[location]['longitude'],
             date: currentDateTime?.date,
             time: currentDateTime?.time
         }
-        const response =  await ephemerisServer.post('/houses', datObj);
-        console.log('lagna ==========--', response?.data?.data[0]);
+        const response = await ephemerisServer.post('/houses', datObj);
+        setRisingSign(response?.data?.data[0])
     }
 
     useEffect(() => {
@@ -103,12 +104,7 @@ export const LocalTransit = () => {
         jupiter: '♃',
         saturn: '♄',
     };
-
-    // Determine the rising house dynamically
-    const risingHouse = 10; // Replace this with the actual rising house calculation
-
-    const startAngle = calculateStartAngle(risingHouse);
-
+console.log(risingSign);
     return (
         <>
             <div className='bg-gray-400'>
@@ -144,18 +140,21 @@ export const LocalTransit = () => {
 
 
 
-            <div className="p-10 relative flex justify-center items-center bg-gradient-to-b from-blue-900 to-blue-500">
+            <div className="relative flex justify-center items-center bg-gradient-to-b from-blue-900 to-blue-500">
                 <div
-                    className="relative w-64 h-64 rounded-full flex items-center justify-center"
+                    className=" relative rounded-full flex items-center justify-center"
                     style={{
-                        backgroundImage: `url('./earth-texture.png')`, // Replace with your Earth-like texture
+                        backgroundImage: `url('./lagnaBaseChart/${risingSign['name']}Lagna.png')`, // Replace with your Earth-like texture
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
+                        width: 300,
+                        height: 300 ,
                     }}
                 >
                     {positions?.map((pos, index) => {
-                        const { x, y } = calculatePosition(pos.absolutePosition,0);
+                        // const { x, y } = calculatePosition(pos.absolutePosition, risingSign['houseNumber']);
+                        const { x, y } = calculatePosition(pos.absolutePosition, 1 );
                         // console.log(pos.planet, '---->', x, y);
                         // const { x, y } = calculatePosition(pos.absolutePosition, startAngle);
 
@@ -171,8 +170,8 @@ export const LocalTransit = () => {
                                         backgroundPosition: 'center',
                                         backgroundRepeat: 'no-repeat',
                                         cursor: 'pointer',
-                                        width: 22,
-                                        height: 22,
+                                        width: 20,
+                                        height: 20,
                                     }}
                                 />
                                 {selectedPlanet === pos.planet && (
