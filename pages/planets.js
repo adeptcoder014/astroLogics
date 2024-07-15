@@ -10,6 +10,7 @@ import CandlestickChart from "../components/priceChart";
 import { PlanetaryHours } from "../components/planetaryHours";
 import { PlanetaryEventAccordion } from "../components/planetaryEventAccordion";
 import { LocalTransit } from "../components/localTransit";
+import { LocalTransitChart } from "../components/localTransitSvg";
 
 
 
@@ -109,9 +110,11 @@ const LifeArenaScreen = () => {
                     <LocalTransit />
 
                 </div>
-                <PlanetaryHours />
+                <LocalTransitChart/>
+                
+                {/* <PlanetaryHours /> */}
 
-                <CandlestickChart />
+                {/* <CandlestickChart /> */}
 
 
 

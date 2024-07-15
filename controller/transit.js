@@ -38,6 +38,27 @@ export const getAlmanac_py = async (formattedDate) => {
 };
 
 
+export const getLocationHouses_py = async (formattedDate) => {
+
+
+    const currentDateTime = getCurrentDateTime()
+    console.log('formattedDate --', formattedDate);
+  
+    let datObj = {
+        lat: lat,
+        long: long,
+        date: currentDateTime.date,
+        time: currentDateTime.time
+    }
+    const response = await ephemerisServer.post('/houses', datObj);
+    console.log('response ==========--', response);
+
+    if (!response) {
+        throw new Error('Network response was not ok');
+    }
+    return response;
+};
+
 
 
 export const getPlanetAlmanac = async (planet) => {
