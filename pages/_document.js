@@ -12,7 +12,7 @@ export default function Document() {
 
                 <script src='https://cdn.plot.ly/plotly-2.32.0.min.js' async ></script>
                 <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js' async ></script>
-                <script src="https://unpkg.com/@astrodraw/astrochart"></script>
+                <script src="https://unpkg.com/@astrodraw/astrochart" async></script>
             </Head>
             <body>
                 <div id='myDiv'></div>
