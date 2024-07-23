@@ -11,6 +11,7 @@ import { PlanetaryHours } from "../components/planetaryHours";
 import { PlanetaryEventAccordion } from "../components/planetaryEventAccordion";
 import { LocalTransit } from "../components/localTransit";
 import { LocalTransitChart } from "../components/localTransitSvg";
+import AstroDrawComponent from "../components/AstroDrawComponent";
 
 
 
@@ -64,7 +65,25 @@ const LifeArenaScreen = () => {
     ]
 
     const router = useRouter()
+    var data_ = {
+        "planets": {
+            "Pluto": [63],
+            "Neptune": [110],
+            "Uranus": [318],
+            "Saturn": [201],
+            "Jupiter": [192],
+            "Mars": [210],
+            "Moon": [268],
+            "Sun": [281],
+            "Mercury": [312],
+            "Venus": [330]
+        },
+        "cusps": [296, 350, 30, 56, 75, 94, 116, 170, 210, 236, 255, 274]
+    };
+    // var chart = new Chart('paper', 800, 800);
 
+
+    // var radix = chart.radix(data_);
     //============================================================
     const [planet, setPlanet] = useState({})
     const [house, setHouse] = useState({})
@@ -111,7 +130,7 @@ const LifeArenaScreen = () => {
 
                 </div>
                 {/* <LocalTransitChart/> */}
-                
+
                 {/* <PlanetaryHours /> */}
 
                 {/* <CandlestickChart /> */}
@@ -131,6 +150,7 @@ const LifeArenaScreen = () => {
                     <PlanetCard key={item.kona} data={item} />
                     // </div>
                 ))} */}
+                <AstroDrawComponent/>
             </CommanLayout>
         </>
     )

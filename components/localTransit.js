@@ -104,7 +104,6 @@ export const LocalTransit = () => {
         jupiter: '♃',
         saturn: '♄',
     };
-console.log(risingSign);
     return (
         <>
             <div className='bg-gray-400'>
