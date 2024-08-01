@@ -124,11 +124,11 @@ const LifeArenaScreen = () => {
         <>
             <CommanLayout>
 
-                <div className="bg-slate-100">
+                {/* <div className="bg-slate-100">
                     <h2 className=" text-gray-900 font-extrabold p-2 text-center">Lucknow current transit</h2>
                     <LocalTransit />
 
-                </div>
+                </div> */}
                 {/* <LocalTransitChart/> */}
 
                 {/* <PlanetaryHours /> */}
