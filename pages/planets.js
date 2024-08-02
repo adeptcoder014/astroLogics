@@ -127,13 +127,12 @@ const LifeArenaScreen = () => {
                 {/* <div className="bg-slate-100">
                     <h2 className=" text-gray-900 font-extrabold p-2 text-center">Lucknow current transit</h2>
                     <LocalTransit />
+                </div>
+                <LocalTransitChart/>
 
-                </div> */}
-                {/* <LocalTransitChart/> */}
+                <PlanetaryHours />
 
-                {/* <PlanetaryHours /> */}
-
-                {/* <CandlestickChart /> */}
+                <CandlestickChart />
 
 
 
@@ -142,7 +141,7 @@ const LifeArenaScreen = () => {
 
 
                 <h2 className="text-xl font-semibold mb-4 text-center">Upcoming Saturn Event</h2>
-                {/* 
+                
                 {planetInfo.map(item => (
                     // <div key={item} className="planet-card-container">
 

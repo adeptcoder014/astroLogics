@@ -1,106 +1,237 @@
-import React, { useEffect } from 'react';
-// import astrochart from '@astrodraw/astrochart';
+import React, { useEffect, useState } from 'react';
+import DatePicker from "react-datepicker";
+import ephemerisServer from '../constants/urlPython';
+import astroServer from "../constants/url";
+import { FlagIcon } from 'react-flag-kit';
 
 const AstroChart = () => {
+  const [chartData, setChartData] = useState(null);
+  const [locationDropdown, setLocation] = useState({
+    value: 'delhi',
+    label: 'Delhi',
+    flag: 'IN'
+  });
+
+  const [startDate, setStartDate] = useState(new Date());
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleDropdownToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleLocationSelect = (loc) => {
+    setLocation(loc);
+    setIsOpen(false);
+  };
+
+
+
+  const currentTime = `${startDate.getHours()}:${startDate.getMinutes()}`
+  const today = startDate.toISOString().split('T')[0]
+
+  // console.log(today, currentTime);
+
+  const locations = [
+    { value: 'london', label: 'London', flag: 'GB' },
+    { value: 'delhi', label: 'Delhi', flag: 'IN' },
+    { value: 'mumbai', label: 'Mumbai', flag: 'IN' },
+    { value: 'new-york', label: 'New York', flag: 'US' },
+    { value: 'tokyo', label: 'Tokyo', flag: 'JP' },
+    { value: 'hong-kong', label: 'Hong Kong', flag: 'HK' },
+    { value: 'frankfurt', label: 'Frankfurt', flag: 'DE' },
+    { value: 'sydney', label: 'Sydney', flag: 'AU' },
+    // Add more locations as needed
+  ];
+
   useEffect(() => {
-    const Chart = astrochart?.default;
+    const fetchData = async () => {
+      try {
+        const responsePlanets = await astroServer.post('/almanac/get',
+          {
+            date: today,
+            time: currentTime
+          }
+        )
+        const resultPlanets = responsePlanets?.data?.data
+        const responseHouses = await ephemerisServer.post('/houses',
+          {
+            location: locationDropdown.value,
+            date: today,
+            time: currentTime
+          })
+        const resultHouses = responseHouses?.data?.data
+        console.log(resultHouses);
+        if (resultPlanets && resultHouses) {
+          const planets = {};
+          resultPlanets?.forEach(planet => {
+            planets[planet.name.charAt(0).toUpperCase() + planet.name.slice(1)] = [planet.absolutePosition];
+          });
 
-    const chart = new Chart(
-      'paper',
-      590,
-      590,
-      {
-        'COLOR_ARIES': 'red',
-        'COLOR_TAURUS': 'orange',
-        'COLOR_GEMINI': 'yellow',
-        'COLOR_CANCER': 'green',
-        'COLOR_LEO': 'blue',
-        'COLOR_VIRGO': 'indigo',
-        'COLOR_LIBRA': 'violet',
-        'COLOR_SCORPIO': 'purple',
-        'COLOR_SAGITTARIUS': 'pink',
-        'COLOR_CAPRICORN': 'brown',
-        'COLOR_AQUARIUS': 'gray',
-        'SYMBOL_SCALE': 1.2,
-        'COLOR_BACKGROUND': 'white',
-        'POINTS_COLOR': 'red',
-        'SYMBOL_CUSP_12': 'green',
-        'SYMBOL_PISCES': 'green',
-        'CUSPS_STROKE': 1,
-        'CUSPS_FONT_COLOR': 'red',
-        'DIGNITIES_RULERSHIP': true,
-        'ID_ASPECTS': 'aspects',
+          ;
+          const houseDegreeRelation = {
+            1: 0,
+            2: 30,
+            3: 60,
+            4: 90,
+            5: 120,
+            6: 150,
+            7: 180,
+            8: 210,
+            9: 240,
+            10: 270,
+            11: 300,
+            12: 330
+          }
+          let cusps = [];
+
+          // console.log('cusps', cusps);
+          resultHouses?.forEach(house => {
+            // console.log('house', house);
+            cusps.push(houseDegreeRelation[house.houseNumber]);
+          });
+          setChartData({
+            planets,
+            cusps
+          });
+        }
+        /*...*/
+        /*...*/
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
-    );
-
-    const data = {
-      planets: {
-        Saturn: [201],
-        Jupiter: [246],
-        Mars: [210],
-        Moon: [0],
-        Sun: [180],
-        Mercury: [330],
-        Venus: [330]
-      },
-      cusps: [330, 0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300],
-     
     };
 
-    const dataTransit = {
-      planets: {
-        Moon: [60.739220451080115],
-        Venus: [305.6996431634707],
-        Jupiter: [198.6565699576221],
-        NNode: [157.25592636170012],
-        Mars: [324.84013049518734],
-        Lilith: [232.88904207991555],
-        Saturn: [259.1015412368795, -0.2],
-        Chiron: [350.7285587924208],
-        Uranus: [20.678747795787075],
-        Sun: [260.94912160755536],
-        Mercury: [281.5699804920016],
-        Neptune: [339.3848859932604],
-        Pluto: [286.29683069280685],
-      },
-      cusps: [296, 350, 30, 56, 75, 94, 116, 170, 210, 236, 255, 274],
-    };
-    const radix = chart.radix(data);
-    console.log('radix=====', radix)
-    radix.addPointsOfInterest({
-      As: [data.cusps[0]],
-      Ic: [data.cusps[3]],
-      Ds: [data.cusps[6]],
-      Mc: [data.cusps[9]],
-    });
-    radix.aspects({
-      point: {
-          name: 'Moon',
-          position: 0,
-      },
-      toPoint: {
-          name: 'Sun',
-          position: 180,
-      },
-      aspect: {
-          name: 'opposition',
-          degree: 180,
-          color: 'yellow',
-          orbit: 10,
-      },
-      precision: 10,
-  })
+    fetchData();
+  }, [locationDropdown.value, currentTime,today]);
 
-    const transit = radix.transit(dataTransit);
+  useEffect(() => {
+    if (chartData) {
+      const Chart = astrochart?.default;
+      const chart = new Chart(
+        'paper',
+        590,
+        590,
+        {
+
+          'ADD_CLICK_AREA': true,
+          'COLOR_ARIES': '#ff2400',
+          'COLOR_TAURUS': '#ff7f00',
+          'COLOR_GEMINI': '#ffff00',
+          'COLOR_CANCER': '#00ff00',
+          'COLOR_LEO': '#0000ff',
+          'COLOR_VIRGO': '#4b0082',
+          'COLOR_LIBRA': '#8b00ff',
+          'COLOR_SCORPIO': '#800000',
+          'COLOR_SAGITTARIUS': '#ff69b4',
+          'COLOR_CAPRICORN': '#8b4513',
+          'COLOR_AQUARIUS': '#808080',
+          'COLOR_PISCES': 'white',
+          'SYMBOL_SCALE': 1.2,
+          'COLOR_BACKGROUND': 'white',
+          'CUSPS_STROKE': 1,
+          'Aspects': {
+            'conjunction': { 'degree': 0, 'orbit': 10, 'color': '#8b00ff' },
+            'square': { 'degree': 90, 'orbit': 8, 'color': '#8b00ff' },
+            'trine': { 'degree': 120, 'orbit': 8, 'color': '#8b00ff' },
+            'opposition': { 'degree': 180, 'orbit': 10, 'color': '#8b00ff' }
+          },
+          // 'DIGNITIES_RULERSHIP': true,
+          // 'ID_ASPECTS': 'aspects',
+        }
+      );
+
+      const radix = chart.radix(chartData);
 
 
-  }, []);
+      radix.aspects()
+      // const transit = radix.transit(dataTransit);
+    }
+    /*...*/
+    /*...*/
+  }, [chartData]);
+
+
+
+  // console.log(currentDate.toISOString().split('T')[0], currentTime, '-------------<');
+
 
   return (
     <>
-      <h2>Astro Natal Chart</h2>
-      <div id="paper" style={{ zoom: '58%' }}>
+      {/* <div className='bg-gray-400'>
+        <DatePicker
+          showTimeSelect
+          selected={startDate}
+          onChange={(date) => setStartDate(date)}
+          timeClassName={handleColor}
+        />
+      </div> */}
 
+      <div className='mb-4 flex items-center justify-around'>
+        <div className=''>
+          <label htmlFor="location" className="block text-sm font-medium text-gray-100">Temporal</label>
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            timeInputLabel="Time:"
+            dateFormat="MM/dd/yyyy h:mm"
+            showTimeInput
+            className='rounded-md p-2'
+          />
+        </div>
+
+
+        <div className=''>
+
+
+          <label htmlFor="location" className="text-sm font-medium text-gray-100">Spatial</label>
+
+          <div className="relative w-full ">
+            <div
+              type="button"
+              onClick={handleDropdownToggle}
+              className="inline-flex justify-between w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              <span className="flex items-center">
+                <FlagIcon code={locationDropdown.flag} size={16} className="mr-2" />
+                {locationDropdown.label}
+              </span>
+              <svg
+                className="ml-2 -mr-1 h-5 w-5"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 3a1 1 0 01.707.293l4 4a1 1 0 11-1.414 1.414L10 5.414 6.707 8.707a1 1 0 01-1.414-1.414l4-4A1 1 0 0110 3z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            {isOpen && (
+              <div className="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
+                <div className="py-1">
+                  {locations.map((loc) => (
+                    <div
+                      key={loc.value}
+                      onClick={() => handleLocationSelect(loc)}
+                      className="flex items-center cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      <FlagIcon code={loc.flag} size={16} className="mr-2" />
+                      {loc.label}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+
+      </div>
+      <div id="paper" style={{ zoom: '58%' }} className="rounded-md p-4">
         <div id='svg'></div>
       </div>
     </>

@@ -20,6 +20,7 @@
     "react-csv-reader": "^4.0.0",
     "react-datepicker": "^7.1.0",
     "react-dom": "18.2.0",
+    "react-flag-kit": "^1.1.1",
     "react-geocode": "^0.2.3",
     "react-google-charts": "^4.0.1",
     "react-helmet": "^6.1.0",
